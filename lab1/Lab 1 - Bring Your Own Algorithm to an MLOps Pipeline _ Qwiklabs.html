@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://aws.qwiklabs.com/classrooms/59034/labs/335512 -->
+<html lang="en" class="mdl-js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline | Qwiklabs</title>
+<script>
+//<![CDATA[
+window.gon={};gon.current_user={"firstname":"Chris","lastname":"Tran","fullname":"Chris Tran","company":"Verisk Analytics, Inc.","email":"khanh.tran@verisk.com","origin":"aws, direct","subscriptions":0,"id":"bbf593d8f0f0f6529ddd84904111d6f8","qlCreatedAt":"2021-12-13 05:59:01 UTC","optIn":true,"current_organization_id":null,"current_organization_role":null};gon.segment=null;gon.deployment="aws";gon.content={"type":"Lab","id":11885,"name":"Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline"};
+//]]>
+</script>
+<script>
+  dataLayer = [
+    {user: gon.current_user},
+    {content: gon.content}
+  ];
+</script>
+<script src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/webcomponents-loader-60a166e60df2787cca5915e2ced8c317457f421a20f02601b937a72275ac441a.js.download"></script>
+<script src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/vendor-2beee108ba05276bc429223ee82ed81449d233c93d45af5da84add895e101218.js.download"></script>
+<script src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/application-20e85c71d4f4b37cfc2dc06e60190b99242d9643fbadcfd864742b7c1bb1e5d2.js.download"></script>
+<script src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/hallofmirrors-f156fe7fa0c7e87b54b4cf089f02ed02d6cda63c2bf0016afd130174d632bda8.js.download"></script>
+<custom-style>
+  <style is="custom-style">[hidden] {
+  display: none !important;
+}
+
+</style>
+</custom-style>
+<custom-style>
+  <style is="custom-style">html {
+  --layout_-_display:  flex;;
+
+      --layout-inline_-_display:  inline-flex;;
+
+      --layout-horizontal_-_display:  var(--layout_-_display); --layout-horizontal_-_-ms-flex-direction:  row; --layout-horizontal_-_-webkit-flex-direction:  row; --layout-horizontal_-_flex-direction:  row;;
+
+      --layout-horizontal-reverse_-_display:  var(--layout_-_display); --layout-horizontal-reverse_-_-ms-flex-direction:  row-reverse; --layout-horizontal-reverse_-_-webkit-flex-direction:  row-reverse; --layout-horizontal-reverse_-_flex-direction:  row-reverse;;
+
+      --layout-vertical_-_display:  var(--layout_-_display); --layout-vertical_-_-ms-flex-direction:  column; --layout-vertical_-_-webkit-flex-direction:  column; --layout-vertical_-_flex-direction:  column;;
+
+      --layout-vertical-reverse_-_display:  var(--layout_-_display); --layout-vertical-reverse_-_-ms-flex-direction:  column-reverse; --layout-vertical-reverse_-_-webkit-flex-direction:  column-reverse; --layout-vertical-reverse_-_flex-direction:  column-reverse;;
+
+      --layout-wrap_-_-ms-flex-wrap:  wrap; --layout-wrap_-_-webkit-flex-wrap:  wrap; --layout-wrap_-_flex-wrap:  wrap;;
+
+      --layout-wrap-reverse_-_-ms-flex-wrap:  wrap-reverse; --layout-wrap-reverse_-_-webkit-flex-wrap:  wrap-reverse; --layout-wrap-reverse_-_flex-wrap:  wrap-reverse;;
+
+      --layout-flex-auto_-_-ms-flex:  1 1 auto; --layout-flex-auto_-_-webkit-flex:  1 1 auto; --layout-flex-auto_-_flex:  1 1 auto;;
+
+      --layout-flex-none_-_-ms-flex:  none; --layout-flex-none_-_-webkit-flex:  none; --layout-flex-none_-_flex:  none;;
+
+      --layout-flex_-_-ms-flex:  1 1 0.000000001px; --layout-flex_-_-webkit-flex:  1; --layout-flex_-_flex:  1; --layout-flex_-_-webkit-flex-basis:  0.000000001px; --layout-flex_-_flex-basis:  0.000000001px;;
+
+      --layout-flex-2_-_-ms-flex:  2; --layout-flex-2_-_-webkit-flex:  2; --layout-flex-2_-_flex:  2;;
+
+      --layout-flex-3_-_-ms-flex:  3; --layout-flex-3_-_-webkit-flex:  3; --layout-flex-3_-_flex:  3;;
+
+      --layout-flex-4_-_-ms-flex:  4; --layout-flex-4_-_-webkit-flex:  4; --layout-flex-4_-_flex:  4;;
+
+      --layout-flex-5_-_-ms-flex:  5; --layout-flex-5_-_-webkit-flex:  5; --layout-flex-5_-_flex:  5;;
+
+      --layout-flex-6_-_-ms-flex:  6; --layout-flex-6_-_-webkit-flex:  6; --layout-flex-6_-_flex:  6;;
+
+      --layout-flex-7_-_-ms-flex:  7; --layout-flex-7_-_-webkit-flex:  7; --layout-flex-7_-_flex:  7;;
+
+      --layout-flex-8_-_-ms-flex:  8; --layout-flex-8_-_-webkit-flex:  8; --layout-flex-8_-_flex:  8;;
+
+      --layout-flex-9_-_-ms-flex:  9; --layout-flex-9_-_-webkit-flex:  9; --layout-flex-9_-_flex:  9;;
+
+      --layout-flex-10_-_-ms-flex:  10; --layout-flex-10_-_-webkit-flex:  10; --layout-flex-10_-_flex:  10;;
+
+      --layout-flex-11_-_-ms-flex:  11; --layout-flex-11_-_-webkit-flex:  11; --layout-flex-11_-_flex:  11;;
+
+      --layout-flex-12_-_-ms-flex:  12; --layout-flex-12_-_-webkit-flex:  12; --layout-flex-12_-_flex:  12;;
+
+      
+
+      --layout-start_-_-ms-flex-align:  start; --layout-start_-_-webkit-align-items:  flex-start; --layout-start_-_align-items:  flex-start;;
+
+      --layout-center_-_-ms-flex-align:  center; --layout-center_-_-webkit-align-items:  center; --layout-center_-_align-items:  center;;
+
+      --layout-end_-_-ms-flex-align:  end; --layout-end_-_-webkit-align-items:  flex-end; --layout-end_-_align-items:  flex-end;;
+
+      --layout-baseline_-_-ms-flex-align:  baseline; --layout-baseline_-_-webkit-align-items:  baseline; --layout-baseline_-_align-items:  baseline;;
+
+      
+
+      --layout-start-justified_-_-ms-flex-pack:  start; --layout-start-justified_-_-webkit-justify-content:  flex-start; --layout-start-justified_-_justify-content:  flex-start;;
+
+      --layout-center-justified_-_-ms-flex-pack:  center; --layout-center-justified_-_-webkit-justify-content:  center; --layout-center-justified_-_justify-content:  center;;
+
+      --layout-end-justified_-_-ms-flex-pack:  end; --layout-end-justified_-_-webkit-justify-content:  flex-end; --layout-end-justified_-_justify-content:  flex-end;;
+
+      --layout-around-justified_-_-ms-flex-pack:  distribute; --layout-around-justified_-_-webkit-justify-content:  space-around; --layout-around-justified_-_justify-content:  space-around;;
+
+      --layout-justified_-_-ms-flex-pack:  justify; --layout-justified_-_-webkit-justify-content:  space-between; --layout-justified_-_justify-content:  space-between;;
+
+      --layout-center-center_-_-ms-flex-align:  var(--layout-center_-_-ms-flex-align); --layout-center-center_-_-webkit-align-items:  var(--layout-center_-_-webkit-align-items); --layout-center-center_-_align-items:  var(--layout-center_-_align-items); --layout-center-center_-_-ms-flex-pack:  var(--layout-center-justified_-_-ms-flex-pack); --layout-center-center_-_-webkit-justify-content:  var(--layout-center-justified_-_-webkit-justify-content); --layout-center-center_-_justify-content:  var(--layout-center-justified_-_justify-content);;
+
+      
+
+      --layout-self-start_-_-ms-align-self:  flex-start; --layout-self-start_-_-webkit-align-self:  flex-start; --layout-self-start_-_align-self:  flex-start;;
+
+      --layout-self-center_-_-ms-align-self:  center; --layout-self-center_-_-webkit-align-self:  center; --layout-self-center_-_align-self:  center;;
+
+      --layout-self-end_-_-ms-align-self:  flex-end; --layout-self-end_-_-webkit-align-self:  flex-end; --layout-self-end_-_align-self:  flex-end;;
+
+      --layout-self-stretch_-_-ms-align-self:  stretch; --layout-self-stretch_-_-webkit-align-self:  stretch; --layout-self-stretch_-_align-self:  stretch;;
+
+      --layout-self-baseline_-_-ms-align-self:  baseline; --layout-self-baseline_-_-webkit-align-self:  baseline; --layout-self-baseline_-_align-self:  baseline;;
+
+      
+
+      --layout-start-aligned_-_-ms-flex-line-pack:  start; --layout-start-aligned_-_-ms-align-content:  flex-start; --layout-start-aligned_-_-webkit-align-content:  flex-start; --layout-start-aligned_-_align-content:  flex-start;;
+
+      --layout-end-aligned_-_-ms-flex-line-pack:  end; --layout-end-aligned_-_-ms-align-content:  flex-end; --layout-end-aligned_-_-webkit-align-content:  flex-end; --layout-end-aligned_-_align-content:  flex-end;;
+
+      --layout-center-aligned_-_-ms-flex-line-pack:  center; --layout-center-aligned_-_-ms-align-content:  center; --layout-center-aligned_-_-webkit-align-content:  center; --layout-center-aligned_-_align-content:  center;;
+
+      --layout-between-aligned_-_-ms-flex-line-pack:  justify; --layout-between-aligned_-_-ms-align-content:  space-between; --layout-between-aligned_-_-webkit-align-content:  space-between; --layout-between-aligned_-_align-content:  space-between;;
+
+      --layout-around-aligned_-_-ms-flex-line-pack:  distribute; --layout-around-aligned_-_-ms-align-content:  space-around; --layout-around-aligned_-_-webkit-align-content:  space-around; --layout-around-aligned_-_align-content:  space-around;;
+
+      
+
+      --layout-block_-_display:  block;;
+
+      --layout-invisible_-_visibility:  hidden !important;;
+
+      --layout-relative_-_position:  relative;;
+
+      --layout-fit_-_position:  absolute; --layout-fit_-_top:  0; --layout-fit_-_right:  0; --layout-fit_-_bottom:  0; --layout-fit_-_left:  0;;
+
+      --layout-scroll_-_-webkit-overflow-scrolling:  touch; --layout-scroll_-_overflow:  auto;;
+
+      --layout-fullbleed_-_margin:  0; --layout-fullbleed_-_height:  100vh;;
+
+      
+
+      --layout-fixed-top_-_position:  fixed; --layout-fixed-top_-_top:  0; --layout-fixed-top_-_left:  0; --layout-fixed-top_-_right:  0;;
+
+      --layout-fixed-right_-_position:  fixed; --layout-fixed-right_-_top:  0; --layout-fixed-right_-_right:  0; --layout-fixed-right_-_bottom:  0;;
+
+      --layout-fixed-bottom_-_position:  fixed; --layout-fixed-bottom_-_right:  0; --layout-fixed-bottom_-_bottom:  0; --layout-fixed-bottom_-_left:  0;;
+
+      --layout-fixed-left_-_position:  fixed; --layout-fixed-left_-_top:  0; --layout-fixed-left_-_bottom:  0; --layout-fixed-left_-_left:  0;;
+}
+
+</style>
+</custom-style><style>[hidden] { display: none !important; }</style><custom-style>
+  <style is="custom-style">html {
+  --google-red-100: #f4c7c3;
+      --google-red-300: #e67c73;
+      --google-red-500: #db4437;
+      --google-red-700: #c53929;
+
+      --google-blue-100: #c6dafc;
+      --google-blue-300: #7baaf7;
+      --google-blue-500: #4285f4;
+      --google-blue-700: #3367d6;
+
+      --google-green-100: #b7e1cd;
+      --google-green-300: #57bb8a;
+      --google-green-500: #0f9d58;
+      --google-green-700: #0b8043;
+
+      --google-yellow-100: #fce8b2;
+      --google-yellow-300: #f7cb4d;
+      --google-yellow-500: #f4b400;
+      --google-yellow-700: #f09300;
+
+      --google-grey-100: #f5f5f5;
+      --google-grey-300: #e0e0e0;
+      --google-grey-500: #9e9e9e;
+      --google-grey-700: #616161;
+
+      
+
+      --paper-red-50: #ffebee;
+      --paper-red-100: #ffcdd2;
+      --paper-red-200: #ef9a9a;
+      --paper-red-300: #e57373;
+      --paper-red-400: #ef5350;
+      --paper-red-500: #f44336;
+      --paper-red-600: #e53935;
+      --paper-red-700: #d32f2f;
+      --paper-red-800: #c62828;
+      --paper-red-900: #b71c1c;
+      --paper-red-a100: #ff8a80;
+      --paper-red-a200: #ff5252;
+      --paper-red-a400: #ff1744;
+      --paper-red-a700: #d50000;
+
+      --paper-pink-50: #fce4ec;
+      --paper-pink-100: #f8bbd0;
+      --paper-pink-200: #f48fb1;
+      --paper-pink-300: #f06292;
+      --paper-pink-400: #ec407a;
+      --paper-pink-500: #e91e63;
+      --paper-pink-600: #d81b60;
+      --paper-pink-700: #c2185b;
+      --paper-pink-800: #ad1457;
+      --paper-pink-900: #880e4f;
+      --paper-pink-a100: #ff80ab;
+      --paper-pink-a200: #ff4081;
+      --paper-pink-a400: #f50057;
+      --paper-pink-a700: #c51162;
+
+      --paper-purple-50: #f3e5f5;
+      --paper-purple-100: #e1bee7;
+      --paper-purple-200: #ce93d8;
+      --paper-purple-300: #ba68c8;
+      --paper-purple-400: #ab47bc;
+      --paper-purple-500: #9c27b0;
+      --paper-purple-600: #8e24aa;
+      --paper-purple-700: #7b1fa2;
+      --paper-purple-800: #6a1b9a;
+      --paper-purple-900: #4a148c;
+      --paper-purple-a100: #ea80fc;
+      --paper-purple-a200: #e040fb;
+      --paper-purple-a400: #d500f9;
+      --paper-purple-a700: #aa00ff;
+
+      --paper-deep-purple-50: #ede7f6;
+      --paper-deep-purple-100: #d1c4e9;
+      --paper-deep-purple-200: #b39ddb;
+      --paper-deep-purple-300: #9575cd;
+      --paper-deep-purple-400: #7e57c2;
+      --paper-deep-purple-500: #673ab7;
+      --paper-deep-purple-600: #5e35b1;
+      --paper-deep-purple-700: #512da8;
+      --paper-deep-purple-800: #4527a0;
+      --paper-deep-purple-900: #311b92;
+      --paper-deep-purple-a100: #b388ff;
+      --paper-deep-purple-a200: #7c4dff;
+      --paper-deep-purple-a400: #651fff;
+      --paper-deep-purple-a700: #6200ea;
+
+      --paper-indigo-50: #e8eaf6;
+      --paper-indigo-100: #c5cae9;
+      --paper-indigo-200: #9fa8da;
+      --paper-indigo-300: #7986cb;
+      --paper-indigo-400: #5c6bc0;
+      --paper-indigo-500: #3f51b5;
+      --paper-indigo-600: #3949ab;
+      --paper-indigo-700: #303f9f;
+      --paper-indigo-800: #283593;
+      --paper-indigo-900: #1a237e;
+      --paper-indigo-a100: #8c9eff;
+      --paper-indigo-a200: #536dfe;
+      --paper-indigo-a400: #3d5afe;
+      --paper-indigo-a700: #304ffe;
+
+      --paper-blue-50: #e3f2fd;
+      --paper-blue-100: #bbdefb;
+      --paper-blue-200: #90caf9;
+      --paper-blue-300: #64b5f6;
+      --paper-blue-400: #42a5f5;
+      --paper-blue-500: #2196f3;
+      --paper-blue-600: #1e88e5;
+      --paper-blue-700: #1976d2;
+      --paper-blue-800: #1565c0;
+      --paper-blue-900: #0d47a1;
+      --paper-blue-a100: #82b1ff;
+      --paper-blue-a200: #448aff;
+      --paper-blue-a400: #2979ff;
+      --paper-blue-a700: #2962ff;
+
+      --paper-light-blue-50: #e1f5fe;
+      --paper-light-blue-100: #b3e5fc;
+      --paper-light-blue-200: #81d4fa;
+      --paper-light-blue-300: #4fc3f7;
+      --paper-light-blue-400: #29b6f6;
+      --paper-light-blue-500: #03a9f4;
+      --paper-light-blue-600: #039be5;
+      --paper-light-blue-700: #0288d1;
+      --paper-light-blue-800: #0277bd;
+      --paper-light-blue-900: #01579b;
+      --paper-light-blue-a100: #80d8ff;
+      --paper-light-blue-a200: #40c4ff;
+      --paper-light-blue-a400: #00b0ff;
+      --paper-light-blue-a700: #0091ea;
+
+      --paper-cyan-50: #e0f7fa;
+      --paper-cyan-100: #b2ebf2;
+      --paper-cyan-200: #80deea;
+      --paper-cyan-300: #4dd0e1;
+      --paper-cyan-400: #26c6da;
+      --paper-cyan-500: #00bcd4;
+      --paper-cyan-600: #00acc1;
+      --paper-cyan-700: #0097a7;
+      --paper-cyan-800: #00838f;
+      --paper-cyan-900: #006064;
+      --paper-cyan-a100: #84ffff;
+      --paper-cyan-a200: #18ffff;
+      --paper-cyan-a400: #00e5ff;
+      --paper-cyan-a700: #00b8d4;
+
+      --paper-teal-50: #e0f2f1;
+      --paper-teal-100: #b2dfdb;
+      --paper-teal-200: #80cbc4;
+      --paper-teal-300: #4db6ac;
+      --paper-teal-400: #26a69a;
+      --paper-teal-500: #009688;
+      --paper-teal-600: #00897b;
+      --paper-teal-700: #00796b;
+      --paper-teal-800: #00695c;
+      --paper-teal-900: #004d40;
+      --paper-teal-a100: #a7ffeb;
+      --paper-teal-a200: #64ffda;
+      --paper-teal-a400: #1de9b6;
+      --paper-teal-a700: #00bfa5;
+
+      --paper-green-50: #e8f5e9;
+      --paper-green-100: #c8e6c9;
+      --paper-green-200: #a5d6a7;
+      --paper-green-300: #81c784;
+      --paper-green-400: #66bb6a;
+      --paper-green-500: #4caf50;
+      --paper-green-600: #43a047;
+      --paper-green-700: #388e3c;
+      --paper-green-800: #2e7d32;
+      --paper-green-900: #1b5e20;
+      --paper-green-a100: #b9f6ca;
+      --paper-green-a200: #69f0ae;
+      --paper-green-a400: #00e676;
+      --paper-green-a700: #00c853;
+
+      --paper-light-green-50: #f1f8e9;
+      --paper-light-green-100: #dcedc8;
+      --paper-light-green-200: #c5e1a5;
+      --paper-light-green-300: #aed581;
+      --paper-light-green-400: #9ccc65;
+      --paper-light-green-500: #8bc34a;
+      --paper-light-green-600: #7cb342;
+      --paper-light-green-700: #689f38;
+      --paper-light-green-800: #558b2f;
+      --paper-light-green-900: #33691e;
+      --paper-light-green-a100: #ccff90;
+      --paper-light-green-a200: #b2ff59;
+      --paper-light-green-a400: #76ff03;
+      --paper-light-green-a700: #64dd17;
+
+      --paper-lime-50: #f9fbe7;
+      --paper-lime-100: #f0f4c3;
+      --paper-lime-200: #e6ee9c;
+      --paper-lime-300: #dce775;
+      --paper-lime-400: #d4e157;
+      --paper-lime-500: #cddc39;
+      --paper-lime-600: #c0ca33;
+      --paper-lime-700: #afb42b;
+      --paper-lime-800: #9e9d24;
+      --paper-lime-900: #827717;
+      --paper-lime-a100: #f4ff81;
+      --paper-lime-a200: #eeff41;
+      --paper-lime-a400: #c6ff00;
+      --paper-lime-a700: #aeea00;
+
+      --paper-yellow-50: #fffde7;
+      --paper-yellow-100: #fff9c4;
+      --paper-yellow-200: #fff59d;
+      --paper-yellow-300: #fff176;
+      --paper-yellow-400: #ffee58;
+      --paper-yellow-500: #ffeb3b;
+      --paper-yellow-600: #fdd835;
+      --paper-yellow-700: #fbc02d;
+      --paper-yellow-800: #f9a825;
+      --paper-yellow-900: #f57f17;
+      --paper-yellow-a100: #ffff8d;
+      --paper-yellow-a200: #ffff00;
+      --paper-yellow-a400: #ffea00;
+      --paper-yellow-a700: #ffd600;
+
+      --paper-amber-50: #fff8e1;
+      --paper-amber-100: #ffecb3;
+      --paper-amber-200: #ffe082;
+      --paper-amber-300: #ffd54f;
+      --paper-amber-400: #ffca28;
+      --paper-amber-500: #ffc107;
+      --paper-amber-600: #ffb300;
+      --paper-amber-700: #ffa000;
+      --paper-amber-800: #ff8f00;
+      --paper-amber-900: #ff6f00;
+      --paper-amber-a100: #ffe57f;
+      --paper-amber-a200: #ffd740;
+      --paper-amber-a400: #ffc400;
+      --paper-amber-a700: #ffab00;
+
+      --paper-orange-50: #fff3e0;
+      --paper-orange-100: #ffe0b2;
+      --paper-orange-200: #ffcc80;
+      --paper-orange-300: #ffb74d;
+      --paper-orange-400: #ffa726;
+      --paper-orange-500: #ff9800;
+      --paper-orange-600: #fb8c00;
+      --paper-orange-700: #f57c00;
+      --paper-orange-800: #ef6c00;
+      --paper-orange-900: #e65100;
+      --paper-orange-a100: #ffd180;
+      --paper-orange-a200: #ffab40;
+      --paper-orange-a400: #ff9100;
+      --paper-orange-a700: #ff6500;
+
+      --paper-deep-orange-50: #fbe9e7;
+      --paper-deep-orange-100: #ffccbc;
+      --paper-deep-orange-200: #ffab91;
+      --paper-deep-orange-300: #ff8a65;
+      --paper-deep-orange-400: #ff7043;
+      --paper-deep-orange-500: #ff5722;
+      --paper-deep-orange-600: #f4511e;
+      --paper-deep-orange-700: #e64a19;
+      --paper-deep-orange-800: #d84315;
+      --paper-deep-orange-900: #bf360c;
+      --paper-deep-orange-a100: #ff9e80;
+      --paper-deep-orange-a200: #ff6e40;
+      --paper-deep-orange-a400: #ff3d00;
+      --paper-deep-orange-a700: #dd2c00;
+
+      --paper-brown-50: #efebe9;
+      --paper-brown-100: #d7ccc8;
+      --paper-brown-200: #bcaaa4;
+      --paper-brown-300: #a1887f;
+      --paper-brown-400: #8d6e63;
+      --paper-brown-500: #795548;
+      --paper-brown-600: #6d4c41;
+      --paper-brown-700: #5d4037;
+      --paper-brown-800: #4e342e;
+      --paper-brown-900: #3e2723;
+
+      --paper-grey-50: #fafafa;
+      --paper-grey-100: #f5f5f5;
+      --paper-grey-200: #eeeeee;
+      --paper-grey-300: #e0e0e0;
+      --paper-grey-400: #bdbdbd;
+      --paper-grey-500: #9e9e9e;
+      --paper-grey-600: #757575;
+      --paper-grey-700: #616161;
+      --paper-grey-800: #424242;
+      --paper-grey-900: #212121;
+
+      --paper-blue-grey-50: #eceff1;
+      --paper-blue-grey-100: #cfd8dc;
+      --paper-blue-grey-200: #b0bec5;
+      --paper-blue-grey-300: #90a4ae;
+      --paper-blue-grey-400: #78909c;
+      --paper-blue-grey-500: #607d8b;
+      --paper-blue-grey-600: #546e7a;
+      --paper-blue-grey-700: #455a64;
+      --paper-blue-grey-800: #37474f;
+      --paper-blue-grey-900: #263238;
+
+      
+      --dark-divider-opacity: 0.12;
+      --dark-disabled-opacity: 0.38; 
+      --dark-secondary-opacity: 0.54;
+      --dark-primary-opacity: 0.87;
+
+      
+      --light-divider-opacity: 0.12;
+      --light-disabled-opacity: 0.3; 
+      --light-secondary-opacity: 0.7;
+      --light-primary-opacity: 1.0;
+}
+
+</style>
+</custom-style><custom-style>
+  <style is="custom-style">html {
+  --primary-text-color: var(--light-theme-text-color);
+      --primary-background-color: var(--light-theme-background-color);
+      --secondary-text-color: var(--light-theme-secondary-color);
+      --disabled-text-color: var(--light-theme-disabled-color);
+      --divider-color: var(--light-theme-divider-color);
+      --error-color: var(--paper-deep-orange-a700);
+
+      
+      --primary-color: var(--paper-indigo-500);
+      --light-primary-color: var(--paper-indigo-100);
+      --dark-primary-color: var(--paper-indigo-700);
+
+      --accent-color: var(--paper-pink-a200);
+      --light-accent-color: var(--paper-pink-a100);
+      --dark-accent-color: var(--paper-pink-a400);
+
+
+      
+      --light-theme-background-color: #ffffff;
+      --light-theme-base-color: #000000;
+      --light-theme-text-color: var(--paper-grey-900);
+      --light-theme-secondary-color: #737373;  
+      --light-theme-disabled-color: #9b9b9b;  
+      --light-theme-divider-color: #dbdbdb;
+
+      
+      --dark-theme-background-color: var(--paper-grey-900);
+      --dark-theme-base-color: #ffffff;
+      --dark-theme-text-color: #ffffff;
+      --dark-theme-secondary-color: #bcbcbc;  
+      --dark-theme-disabled-color: #646464;  
+      --dark-theme-divider-color: #3c3c3c;
+
+      
+      --text-primary-color: var(--dark-theme-text-color);
+      --default-primary-color: var(--primary-color);
+}
+
+</style>
+</custom-style><script async="" src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/lazy.min.js.download"></script><script src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/loader.js.download"></script>
+<!--[if lt IE 9]>
+<script src='http://html5shim.googlecode.com/svn/trunk/html5.js' type='text/javascript'></script>
+<![endif]-->
+<!--[endif]>  <![endif]-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "https://www.qwiklabs.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.qwiklabs.com/catalog?keywords={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script id="ze-snippet" src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/snippet.js.download"></script>
+
+
+<meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="cqvKCVS1ZxFuaofJv3TjYihtFvZfdrgB3G7cmRhtGMLDcCrrGJWtOKMfhBgHdnKRN2l6L3nooIL+LH5AeV/qzQ==">
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport">
+<meta content="1rRsY0INj8RvwB5EF5pwdxt2A2P9aDgAlsICaJ0d5w0" name="google-site-verification">
+<meta content="#3681E4" property="msapplication-TileColor">
+<meta content="/favicon-144.png" property="msapplication-TileImage">
+<meta content="[{&quot;id&quot;:&quot;recaptcha_experiment&quot;,&quot;optimize_id&quot;:&quot;dpViOcLkT3qS4TvL2mRojA&quot;,&quot;title&quot;:&quot;No Recaptcha shown for trusted users&quot;,&quot;variant_index&quot;:0,&quot;variant&quot;:&quot;original&quot;}]" name="active-experiments">
+<meta content="{&quot;userId&quot;:526414}" name="help-api-product-data">
+<meta content="This lab provides you with a deep overview of Machine Learning operations" name="description">
+<meta content="Qwiklabs" name="author">
+<meta content="Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline | Qwiklabs" property="og:title">
+<meta content="website" property="og:type">
+<meta content="/favicon-144.png" property="og:image">
+<meta content="Qwiklabs" property="og:site_name">
+<meta content="This lab provides you with a deep overview of Machine Learning operations" property="og:description">
+<meta content="/qwiklabs_logo_900x887.png" property="og:logo" size="900x887">
+<meta content="/qwiklabs_logo_994x187.png" property="og:logo" size="994x187">
+
+
+
+<link color="#3681E4" href="https://aws.qwiklabs.com/favicon-svg.svg" rel="mask-icon">
+<link href="https://aws.qwiklabs.com/favicon-180.png" rel="apple-touch-icon-precomposed">
+<link href="https://aws.qwiklabs.com/favicon-32.png" rel="shortcut icon" type="image/x-icon">
+
+
+
+<link rel="stylesheet" media="screen" href="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/css">
+
+
+<link rel="stylesheet" media="all" href="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/application-57393f6342c112e8870e0841812e8cdf12dde8b2f9c1ed9646cd3550c981e68b.css">
+
+<style>
+  :root {
+    --primary-text-on-surface-color: #1A73E8;
+    --primary-text-on-surface-color-dark: #1568d6;
+    --primary-text-on-surface-color-darker: #135ec1;
+    --primary-text-on-surface-color-darkest: #1154ac;
+    --primary-surface-color: #1A73E8;
+    --primary-surface-color-rgb: 26,115,232;
+    --primary-surface-color-light: #d1e3fa;
+    --primary-surface-color-lightest: #e8f1fd;
+    --text-on-primary-color: #FFFFFF;
+    --accent-text-on-surface-color: #F29900;
+    --accent-surface-color: #F9AB00;
+    --accent-surface-color-rgb: 249,171,0;
+    --accent-surface-color-light: #ffefcc;
+    --text-on-accent-color: #202124;
+  }
+</style>
+
+
+
+</head>
+<body class="lab-show l-full no-nav application-new focuses focuses-show lab-show l-full no-nav "><audio class="audio-for-speech" src=""></audio><div class="translate-tooltip-mtz hidden">
+                    <div class="header">
+                        <div class="header-controls">
+                            <span class="sound-translate"></span>
+                            <span class="settings"></span>
+                        </div>
+                        <div class="translate-icons">
+                            <img class="from" src="https://aws.qwiklabs.com/classrooms/59034/labs/335512">
+                            <img class="arrow" src="chrome-extension://hiidjliailpkjeigakikbfedlfijngih/images/right-arrow.png">
+                            <img class="to" src="https://aws.qwiklabs.com/classrooms/59034/labs/335512">
+                        </div>
+                    </div>
+                    <div class="translated-text">
+                        <div class="words"></div>
+                        <div class="sentences"></div>
+                    </div>
+                    <div class="controls">
+                        <div class="controls__control-wrapper">
+                            <span class="controls__description">
+                                Fast traslate
+                            </span>
+                            <span class="controls__toggle dbl-click active" data-store="double_click">
+                                <div class="controls__inner-circle"></div>
+                            </span>
+                        </div>
+                        <div class="controls__control-wrapper">
+                            <span class="controls__description">
+                                Icon translate
+                            </span>
+                            <span class="controls__toggle icon-trans active" data-store="icon_trans">
+                                <div class="controls__inner-circle"></div>
+                            </span>
+                        </div>
+                    </div>
+                </div><span class="translate-button-mtz hidden"></span>
+<div class="header-container">
+<div class="header">
+<ql-toolbar jumpenabled="">
+<div class="header__title" slot="title">
+<ql-icon-button label="Back" href="/classrooms/59034" id="53985ba7b778ab4f" target="_self" tip="Back">arrow_back</ql-icon-button>
+<h1 class="ql-headline-6">Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline</h1>
+</div>
+<div class="header__actions" slot="action">
+<ql-icon-button id="control-panel-target" style="display: none;">
+dashboard
+</ql-icon-button>
+<ql-menu for="control-panel-target" id="control-panel-menu" style="left: -1000px; top: -1000px; opacity: 0; visibility: hidden;" role="menu" aria-labelledby="control-panel-target"></ql-menu>
+<ql-icon-button class="mobile-hide" icon="help_outline" id="help-menu-button" label="Open help menu" tip="Help"></ql-icon-button>
+<ql-menu for="help-menu-button" id="help-menu" style="left: -1000px; top: -1000px; opacity: 0; visibility: hidden;" role="menu" aria-labelledby="help-menu-button">
+<ql-menu-item data-analytics-action="opened_help" data-analytics-label="lab" label="Help Center" onclick="hallofmirrors.helpService.startHelp({&quot;productData&quot;:{&quot;userId&quot;:526414},&quot;context&quot;:&quot;lab&quot;})"></ql-menu-item>
+<ql-menu-item href="https://support.google.com/qwiklabs/contact/contact_us" label="Email support" target="_blank"></ql-menu-item>
+<ql-menu-item label="Chat support" onclick="ql.chat.open()"></ql-menu-item>
+</ql-menu>
+
+<ql-icon-button class="mobile-hide" icon="language" id="language" label="Select your language preference" tip="Language"></ql-icon-button>
+<ql-menu for="language" style="left: -1000px; top: -1000px; opacity: 0; visibility: hidden;" role="menu" aria-labelledby="language">
+<ql-menu-item data-analytics-action="changed_locale" data-analytics-label="ar" href="/classrooms/59034/labs/335512?locale=ar" label="العربية‬‎" lang="ar"></ql-menu-item>
+<ql-menu-item data-analytics-action="changed_locale" data-analytics-label="de" href="/classrooms/59034/labs/335512?locale=de" label="Deutsch" lang="de"></ql-menu-item>
+<ql-menu-item data-analytics-action="changed_locale" data-analytics-label="en" href="/classrooms/59034/labs/335512?locale=en" label="English" lang="en"></ql-menu-item>
+<ql-menu-item data-analytics-action="changed_locale" data-analytics-label="es" href="/classrooms/59034/labs/335512?locale=es" label="español (Latinoamérica)" lang="es"></ql-menu-item>
+<ql-menu-item data-analytics-action="changed_locale" data-analytics-label="fr" href="/classrooms/59034/labs/335512?locale=fr" label="français" lang="fr"></ql-menu-item>
+<ql-menu-item data-analytics-action="changed_locale" data-analytics-label="fr_CA" href="/classrooms/59034/labs/335512?locale=fr_CA" label="français (Canada)" lang="fr-CA"></ql-menu-item>
+<ql-menu-item data-analytics-action="changed_locale" data-analytics-label="he" href="/classrooms/59034/labs/335512?locale=he" label="עברית" lang="he"></ql-menu-item>
+<ql-menu-item data-analytics-action="changed_locale" data-analytics-label="id" href="/classrooms/59034/labs/335512?locale=id" label="bahasa Indonesia" lang="id"></ql-menu-item>
+<ql-menu-item data-analytics-action="changed_locale" data-analytics-label="it" href="/classrooms/59034/labs/335512?locale=it" label="Italiano" lang="it"></ql-menu-item>
+<ql-menu-item data-analytics-action="changed_locale" data-analytics-label="ja" href="/classrooms/59034/labs/335512?locale=ja" label="日本語" lang="ja"></ql-menu-item>
+<ql-menu-item data-analytics-action="changed_locale" data-analytics-label="ko" href="/classrooms/59034/labs/335512?locale=ko" label="한국어" lang="ko"></ql-menu-item>
+<ql-menu-item data-analytics-action="changed_locale" data-analytics-label="pl" href="/classrooms/59034/labs/335512?locale=pl" label="Polski" lang="pl"></ql-menu-item>
+<ql-menu-item data-analytics-action="changed_locale" data-analytics-label="pt_BR" href="/classrooms/59034/labs/335512?locale=pt_BR" label="português (Brasil)" lang="pt-BR"></ql-menu-item>
+<ql-menu-item data-analytics-action="changed_locale" data-analytics-label="pt_PT" href="/classrooms/59034/labs/335512?locale=pt_PT" label="português (Portugal)" lang="pt-PT"></ql-menu-item>
+<ql-menu-item data-analytics-action="changed_locale" data-analytics-label="ru" href="/classrooms/59034/labs/335512?locale=ru" label="русский" lang="ru"></ql-menu-item>
+<ql-menu-item data-analytics-action="changed_locale" data-analytics-label="tr" href="/classrooms/59034/labs/335512?locale=tr" label="Türkçe" lang="tr"></ql-menu-item>
+<ql-menu-item data-analytics-action="changed_locale" data-analytics-label="zh" href="/classrooms/59034/labs/335512?locale=zh" label="简体中文" lang="zh"></ql-menu-item>
+<ql-menu-item data-analytics-action="changed_locale" data-analytics-label="zh_TW" href="/classrooms/59034/labs/335512?locale=zh_TW" label="繁體中文" lang="zh-TW"></ql-menu-item>
+</ql-menu>
+
+<ql-icon-button id="my_account" label="My account" tip="My account">
+<ql-avatar></ql-avatar>
+</ql-icon-button>
+<ql-menu for="my_account" id="my_account_menu" style="max-height: 640px; left: -1000px; top: -1000px; opacity: 0; visibility: hidden;" role="menu" aria-labelledby="my_account">
+<div class="my-account-menu">
+<ql-avatar class="l-mtl l-mbl" size="120"></ql-avatar>
+<div class="my-account-menu__user-info l-mbl">
+<h4 class="ql-subhead-1">Chris Tran</h4>
+<p class="ql-body-2 text--light">khanh.tran@verisk.com</p>
+<p class="ql-body-2 text--light">
+</p>
+</div>
+<div class="buttons l-mbl">
+<a class="button button--hairline" id="settings" href="https://aws.qwiklabs.com/my_account/profile">Settings</a>
+</div>
+<hr>
+<ql-button data-analytics-action="clicked_sign_out" href="/users/sign_out" method="delete">
+Sign Out
+</ql-button>
+<div class="privacy l-mtl">
+<a class="ql-caption text--light" href="https://aws.qwiklabs.com/privacy_policy">Privacy</a>
+<span class="ql-caption text--light l-mls l-mrs">·</span>
+<a class="ql-caption text--light" href="https://aws.qwiklabs.com/terms_of_service">Terms</a>
+</div>
+</div>
+</ql-menu>
+
+</div>
+</ql-toolbar>
+
+</div>
+<div class="header__search-bar js-header-search-bar">
+<form class="js-search-form-mobile" onsubmit="ql.searchFilter(); return false;" action="https://aws.qwiklabs.com/searches/lab" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="cqvKCVS1ZxFuaofJv3TjYihtFvZfdrgB3G7cmRhtGMLDcCrrGJWtOKMfhBgHdnKRN2l6L3nooIL+LH5AeV/qzQ==">
+<input type="text" name="keywords" id="search" placeholder="Search for learning activities." maxlength="255" aria-label="catalog search bar">
+</form>
+
+<ql-icon-button class="js-close-search-bar">close</ql-icon-button>
+</div>
+</div>
+
+<nav class="nav-panel js-nav-panel">
+<div class="nav-panel__logo">
+<div class="custom-logo"><img alt="Qwiklabs" height="24" aria-label="Qwiklabs" src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/i0qFEQoJiBanlKZQElmSw+6HzGe37MLn2bL3nInH6MM="></div>
+</div>
+<nav class="ql-sidenav">
+<ql-sidenav-item href="/" icon="home" label="Home"></ql-sidenav-item>
+
+<ql-sidenav-item href="/catalog" icon="school" label="Catalog"></ql-sidenav-item>
+
+<ql-sidenav-item active="" href="/profile" icon="event_note" label="Profile"></ql-sidenav-item>
+
+</nav>
+
+</nav>
+<div class="nav-panel__overlay js-nav-toggle"></div>
+
+<main class="js-main" id="jump-content">
+<div class="l-main-wrapper" id="main-wrapper">
+
+
+
+
+<ql-drawer-container class="js-lab-state" data-analytics-payload="{&quot;label&quot;:&quot;Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline&quot;,&quot;lab_name&quot;:&quot;Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline&quot;,&quot;classroom_name&quot;:null,&quot;deployment&quot;:&quot;aws&quot;}" data-focus-id="335512" data-lab-billing-limit="0.0" data-lab-duration="10800" data-parent="classroom" id="lab-container">
+<ql-drawer id="terminal-drawer" slot="drawer" style="width: calc(100% - 480px); visibility: hidden;" tabindex="-1" aria-hidden="true" role="region" mode="side">
+<iframe allow="clipboard-read" class="terminal" id="embedded-resource" src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/saved_resource.html"></iframe>
+</ql-drawer>
+<ql-drawer-content class="js-lab-wrapper" id="lab-content" slot="drawer-content">
+<ql-drawer-container id="lab-content-container">
+<ql-drawer id="control-panel-drawer" open="" slot="drawer" width="320" aria-hidden="false" role="region" mode="side" style="width: 320px; visibility: visible;">
+
+<ql-lab-control-panel class="ql-lab-control-panel__max-height control-panel js-lab-control-panel" connectionfiles="[]" labcontrolbutton="{&quot;disabled&quot;:false,&quot;pending&quot;:false,&quot;running&quot;:false}" labdetails="[]" labtimer="{&quot;ticking&quot;:false,&quot;secondsRemaining&quot;:10800}" studentresources="[]">
+</ql-lab-control-panel></ql-drawer>
+<ql-drawer-content id="lab-instructions" slot="drawer-content">
+<ql-snackbar id="alert-snackbar" aria-live="polite" role="alert"></ql-snackbar>
+<div class="alert alert--fake js-alert">
+<p class="alert__message js-alert-message" role="alert"></p>
+<ql-icon-button class="alert__close js-alert-close" icon="clear"></ql-icon-button>
+<iframe class="l-ie-iframe-fix" src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/saved_resource(1).html"></iframe>
+</div>
+<div class="lab-content__renderable-instructions js-lab-content">
+<div class="lab-preamble">
+<h1 class="lab-preamble__title">
+Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline
+</h1>
+<div class="lab-preamble__details subtitle-headline-1">
+<span>3 hours </span>
+<span>Free</span>
+<div class="lab__rating">
+<a aria-label="Lab Reviews" href="https://aws.qwiklabs.com/focuses/335512/reviews?parent=classroom"><div class="rateit" data-rateit-readonly="true" data-rateit-value="4.56"><div class="rateit-reset" style="display: none;"></div><div class="rateit-range" style="width: 80px; height: 16px;"><div class="rateit-selected" style="height: 16px; width: 72.96px;"></div><div class="rateit-hover" style="height:16px"></div></div></div>
+
+</a><ql-button aria-label="Rate Lab" id="rate-lab-btn" label="Rate Lab" text=""></ql-button>
+</div>
+</div>
+</div>
+<div class="lab-outline-place-holder"></div>
+
+<div class="markdown-lab-instructions js-markdown-instructions no-select" id="markdown-lab-instructions">
+<p><img src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/aws-logo.png" alt=""></p>
+
+<h1>Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline</h1>
+
+<p>© 2021 Amazon Web Services, Inc. and its affiliates. All rights reserved. This work may not be reproduced or redistributed, in whole or in part, without prior written permission from Amazon Web Services, Inc. Commercial copying, lending, or selling is prohibited. All trademarks are the property of their owners.</p>
+
+<p>Note: Do not include any personal, identifying, or confidential information into the lab environment. Information entered may be visible to others.</p>
+
+<p>Corrections, feedback, or other questions? Contact us at <a href="https://support.aws.amazon.com/#/contacts/aws-training" target="_blank"><em>AWS Training and Certification</em></a>.</p>
+
+<h2 id="step1">Lab overview</h2>
+
+<p>To train machine learning models and get them ready for production is complex. There is no one-size-fits all solution for everyone. To come up with a functional, scalable, and <em>secure</em> solution, AWS recommends following the <a href="https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/introduction.html" target="_blank">Machine Learning Lens: AWS Well Architected Framework</a>. There are three main approaches to training machine learning models on AWS:</p>
+<ul>
+<li>Use your own algorithm or model</li>
+<li>Leverage built-in data processing models </li>
+<li>Use managed services</li>
+</ul>
+<p>In this lab, you will use the first of these approaches to create a container image using your own algorithm. You will then use Amazon SageMaker with the container image to train, create, and deploy a model. This will show you the basics that you can then extend to match your organization's needs. You will explore the AWS services used to create a basic pipeline, make updates to the pipeline, and update the model code. This will give you a feel for the services you can use to build your own custom machine learning pipeline. During this lab, you will cover the basic steps that occur after data preparation and before final model evaluation.</p>
+
+<h2 id="step2">Objectives</h2>
+
+<p>After completing this lab, you will be able to:</p>
+<ul>
+<li>Identify key components needed for a machine learning pipeline</li>
+<li>Update algorithm used</li>
+<li>Review model test results</li>
+<li>Retrain the model</li>
+<li>Use the AWS Step Functions SDK to update the model training workflow </li>
+</ul>
+<h3>Prerequisites</h3>
+
+<p>This lab requires:</p>
+<ul>
+<li>Access to a notebook computer with Wi-Fi and Microsoft Windows, Mac OS X, or Linux (Ubuntu, SuSE, or Red Hat)</li>
+<li>The lab environment is not accessible using an iPad or tablet device, but you can use these devices to access the student guide</li>
+<li>For Microsoft Windows users: Administrator access to the computer</li>
+<li>An Internet browser such as Chrome, Firefox, or IE9 (previous versions of Internet Explorer are not supported)</li>
+</ul>
+<h3>Duration</h3>
+
+<p>This lab will require <em>60</em> minutes to complete.</p>
+
+<h3>Lab setup</h3>
+
+<p>First, you will explore the AWS Console to understand the pre-configured machine learning pipeline for this activity. Several AWS services are used, and reviewing them will help you understand how they work together. </p>
+
+<p>The following simplified architecture diagram shows each service used and some of the data travel paths. </p>
+
+<p><img src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/diagram1_main-architecture.png" alt="AWS architecture diagram showing all services used and how they are connected"></p>
+
+<p>The AWS developer tools (AWS CodeCommit, AWS CodeBuild, and AWS CodePipeline) along with AWS Step Functions are used to orchestrate and maintain the code. They work together to ensure that all required steps to generate a trained model are repeatable. The model is stored as a container image in Amazon Elastic Container Registry (Amazon ECR), and data is stored and accessed by the pipeline using Amazon Simple Storage Service (Amazon S3), and Amazon DynamoDB which acts as the model registry. Amazon SageMaker does the heavy lifting of training the model and creating an endpoint that can be programmatically accessed to make predictions. Several services support the pipeline to keep it secure and provide access to logging. AWS Identity and Access Management (IAM), AWS Key Management Service (AWS KMS), Amazon Virtual Private Cloud (Amazon VPC), and Amazon CloudWatch all have to be configured properly to ensure your pipeline works as you expect it to. </p>
+
+<p>In the previous architecture diagram, there are two CodePipelines. The Step Functions CodePipeline (highlighted in the following diagram) monitors the <em>stateMachineCode</em> CodeCommit repository for any changes to your pipeline. It invokes CodeBuild when one is detected, and CodeBuild runs a Python script that uses the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-python-sdk.html" target="_blank">AWS Step Functions Data Science SDK for Python</a>. The Step Functions Data Science SDK is a layer of abstraction that is purpose-built for data scientists and ML engineers who are comfortable working in Python. </p>
+
+<p>The Python script is used to manage the Step Functions state machine that controls the machine learning workflow for training, storing, and creating the Amazon SageMaker endpoint, and for validating the model's accuracy. With the Step Functions Data Science SDK, you can author the Amazon States Language (ASL) definition required to build a state machine. You can also keep the state machine definition as infrastructure as code (IaC) and limit modification of AWS Step Functions via IAM policies. Or, create the same updates/tasks by defining the state machine with the ASL.</p>
+
+<p><img src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/diagram2_StepFunctionsPipeline.png" alt="AWS architecture diagram showing the AWS CodePipeline for the AWS Step Functions"></p>
+
+<p>The second CodePipeline, shown in the following diagram, monitors the <em>modelCode</em> CodeCommit repository for changes and invokes CodeBuild when one is detected. CodeBuild is then used to create, tag, and upload a Docker image to Amazon ECR. Lastly, the training code pipeline sends inputs to the Step Functions state machine to train the model, create an endpoint, and update the artifact registry.</p>
+
+<p><img src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/diagram3_model-training-pipeline.png" alt="AWS architecture diagram showing the AWS CodePipeline for the model training"></p>
+
+<p>The Step Functions state machine is responsible for orchestrating how several services work together. It is aware of the Amazon ECR image, the Amazon S3 data location, the Amazon DynamoDB table, and Amazon SageMaker. </p>
+
+<p><img src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/diagram4a_training-state-machine.png" alt="AWS architecture diagram showing the services AWS Step Functions interact with"></p>
+
+<p>The Step Functions state machine is defined to work with each service and is maintained by a Python script in the <em>stateMachineCode</em> repository. Each step is defined in the following diagram so you can see how they are chained together to train and deploy the model.</p>
+
+<p><img src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/diagram4b_training-state-machine.png" alt="Diagram showing the steps in the AWS Step Functions State Machine"></p>
+
+<p><i class="fas fa-chalkboard-teacher" style="color:black;"></i> For instructions that walk you through the AWS console, see <a href="https://aws.qwiklabs.com/classrooms/59034/labs/335512#supplemental-console-walkthrough" target="_self">Supplemental: AWS Console walkthrough</a>.</p>
+
+
+
+<h2 id="step3">Start Lab</h2>
+<ol start="1">
+<li>At the top of your screen, launch your lab by choosing <span style="background-color:#34A853;font-family:Google Sans;font-weight:bold;font-size:90%;color:white;border-color:#34A853;border-radius:4px;border-width:2px;border-style:solid;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;">Start Lab</span>
+</li>
+</ol>
+<p>This starts the process of provisioning your lab resources. An estimated amount of time to provision your lab resources is displayed. You must wait for your resources to be provisioned before continuing.</p>
+
+<p><i class="fas fa-info-circle"></i> If you are prompted for a token, use the one distributed to you (or credits you have purchased). </p>
+<ol start="2">
+<li>Open your lab by choosing <span style="background-color:white;font-family:Google Sans;font-weight:bold;font-size:90%;color:#1a73e8;border-color:#dadce0;border-radius:4px;border-width:2px;border-style:solid;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;">Open Console</span>
+</li>
+</ol>
+<p>This opens an AWS Management Console sign-in page.</p>
+<ol start="3">
+<li>On the sign-in page, configure:</li>
+</ol><ul>
+<li>
+<strong>IAM user name:</strong> <input readonly="" class="copyable-inline-input" size="10" type="text" value="awsstudent">
+</li>
+<li>
+<strong>Password:</strong> Paste the value of <strong>Password</strong> from the left side of the lab page</li>
+<li>Choose <span style="background-color:#257ACF;font-weight:bold;font-size:90%;color:white;border-radius:5px;padding-top:3px;padding-bottom:3px;padding-left:10px;padding-right:10px;white-space:nowrap;">Sign In</span>
+</li>
+</ul>
+<p><i class="fas fa-exclamation-triangle"></i> <strong>Do not change the Region unless instructed.</strong></p>
+
+
+
+<h3>Common Login Errors</h3>
+
+<p><strong>Error: You must first log out</strong></p>
+
+<p><img src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/logouterror.png" alt=""></p>
+
+<p>If you see the message, <strong>You must first log out before logging into a different AWS account:</strong> </p>
+<ul>
+<li>Choose <strong>click here</strong>
+</li>
+<li>Close your browser tab to return to your initial lab window</li>
+<li>Choose <span style="background-color:white;font-family:Google Sans;font-weight:bold;font-size:90%;color:#1a73e8;border-color:#dadce0;border-radius:4px;border-width:2px;border-style:solid;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;">Open Console</span> again</li>
+</ul>
+
+
+<h2 id="step4">Task 1:  Update the Step Functions state machine</h2>
+
+<p><a id="lab-instructions-start" target="_blank"></a></p>
+
+<p>In this example architecture, an AWS Step Functions state machine controls the automated model training process. Updating the state machine directly requires elevated permissions for users, and it is not always easy to author the definition properly. Both concerns can be mitigated by using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-python-sdk.html" target="_blank">AWS Step Functions Data Science SDK for Python</a>. With the SDK, builders can program in Python and administrators can create roles assigned to services that manage the updates. To see how to update a state machine, you will connect to an AWS Cloud9 IDE instance, clone a git repository, update code to change the state machine, and monitor the changes. </p>
+
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> Depending on your preferences, you may choose to use your personal computer, AWS Cloud9, an Amazon SageMaker notebook, Amazon SageMaker Studio, or any other Python-enabled setup to modify and run the SDK code.</p>
+
+<p>Explore the <a href="https://docs.aws.amazon.com/cloud9/latest/user-guide/tutorial.html" target="_blank">AWS Cloud9 tutorial</a> for more information about AWS Cloud9.</p>
+
+<p>First, lets review the AWS Step Functions definition before you change it. Make sure that the region listed in the console matches the <strong>AWSRegion</strong> value from the left side of the lab page.</p>
+<ol start="4">
+<li>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>Step Functions</strong>.</li>
+</ol>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> Alternatively, to search for a service, choose the search bar at the top of the console and enter the service name.</p>
+<ol start="5">
+<li><p>Choose the name of the state machine that contains <strong>trainingStateMachine</strong>.</p></li>
+<li><p>Choose the <strong>Definition</strong> tab.</p></li>
+</ol>
+<p>The definition loads. The graph currently has five steps between start and end. You will update the state machine to include testing and verification steps.</p>
+
+<p><img src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/state-machine-original.png" alt="Image of the state machine graph with 5 steps"></p>
+
+<p>To update the state machine, first connect to your AWS Cloud9 IDE.</p>
+<ol start="7">
+<li><p>Copy the <strong>Cloud9url</strong> value from the left side of the lab page.</p></li>
+<li><p>Open a <em>new</em> browser tab, paste the <strong>Cloud9url</strong> into the address bar, and press ENTER.</p></li>
+</ol>
+<p>The AWS Cloud9 IDE has three main pieces: (1) A file browser located to the left of the screen, (2) a file editor window in the upper right, and (3) a terminal window in the lower right. You can resize the sections as needed using the vertical resize <i class="fas fa-arrows-alt-v"></i> or horizontal resize <i class="fas fa-arrows-alt-h"></i> cursor that appears when you move between two sections.</p>
+
+<p>The first thing you need to do is clone the <em>stateMachineCode</em> CodeCommit repository.</p>
+<ol start="9">
+<li><p>Copy the <strong>stateMachineCodeRepo</strong> value from the left side of the lab page.</p></li>
+<li><p>Paste the value into the terminal window and press ENTER.</p></li>
+</ol>
+<p>A new folder is displayed in the file browser.</p>
+<ol start="11">
+<li><p>Expand the <strong>stateMachineCode</strong> folder in the file browser by choosing the <i class="fas fa-angle-right"></i> angle right icon.</p></li>
+<li><p>Open (double-click) the <strong>state_machine_manager.py</strong> file.</p></li>
+</ol>
+<p>The file opens in the file editor window. As you look through the file, there are five steps defined: </p>
+<ul>
+<li>Training</li>
+<li>Saving</li>
+<li>Artifact registration</li>
+<li>Endpoint config</li>
+<li>Endpoint creation</li>
+</ul>
+<p>You decided that you want to add steps to test the model's accuracy. To do this you need to add two (2) sections to the state_machine_manager.py file <em>and</em> update the workflow definition. </p>
+
+<p>The first step you want to add will check to see if the endpoint is in service. To do this you will add a step that invokes a Lambda function to check the endpoint's status. The Lambda function has already been created as part of the environment setup.</p>
+
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> As you copy each of the following code blocks, be careful to make sure the indention of the final code is correct.</p>
+<ol start="13">
+<li>In the <em>state_machine_manager.py</em> file, after the endpoint_step (around line 160), add the following code:</li>
+</ol><pre class="highlight python"><code><span class="c"># Create a step that invokes an AWS Lambda function that tests if the endpoint is InService</span>
+<span class="n">endpoint_wait_step</span> <span class="o">=</span> <span class="n">steps</span><span class="o">.</span><span class="n">LambdaStep</span><span class="p">(</span>
+    <span class="s">"Test endpoint in service"</span><span class="p">,</span> <span class="c"># Step name</span>
+    <span class="n">parameters</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"FunctionName"</span><span class="p">:</span> <span class="n">endpoint_wait_lambda</span><span class="p">,</span> <span class="c"># Lambda function variable, defined ~ line 40</span>
+        <span class="s">"Payload"</span><span class="p">:{</span>
+            <span class="s">"Input.$"</span><span class="p">:</span><span class="s">"$"</span> <span class="c"># Pass all the state machine data to Lambda event</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="n">result_path</span><span class="o">=</span><span class="s">'$.endpoint_wait_step_result'</span> <span class="c"># Pass results to output</span>
+<span class="p">)</span>
+</code><button class="button button--text button--small copy-button js-copy-button-0"><ql-icon>content_copy</ql-icon></button></pre>
+<p>Breaking this section down:</p>
+<ul>
+<li>
+<strong>Test Endpoint in service</strong> is the name of the step that the state machine will recognize. </li>
+<li>The <strong>FunctionName</strong> is referencing a Python variable already set at the top of the file.</li>
+<li>The payload (Lambda event) is the input for the state machine step.</li>
+<li>The results from the run will be added to the output for the step.</li>
+</ul>
+<p>There is an issue here because this will only check once, and the state machine will fail if the endpoint is not in service. To fix this, you need to add a retry to the <em>endpoint_wait_step</em>.</p>
+<ol start="14">
+<li>In the <em>state_machine_manager.py</em> file, after the <em>endpoint_wait_step</em> you just added, add the following code:</li>
+</ol><pre class="highlight python"><code><span class="c"># Create a retry configuration for the endpoint_wait_step</span>
+<span class="n">endpoint_wait_step_retry</span> <span class="o">=</span> <span class="n">stepfunctions</span><span class="o">.</span><span class="n">steps</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">Retry</span><span class="p">(</span>
+    <span class="n">error_equals</span><span class="o">=</span><span class="p">[</span><span class="s">'NotInService'</span><span class="p">],</span> <span class="c"># Error defined by Lambda function</span>
+    <span class="n">interval_seconds</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="c"># Time to wait between attempts</span>
+    <span class="n">max_attempts</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="c"># Max times to try</span>
+    <span class="n">backoff_rate</span><span class="o">=</span><span class="mf">1.25</span> <span class="c"># How much to increase time between attempts on fail</span>
+<span class="p">)</span>
+<span class="c"># Add a retry configuration to the endpoint_wait_step</span>
+<span class="n">endpoint_wait_step</span><span class="o">.</span><span class="n">add_retry</span><span class="p">(</span><span class="n">endpoint_wait_step_retry</span><span class="p">)</span>
+</code><button class="button button--text button--small copy-button js-copy-button-1"><ql-icon>content_copy</ql-icon></button></pre>
+<p>Breaking this section down a little shows that:</p>
+<ul>
+<li>The retry is invoked if the error is <em>NotInService</em>.</li>
+<li>It will wait 15 seconds before invoking the Lambda function again.</li>
+<li>It will attempt the step a maximum of 30 times before failing.</li>
+<li>It will backoff the time between checks at a rate of 1.25 (ie. 15 seconds, then 19 seconds, etc.)</li>
+<li>
+<strong>add_retry</strong> attaches the retry to the <em>endpoint_wait_step</em>.</li>
+</ul>
+<p>Once you know the endpoint is in service, you need to send test data to it, and record the accuracy results in the model registry. A Lambda function that performs the test and adds the information to the model registry has already been created as part of the environment setup .</p>
+<ol start="15">
+<li>In the <em>state_machine_manager.py</em> file, after the <em>endpoint_wait_step</em>, add the following code:</li>
+</ol><pre class="highlight python"><code><span class="c"># Create a step that invokes an AWS Lambda function to test model accuracy and </span>
+<span class="c"># update the model registry to reflect the accuracy</span>
+<span class="n">model_test_step</span> <span class="o">=</span> <span class="n">steps</span><span class="o">.</span><span class="n">LambdaStep</span><span class="p">(</span>
+    <span class="s">"Test model"</span><span class="p">,</span> <span class="c"># Step name</span>
+    <span class="n">parameters</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"FunctionName"</span><span class="p">:</span> <span class="n">model_test_step</span><span class="p">,</span>  <span class="c"># Lambda function variable, defined ~ line 40</span>
+        <span class="s">"Payload"</span><span class="p">:{</span>
+            <span class="s">"Input.$"</span><span class="p">:</span><span class="s">"$"</span>  <span class="c"># Pass all the state machine data to Lambda event</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="n">result_path</span><span class="o">=</span><span class="s">'$.model_test_step_result'</span> <span class="c"># Pass results to output</span>
+<span class="p">)</span>
+</code><button class="button button--text button--small copy-button js-copy-button-2"><ql-icon>content_copy</ql-icon></button></pre>
+<p>This time, you do not need to retry because you want the state machine to return a failed status if the function fails.</p>
+
+<p>Lastly, you must <strong>update</strong> the workflow definition chain to include the new steps, adding the new states you created into it.</p>
+<ol start="16">
+<li>In the <em>state_machine_manager.py</em> file, below the add code section, find the <em>workflow_definition</em> chain, and <strong>REPLACE</strong> it so that it includes the two new steps you just defined. It should look like this:</li>
+</ol><pre class="highlight python"><code><span class="c"># Chain the steps together to generate a full AWS Step Functions</span>
+<span class="n">workflow_definition</span> <span class="o">=</span> <span class="n">steps</span><span class="o">.</span><span class="n">Chain</span><span class="p">([</span>
+    <span class="n">training_step</span><span class="p">,</span>
+    <span class="n">model_step</span><span class="p">,</span>
+    <span class="n">register_artifact_step</span><span class="p">,</span>
+    <span class="n">endpoint_config_step</span><span class="p">,</span>
+    <span class="n">endpoint_step</span><span class="p">,</span>
+    <span class="n">endpoint_wait_step</span><span class="p">,</span> <span class="c"># Add the endpoint wait step</span>
+    <span class="n">model_test_step</span> <span class="c"># Add the model test step</span>
+<span class="p">])</span>
+</code><button class="button button--text button--small copy-button js-copy-button-3"><ql-icon>content_copy</ql-icon></button></pre>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> You can only have one <em>workflow_definition</em>. Make sure you do not simply <em>add</em> the above code to the file.</p>
+<ol start="17">
+<li><p>Review the changes you made to the <em>state_machine_manager.py</em> file to make sure they are formatted correctly and that none of the sections are duplicated.</p></li>
+<li><p>Save the file.</p></li>
+<li><p>In the terminal window, enter the following commands to commit the changes to the repository, and push them to CodeCommit. This will invoke CodePipeline to build and update the state machine. </p></li>
+</ol><pre class="highlight shell"><code><span class="nb">cd</span> <span class="s2">"</span><span class="k">$(</span>dirname <span class="s2">"</span><span class="k">$(</span>find . -not -path <span class="s1">'*/\.*'</span> -type f -name state_machine_manager.py | head -1<span class="k">)</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+git commit -a -m <span class="s2">"Updated the state_machine_manager.py file to include a wait step and a test accuracy step."</span>
+git push
+
+</code><button class="button button--text button--small copy-button js-copy-button-4"><ql-icon>content_copy</ql-icon></button></pre>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> There will be several warnings from git about configuring the user. You do not need to do this configuration for the lab; however, if you want to do it for completeness, feel free to follow the on-screen instructions to do so. </p>
+
+<p>The pipeline will take 1-5 minutes to finish. Continue with the lab steps while it runs.</p>
+<ol start="20">
+<li><p>Return to the browser tab with the AWS Management Console open.</p></li>
+<li><p>In the console, on the <strong>Services</strong> menu, choose <strong>CodePipeline</strong>.</p></li>
+<li><p>Choose the name of the pipeline that contains <strong>StepFunctionsPipeline</strong>.</p></li>
+</ol>
+<p>Depending on how fast you loaded the CodePipeline page, the pipeline will either be waiting to start, in process, or completed. Look at the time it last completed to determine if it has run or not. </p>
+
+<p><i class="fas fa-times-circle fa-lg" style="color:orange;"></i> <strong>Note</strong> If it has been around 2 minutes and the pipeline has not run, you may manually start the pipeline by choosing <strong>Release changes</strong>.</p>
+<ol start="23">
+<li>Wait until the build stage is listed as <strong>Succeeded</strong>.</li>
+</ol>
+<p>Next, you will see how this changed the Step Functions state machine.</p>
+<ol start="24">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>Step Functions</strong>.</p></li>
+<li><p>Choose the name of the state machine that contains <strong>trainingStateMachine</strong>.</p></li>
+<li><p>Choose the <strong>Definition</strong> tab.</p></li>
+</ol>
+<p>The definition loads. Looking at the graph, you should see seven steps between start and end, including two new steps, <strong>Test Endpoint in service</strong> and <strong>Test model</strong>.</p>
+
+<p><img src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/state-machine-comparison.png" alt="Image of the updated state machine graph with 7 steps"></p>
+
+<p>Scroll through the definition until you find the <strong>Test Endpoint in service</strong> section (it will be around line 128). Notice that the SDK compiled, formatted, and added several additional lines on our behalf. Using the SDK can make it easier and more secure to manage the state machines. </p>
+
+<p>Now that the state machine has been updated to test the model, you should upload some data so that you can see how the model registry has changed.</p>
+
+
+
+<h2 id="step5">Task 2: Train the model using a new dataset</h2>
+
+<p>To see the results of the state machine update in the artifact catalog, you need to invoke a new training job. You will do this by downloading training data, uploading it to Amazon S3, which will invoke the training job automatically. Once the training job is complete, you will be able to see that model accuracy is reported in the model registry in DynamoDB. </p>
+
+<p>When you design a machine learning pipeline for your unique use case, you will need to consider how retraining is invoked. Careful planning when building this integration will help to reduce issues such as accidentally invoking multiple training jobs of the same data.</p>
+<ol start="27">
+<li>Download training data from this <a href="https://aws-tc-largeobjects.s3-us-west-2.amazonaws.com/ILT-DD-200-MLPOPS-1/lab-1/data-downloads/v1.0-retrain.zip" target="_blank">sample data</a> link and save it to your local computer.</li>
+</ol>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> This is the same data used previously. Typically, you would invoke retraining on new data. This example shows you how to invoke training without creating a new model first. </p>
+<ol start="28">
+<li>Unzip the file on your local computer.</li>
+</ol>
+<p>The unzipped folder should have the following structure:</p>
+<pre class="highlight shell"><code>v1.0-retrain/
+├── train
+│&nbsp;&nbsp; └── iris.csv
+└── validation
+    └── iris.csv
+</code><button class="button button--text button--small copy-button js-copy-button-5"><ql-icon>content_copy</ql-icon></button></pre><ol start="29">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>S3</strong>.</p></li>
+<li><p>Choose the name of the bucket that contains <strong>modeldatabucket</strong>.</p></li>
+</ol>
+<p>The bucket already contains a copy of the dataset. You are uploading a new copy of the dataset that will invoke a training job that follows the updated version of the state machine.</p>
+<ol start="31">
+<li><p>Choose <strong>Upload</strong>.</p></li>
+<li><p>Choose <strong>Add folder</strong>.</p></li>
+<li><p>Navigate to and select the <input readonly="" class="copyable-inline-input" size="12" type="text" value="v1.0-retrain"> folder that contains the <strong>train</strong> and <strong>validation</strong> folders created when you unzipped the file, and choose <strong>Upload</strong> in your browsers dialog window.</p></li>
+<li><p>In the AWS Management Console, choose <strong>Upload</strong>.</p></li>
+<li><p>Choose <strong>Close</strong>.</p></li>
+</ol>
+<p>Now that the files are uploaded, the training state machine will automatically be invoked.</p>
+<ol start="36">
+<li>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>Step Functions</strong>.</li>
+</ol>
+<p>The <strong>trainingStateMachine</strong> state machine has one job listed as <em>Running</em>.</p>
+
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> If you do not see a job listed as <em>Running</em>, check to make sure you successfully uploaded the new training data to Amazon S3.</p>
+<ol start="37">
+<li><p>Choose the name of the state machine that contains <strong>trainingStateMachine</strong>.</p></li>
+<li><p>Choose the name of the execution listed as running from the list.</p></li>
+</ol>
+<p>You can see the progress of the state machine as each step runs. You do not need to wait for this to complete before starting the next task; you will review the results later.</p>
+
+<p>Next, you will change the model and see how this impacts the pipeline.</p>
+
+
+
+<h2 id="step6">Task 3: Edit the model using CodeCommit</h2>
+
+<p>As you learn more about machine learning, you find new ways to build models. The automated workflow makes testing new models easier by reducing the number of manual steps you have to perform to train and test your model. You can test hundreds of model variants, confident that they are all tested the same way.</p>
+
+<p>In this task, you will update the model code, push it to CodeCommit, and watch the new ECR image get generated, saved, and used to train the model. </p>
+<ol start="39">
+<li>Return to the tab that has AWS Cloud9 open in it.</li>
+</ol>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> If you closed the tab, copy the <strong>Cloud9url</strong> value from the left side of the lab page, open a <em>new</em> browser tab, paste the <strong>Cloud9url</strong> into the address bar, and press ENTER.</p>
+<ol start="40">
+<li>Enter the following command into the terminal window to return to your environment directory:</li>
+</ol><pre class="highlight shell"><code><span class="nb">cd</span> ~/environment
+</code><button class="button button--text button--small copy-button js-copy-button-6"><ql-icon>content_copy</ql-icon></button></pre><ol start="41">
+<li><p>Copy the <strong>ModelCodeRepo</strong> value from the left side of the lab page.</p></li>
+<li><p>Paste the value into the terminal window and press ENTER.</p></li>
+</ol>
+<p>A new folder is displayed in the file browser. </p>
+<ol start="43">
+<li>Expand the <strong>modelCode</strong> folder in the file browser by choosing the <i class="fas fa-angle-right"></i> angle right icon.</li>
+</ol>
+<p>Several files and directories are listed. </p>
+<ol start="44">
+<li>Expand the <strong>model</strong> folder in the file browser by choosing the <i class="fas fa-angle-right"></i> angle right icon.</li>
+</ol>
+<p>Several different models are listed. Currently, the code is configured to use <strong>model_random.py</strong>. This model produces an accuracy of 50% because it is making random choices. You will update the code to use <strong>model.py</strong>, which uses a decision tree to provide much higher accuracy. Open any of the models to review the code before moving on.</p>
+<ol start="45">
+<li>Expand the <strong>ml_service</strong> folder in the file browser by choosing the <i class="fas fa-angle-right"></i> angle right icon.</li>
+</ol>
+<p>The Docker image has been configured to properly run the service as configured in the <em>Dockerfile</em> located in the root directory. The <strong>ml_service</strong> directory contains the files needed by the endpoint for the model to be accessed. This includes the <em>Nginx</em> configuration and server configuration files.  </p>
+
+<p>To update what model is being used, you need to update the <strong>app.py</strong> file.</p>
+<ol start="46">
+<li>Open (double-click) the <strong>app.py</strong> file.</li>
+</ol>
+<p>Take a moment to review the file to determine how it works. </p>
+
+<p>The model is defined by the import on or around line 26. </p>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">model_random</span> <span class="k">as</span> <span class="n">model</span>
+</code><button class="button button--text button--small copy-button js-copy-button-7"><ql-icon>content_copy</ql-icon></button></pre>
+<p>Currently it is loading the <em>model_random</em> code from the <em>model</em> directory. You need to update this line to target the <em>model</em> code instead.</p>
+<ol start="47">
+<li>In the editor window replace:</li>
+</ol><pre class="highlight python"><code><span class="kn">import</span> <span class="nn">model_random</span> <span class="k">as</span> <span class="n">model</span>
+</code><button class="button button--text button--small copy-button js-copy-button-8"><ql-icon>content_copy</ql-icon></button></pre>
+<p>with:</p>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">model</span>
+</code><button class="button button--text button--small copy-button js-copy-button-9"><ql-icon>content_copy</ql-icon></button></pre><ol start="48">
+<li><p>Save the file.</p></li>
+<li><p>In the terminal window, enter the following commands to commit the changes to the repository, and push them to CodeCommit. This will invoke CodePipeline to build a new model and start the training state machine.</p></li>
+</ol><pre class="highlight shell"><code><span class="nb">cd</span> <span class="s2">"</span><span class="k">$(</span>dirname <span class="s2">"</span><span class="k">$(</span>find . -not -path <span class="s1">'*/\.*'</span> -type f -name Dockerfile | head -1<span class="k">)</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+git commit -a -m <span class="s2">"Updated the app.py file to use the decision tree model code."</span>
+git push
+</code><button class="button button--text button--small copy-button js-copy-button-10"><ql-icon>content_copy</ql-icon></button></pre>
+<p>While this is processing, look at the changes made to the model registry in the previous task.</p>
+<ol start="50">
+<li><p>Return to the browser tab with the AWS Management Console open.</p></li>
+<li><p>In the console, on the <strong>Services</strong> menu, choose <strong>CodePipeline</strong>.</p></li>
+</ol>
+<p>The <em>deployModelPipeline</em> is listed as <strong>In progress</strong>. If it is not in progress, wait 30-60 seconds for the status to update.</p>
+<ol start="52">
+<li>Choose the name of the pipeline that contains <strong>deployModelPipeline</strong>.</li>
+</ol>
+<p>You can see what stage the pipeline is processing. Take a moment to look at the details from some of the stages to better understand what CodePipeline is doing.</p>
+<ol start="53">
+<li><p>Wait for the build stage to reach a succeeded state.</p></li>
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>Step Functions</strong>.</p></li>
+<li><p>Choose the state machine with <strong>trainingStateMachine</strong> in its name.</p></li>
+<li><p>Choose the name of the job that succeeded most recently or is currently running.</p></li>
+</ol>
+<p>The job that loads is for the updated state machine with the endpoint being tested.</p>
+<ol start="57">
+<li><p>Wait 7-15 minutes for the job to reach a completed state before proceeding.</p></li>
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>DynamoDB</strong>.</p></li>
+<li><p>In the left navigation, choose <strong>Items</strong>.</p></li>
+<li><p>Choose the <i class="far fa-dot-circle"></i> DynamoDB table.</p></li>
+</ol>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> If multiple tables are listed, choose the name of the table that contains <strong>DynamoDBTable</strong>.</p>
+
+<p>If you followed these instructions and did not invoke any additional training, three items should be displayed. If the latest training job has not completed, only one will have an accuracy listed.</p>
+
+<p>Looking at information recorded in the registry, you will find fields such as ECR image tag, CodeCommit git commit Id, S3 training/validation data location, and times when different events occurred. With this information, you can determine the components used for each model.</p>
+<ol start="61">
+<li>Scroll to the <strong>RIGHT</strong> to find the <strong>triggerSource</strong> column.</li>
+</ol>
+<p>You should see that two of the items were invoked automatically by the pipeline, while one is from an S3 data upload. This helps you identify if the model has changed, or if new training data was supplied to an old model. Look at the <strong>ecrImageTag</strong> column and compare the values. </p>
+<ol start="62">
+<li>Wait 10-15 minutes until the new model has completed training before continuing. </li>
+</ol>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> You may check the status of the training job on the Step Functions page.</p>
+<ol start="63">
+<li>Once the training is completed, refresh the DynamoDB table by choosing the <i class="fas fa-sync-alt"></i> refresh button.</li>
+</ol>
+<p>Look at the accuracy for the latest item. Use of the decision tree improved the model dramatically. </p>
+
+
+
+<h2 id="step7">Task 4: Train the model using different data</h2>
+
+<p>Now that the model has been updated, lets see what happens when a modified training dataset is uploaded and trained using the decision tree model. This will help demonstrate how the data impacts the accuracy of the latest model.</p>
+<ol start="64">
+<li>Download training data from this <a href="https://aws-tc-largeobjects.s3-us-west-2.amazonaws.com/ILT-DD-200-MLPOPS-1/lab-1/data-downloads/v1.1.zip" target="_blank">sample data</a> link and save it to your local computer.</li>
+</ol>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> This data has been manipulated and is <strong>not</strong> the official iris data. It has been created for this lab to demonstrate how accuracy can change due to the use of different data.</p>
+<ol start="65">
+<li>Unzip the file on your local computer.</li>
+</ol>
+<p>The unzipped folder should have the following structure:</p>
+<pre class="highlight shell"><code>v1.1/
+├── train
+│&nbsp;&nbsp; └── iris.csv
+└── validation
+    └── iris.csv
+</code><button class="button button--text button--small copy-button js-copy-button-11"><ql-icon>content_copy</ql-icon></button></pre><ol start="66">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>S3</strong>.</p></li>
+<li><p>Choose the name of the bucket that contains <strong>modeldatabucket</strong>.</p></li>
+<li><p>Choose <strong>Upload</strong>.</p></li>
+<li><p>Choose <strong>Add folder</strong>.</p></li>
+<li><p>Navigate to and select the <input readonly="" class="copyable-inline-input" size="4" type="text" value="v1.1"> folder created when you unzipped the files, and choose <strong>Upload</strong> in your browser's dialog window.</p></li>
+<li><p>In the AWS Management Console, choose <strong>Upload</strong>.</p></li>
+<li><p>Choose <strong>Close</strong>.</p></li>
+</ol>
+<p>Now that the files are uploaded, the training state machine will be automatically invoked. </p>
+<ol start="73">
+<li>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>Step Functions</strong>.</li>
+</ol>
+<p>The <strong>trainingStateMachine</strong> state machine has one job listed as <em>Running</em>.</p>
+<ol start="74">
+<li><p>Wait until the training job finishes.</p></li>
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>DynamoDB</strong>.</p></li>
+<li><p>In the left navigation, choose <strong>Items</strong>.</p></li>
+<li><p>Choose the <i class="far fa-dot-circle"></i> DynamoDB table.</p></li>
+</ol>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> If multiple tables are listed, choose the name of the table that contains <strong>DynamoDBTable</strong>.</p>
+<ol start="78">
+<li>Choose the <strong>Items</strong> tab.</li>
+</ol>
+<p>Look at the results. See if you can identify the new model and its updated accuracy.</p>
+
+<p>The model registry indicates that the accuracy of the model has decreased. Take a moment to think about some of the reasons that this could happen. What changed between the two models? Is the new model still acceptable for production use? What actions could you configure in a situation where the accuracy drops? Discuss these questions with your instructor.</p>
+
+
+
+<h1>Conclusion</h1>
+
+<p><i class="far fa-thumbs-up" style="color:blue;"></i> Congratulations! You now have successfully:</p>
+<ul>
+<li>Identified key components needed for a machine learning pipeline</li>
+<li>Updated model code </li>
+<li>Reviewed model test results</li>
+<li>Retrained the model</li>
+<li>Used the AWS Step Functions SDK to update the model training workflow </li>
+</ul>
+<h2 id="step8">End Lab</h2>
+
+<p>Follow these steps to close the console, end your lab, and evaluate the experience.</p>
+<ol start="79">
+<li><p>Return to the AWS Management Console.</p></li>
+<li><p>On the navigation bar, choose <strong>awsstudent@&lt;AccountNumber&gt;</strong>, and then choose <strong>Sign Out</strong>.</p></li>
+<li><p>Choose <span style="background-color:#D93025;font-family:Google Sans;font-weight:bold;font-size:90%;color:white;border-color:#D93025;border-radius:4px;border-width:2px;border-style:solid;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;">End Lab</span></p></li>
+<li><p>Choose <span style="background-color:#DEDEDE;font-family:Google Sans;font-weight:bold;font-size:90%;color:#444;border-width:1px;border-style:solid;border-color:#444;padding-top:3px;padding-bottom:3px;padding-left:10px;padding-right:10px;">OK</span></p></li>
+<li><p>(Optional):</p></li>
+</ol><ul>
+<li>Select the applicable number of stars <i class="far fa-star"></i>
+</li>
+<li>Type a comment</li>
+<li>
+<p>Choose <strong>Submit</strong></p>
+<ul>
+<li>1 star = Very dissatisfied</li>
+<li>2 stars = Dissatisfied</li>
+<li>3 stars = Neutral</li>
+<li>4 stars = Satisfied</li>
+<li>5 stars = Very satisfied</li>
+</ul>
+</li>
+</ul>
+<p>You may close the window if you don't want to provide feedback.</p>
+
+<h2 id="step9">Additional Resources</h2>
+<ul>
+<li>For more information about how to use AWS Lambda, see <a href="https://docs.aws.amazon.com/lambda/index.html" target="_blank">AWS Lambda Documentation</a>.</li>
+<li>How to use Step Functions to keep polling a Lambda function until it returns success:
+<a href="https://aws.amazon.com/getting-started/hands-on/handle-serverless-application-errors-step-functions-lambda/" target="_blank">https://aws.amazon.com/getting-started/hands-on/handle-serverless-application-errors-step-functions-lambda/</a>
+</li>
+<li>Handeling serverless application errors in AWS Step Functions:
+<a href="https://aws.amazon.com/getting-started/hands-on/handle-serverless-application-errors-step-functions-lambda/" target="_blank">https://aws.amazon.com/getting-started/hands-on/handle-serverless-application-errors-step-functions-lambda/</a>
+</li>
+<li>Reference variables in CodePipeline:
+<a href="https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-variables.html#w2aac47c29b9b7" target="_blank">https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-variables.html#w2aac47c29b9b7</a>
+</li>
+<li>Making calls to an Amazon SageMaker endpoint:
+<a href="https://boto3.amazonaws.com/v1/documentation/api/1.9.42/reference/services/sagemaker-runtime.html#SageMakerRuntime.Client.invoke_endpoint" target="_blank">https://boto3.amazonaws.com/v1/documentation/api/1.9.42/reference/services/sagemaker-runtime.html#SageMakerRuntime.Client.invoke_endpoint</a>
+</li>
+</ul>
+
+
+<p><a id="supplemental-console-walkthrough" target="_blank"></a></p>
+
+<h2 id="step10">Supplemental: AWS Console walkthrough</h2>
+
+<p>In this section, you will visit the AWS Management Console pages to learn about each service that is used in this lab and how they integrate.</p>
+
+<p><i class="fas fa-chalkboard-teacher" style="color:black;"></i> To continue with the lab, see <a href="https://aws.qwiklabs.com/classrooms/59034/labs/335512#lab-instructions-start" target="_self">Task 1</a> Updating the AWS Step Functions state machine.</p>
+
+<p><img src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/diagram1_main-architecture.png" alt="AWS architecture diagram showing all services used and how they are linked"></p>
+
+<h3>AWS CodeCommit, AWS CodeBuild, and AWS CodePipeline in the console</h3>
+
+<p>The AWS developer tools provide a mechanism for you to manage machine learning operations. To best understand how everything is configured, lets go into the console and examine the components. </p>
+<ol start="84">
+<li>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>CodeCommit</strong>.</li>
+</ol>
+<p>Two repositories are listed. The <strong>stateMachineCode-</strong> repository is used to update the AWS Step Functions state machine. It contains a Python script that uses the  state machine to manage the training state machine, and a <em>buildspec.yml</em> file that defines the commands that CodeBuild runs. See <a href="https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html" target="_blank">Build specification reference for CodeBuild</a> for more information. The <strong>modelCode-</strong> repository contains all the machine learning code used in the Docker container that defines your model. It also contains a <em>buildspec.yml</em> file for CodeBuild.</p>
+<ol start="85">
+<li>Choose the name of the repository containing <strong>stateMachineCode</strong>. </li>
+</ol>
+<p>The page that loads has a file browser in which you can choose each file and review or edit it. You can, therefore, make changes and updates without knowing anything about <a href="https://git-scm.com/doc" target="_blank">git</a> commands. </p>
+<ol start="86">
+<li>In the left navigation, expand <strong>Pipeline • CodePipeline</strong>, and choose <strong>Pipelines</strong>.</li>
+</ol>
+<p>Two pipelines are listed. </p>
+<ol start="87">
+<li>Choose the name of the pipeline containing <strong>StepFunctionsPipeline</strong>.</li>
+</ol>
+<p>On the page that loads, you can see two stages: a source stage references the CodeCommit repository and a build stage references the CodeBuild project. From this page you can set notifications, modify the pipeline steps, stop the pipeline from running, or release changes (start the pipeline manually). </p>
+<ol start="88">
+<li><p>In the left navigation, choose <strong>Pipelines</strong>.</p></li>
+<li><p>Choose the name of the pipeline containing <strong>deployModelPipeline</strong>.</p></li>
+</ol>
+<p>Notice that there are three stages for this pipeline (source, build, and train), with the train stage calling AWS Step Functions. </p>
+<ol start="90">
+<li>In the left navigation, choose <strong>History</strong>.</li>
+</ol>
+<p>The run history for the deployModelPipeline loads shows details of the specific run. </p>
+<ol start="91">
+<li>In the left navigation, expand <strong>Build • CodeBuild</strong>, and choose <strong>Build projects</strong>.</li>
+</ol>
+<p>There is one build project listed that will be used by both CodePipelines. If your configuration needs a different operating system for different steps, you are able to create a build project for each, using Windows Server for one part of your project and Amazon Linux for another. You are <a href="https://aws.amazon.com/codebuild/pricing/" target="_blank">billed</a> based on size of the instance you choose and time the build project runs, not the number of projects you create.</p>
+<ol start="92">
+<li>Choose the name of the build project starting with <strong>buildImageProject</strong>.</li>
+</ol>
+<p>Two successful build runs are listed in the <strong>Build history</strong>. Inspect the <em>Submitter</em> to see that each run was invoked by a different pipeline. Also note that the <em>Source version</em> links to a different model artifact. This is because the build was invoked by a different pipeline run.</p>
+<ol start="93">
+<li>Choose the link for one of the <strong>Build runs</strong> in the build history.</li>
+</ol>
+<p>The page that loads provides you with the information about the build. You can determine when it ran, how long each phase took to build, and review the build logs. The entire log might not be shown on this page. For complex builds with thousands of logged lines, the entire log is viewed in Amazon CloudWatch. You can click the <strong>View entire log</strong> link to see the log in CloudWatch.</p>
+<ol start="94">
+<li>Choose the <strong>Environment variables</strong> tab.</li>
+</ol>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> If you opened CloudWatch, return to the CodeBuild browser tab to find the environment variables tab.</p>
+
+<p>The page that loads shows the environmental variables used during this CodeBuild run. With CodeBuild and CodePipeline, you can pass information, using concepts such as environmental variables, to tailor everything to meet your needs.</p>
+
+<h3>A quick look at Amazon Elastic Container Registry (Amazon ECR)</h3>
+
+<p>Amazon ECR is a fully managed container registry. With it, you can create an image of your model code, store the image, and use the image for training later. When you create a new model during this lab, make sure and check the repository to see how it is updated.</p>
+<ol start="95">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>Elastic Container Registry</strong>.</p></li>
+<li><p>Open the fly-out menu by selecting the <i class="fas fa-bars"></i> icon.</p></li>
+<li><p>Under <strong>Amazon ECR</strong> choose <strong>Repositories</strong>.</p></li>
+</ol>
+<p>A list of private repositories loads. </p>
+<ol start="98">
+<li>Choose the repository name containing <strong>ecrmodelrepo</strong>.</li>
+</ol>
+<p>A list of all images loads showing the <em>unique</em> image tag, publication at (date), size, links to the image URI (which is used in training), and digest.</p>
+
+<h3>A quick look at AWS Step Functions</h3>
+
+<p>AWS Step Functions works to integrate and orchestrate AWS services together. With respect to machine learning pipelines and MLOps, you can set up simple or complex workflows that simply train your model, or you can make decisions if a model should be deployed or not. You use the <a href="https://aws-step-functions-data-science-sdk.readthedocs.io/en/stable/" target="_blank">AWS Step Functions Data Science Python SDK</a> to control the state machine definition in Task 2. </p>
+
+<p>The final state machine you will build will train, save, catalog, create an endpoint, and test the model.</p>
+
+<p><img src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/diagram4b_training-state-machine.png" alt="Diagram showing the steps in the AWS Step Functions State Machine"></p>
+<ol start="99">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>Step Functions</strong>.</p></li>
+<li><p>Choose the name of the state machine that contains <strong>trainingStateMachine</strong>.</p></li>
+</ol>
+<p>The page that loads shows a list of each time the state machine was run. You can easily see if the run failed or succeeded along with when it started and stopped. This information is useful to determine how long it could take to retrain a model for planning purposes. </p>
+<ol start="101">
+<li>Choose the <strong>Definition</strong> tab.</li>
+</ol>
+<p>The definition shows the code for the state machine written in the Amazon States Language along with a graphical representation of the steps. You should see a simple workflow that does not have any decisions. </p>
+<ol start="102">
+<li>Scroll through the definition code.</li>
+</ol>
+<p>You will not edit the definition directly. Instead, in Task 2, you will use the AWS Step Functions Data Science Python SDK to make it easier to modify the workflow. </p>
+
+<p>You should see that the workflow calls different AWS services such as:</p>
+<ul>
+<li>Amazon SageMaker</li>
+<li>Amazon S3</li>
+<li>Amazon DynamoDB</li>
+<li>AWS Lambda</li>
+</ul><ol start="103">
+<li><p>Choose the <strong>Executions</strong> tab.</p></li>
+<li><p>Choose the name of the first execution displayed.</p></li>
+</ol>
+<p>The page that loads shows all the details about the specific run of the state machine. </p>
+<ol start="105">
+<li>Choose the <strong>Execution input</strong> tab.</li>
+</ol>
+<p>A display of all the metadata input into the state machine is shown. This information is helpful in determining what settings were used for this training job. When you are setting up your machine learning pipeline, monitoring the input and output may be very helpful in troubleshooting issues.</p>
+
+<p>The graphical inspector allows you to see what steps have completed, and if they were successful.</p>
+<ol start="106">
+<li>Choose one of the steps to load the details, step input, and step output.</li>
+</ol>
+<p>The <em>Step output</em> lists information about what occurred when the selected step ran. This includes variables, paths, times, and status. Each step will have a different output based on what processes it is performing.</p>
+<ol start="107">
+<li>Scroll to the <strong>Execution event history</strong>.</li>
+</ol>
+<p>The event history shows all of the events, when they started and finished, along with details about the event. Expand some of the events to see what data in displayed. </p>
+
+<h3>A quick look at AWS Lambda functions</h3>
+
+<p>AWS Lambda is used in this workflow to do three things:</p>
+<ul>
+<li>Test the model accuracy</li>
+<li>Check if the Amazon SageMaker endpoint is in service</li>
+<li>Invoke training when new data is uploaded to Amazon S3</li>
+</ul>
+<p>Each of these activities could be run on an Amazon EC2 instance; however, most of the tasks are run infrequently and do not require dedicated server resources. Lambda can be invoked by Amazon S3 and AWS Step Functions directly.  </p>
+<ol start="108">
+<li>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>Lambda</strong>.</li>
+</ol>
+<p>There are five Lambda functions listed. Each function performs a specific task so you can decouple the process. For example, the <strong>endpointWaitLambda</strong> is called by the Step Functions state machine multiple times until it returns a success message. In this way, you can know when the model's endpoint is in services so that you can begin testing and begin removing arbitrary wait times or human interaction.The remaining two functions are used to set up the lab environment.</p>
+<ol start="109">
+<li><p>Choose the function name that contains <strong>endpointWait</strong> in its name.</p></li>
+<li><p>In the <strong>Function code</strong> section, open the <strong>index.py</strong> file. </p></li>
+</ol>
+<p>Review the code and try to determine what this Lambda function does.</p>
+
+<h3>A quick look at Amazon S3</h3>
+
+<p>Amazon S3 is used to store data in a cost-effective, redundant way. This makes it easy to manage data and training by simply uploading data to Amazon S3.</p>
+<ol start="111">
+<li>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>S3</strong>.</li>
+</ol>
+<p>Several buckets are listed. </p>
+<ol start="112">
+<li>Choose the name of the bucket that contains <strong>modeldatabucket</strong>.</li>
+</ol>
+<p>This is the bucket we will use to store our training and validation data. Each new dataset will be uploaded as an object with its own unique path. The current path for the training data is <strong>v1.0</strong>. </p>
+<ol start="113">
+<li>Choose the object with name <strong>v1.0</strong>.</li>
+</ol>
+<p>Take a moment to examine the data and its structure.</p>
+
+<h3>A quick look at Amazon SageMaker</h3>
+
+<p>SageMaker is used to train, store, and serve the model. It does all the heavy lifting of training, reducing the overhead for managing servers. </p>
+<ol start="114">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>Amazon SageMaker</strong>.</p></li>
+<li><p>In the left navigation, under the <strong>Training</strong> section, choose <strong>Training jobs</strong>. </p></li>
+</ol>
+<p>A list loads of every training job that has run in the AWS Account. Training job history cannot be deleted, so you may see the name of jobs that are not related to this lab. </p>
+<ol start="116">
+<li>Choose the name of the latest training job.</li>
+</ol>
+<p>You can see all the settings used for the training job. In the <strong>Algorithm</strong> section, notice the instance type, and how the training image matches the Amazon ECR image you looked at previously. In the <strong>Input data configuration: training</strong> section you can see the data source and in the <strong>Output</strong> section you can see the model artifact storage location.</p>
+<ol start="117">
+<li>In the left navigation, under the <strong>Inference</strong> section, choose Models.</li>
+</ol>
+<p>A list of all the saved models loads. You can choose the model to see details about it, including the training job, image, and model data location.</p>
+<ol start="118">
+<li>In the left navigation, under the <strong>Inference</strong> section, choose Endpoints.</li>
+</ol>
+<p>A list of all the endpoints loads.</p>
+<ol start="119">
+<li>Choose the name of the latest endpoint.</li>
+</ol>
+<p>Details about the endpoint load. This page displays the information you need to connect and use the endpoint.</p>
+
+<h3>A quick look at Amazon DynamoDB</h3>
+
+<p>A model registry is important to provide quick access to see what models have been built and what components were used to create the model. This can be tailored to meet your project's needs. This activity includes the following information:</p>
+<ul>
+<li>Model accuracy</li>
+<li>Date job was run</li>
+<li>Git commit information (if applicable)</li>
+<li>Data source</li>
+<li>Amazon ECR image tag</li>
+<li>Amazon SageMaker endpoint name</li>
+<li>Start and end time for training job</li>
+<li>Source of training (data upload or new model)</li>
+</ul>
+<p>A DynamoDB table has been created to store this information.</p>
+<ol start="120">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>DynamoDB</strong>.</p></li>
+<li><p>In the left navigation, choose <strong>Tables</strong>.</p></li>
+<li><p>Choose the name of the table.</p></li>
+</ol>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> If multiple tables are listed, choose the name of the table that contains <strong>DynamoDBTable</strong>.</p>
+<ol start="123">
+<li>Choose the <strong>Items</strong> tab.</li>
+</ol>
+<p>A list of all the items is displayed. Take a moment to scroll through them to see what is stored. Think about how this would be useful to your machine learning pipeline.</p>
+
+<h3>A quick look at AWS Identity and Access Management (IAM)</h3>
+
+<p>Security is job zero. One of the big advantages of building a deployment pipeline is being able to restrict access using the principle of least privileges. For the example you are looking at, data scientists can update the training process when they only have permissions to push code to CodeCommit, put files in a specific Amazon S3 bucket, and modify one AWS Lambda function.</p>
+
+<p>Being able to coordinate with the security team is important to building a successful pipeline. This activity includes a role for each service that allows the minimum permissions needed. This can be accomplished using AWS managed policies or any method that fits how you operate.</p>
+<ol start="124">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>IAM</strong>.</p></li>
+<li><p>In the left navigation, choose <strong>Roles</strong>.</p></li>
+</ol>
+<p>Several roles are listed.</p>
+<ol start="126">
+<li><p>In the search bar type: <input readonly="" class="copyable-inline-input" size="13" type="text" value="SageMakerRole"></p></li>
+<li><p>Choose the name of the role that is listed.</p></li>
+</ol>
+<p>Two policies have been attached to this role. The first is the AWS managed <em>ReadOnlyAccess</em> policy, which allows commands that read, list, or describe. The second is an inline policy that provides write permissions to specific services needed by SageMaker.</p>
+<ol start="128">
+<li>Expand the <strong>AllowAccessPolicy</strong> by choosing the <i class="fas fa-caret-right"></i> right caret.</li>
+</ol>
+<p>A list of services permitted is shown.</p>
+<ol start="129">
+<li>Choose the <strong>{} JSON</strong> button.</li>
+</ol>
+<p>A JSON document listing services and permitted actions is shown. As you look at this list, you can see that the permissions are limited to very few actions. This policy can be scoped down even further by restricting the resources the actions are valid for. </p>
+<ol start="130">
+<li><p>In the left navigation, choose <strong>Roles</strong>.</p></li>
+<li><p>In the search bar type: <input readonly="" class="copyable-inline-input" size="20" type="text" value="triggerModelTraining"></p></li>
+<li><p>Choose the name of the role that is listed.</p></li>
+<li><p>Expand the <strong>AllowAccessPolicy</strong> by choosing the <i class="fas fa-caret-right"></i> right caret.</p></li>
+<li><p>Choose the <strong>{} JSON</strong> button.</p></li>
+</ol>
+<p>Notice that this role has different permitted actions. Instead of <strong>states:UpdateStateMachine</strong> there is <strong>states:StartExecution</strong> and <strong>states:StopExecution</strong>. </p>
+
+<p>By providing granular permissions for each component of the pipeline, you are able to increase security and reduce the risk to the automation process.</p>
+
+<h3>A quick look at Amazon CloudWatch</h3>
+
+<p>Logging is always important, and machine learning pipelines are no exception to needing it. Both AWS CloudTrail and Amazon CloudWatch are used to log and monitor the pipelines. While CloudTrail monitors API calls (who told a service to run), CloudWatch provides monitoring metrics and centralized logging. Several services will display portions of the logs from CloudWatch to make it easier to troubleshoot without going to the CloudWatch service page.</p>
+<ol start="135">
+<li>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>CloudWatch</strong>.</li>
+</ol>
+<p>In the left navigation, notice that there are links to <strong>Alarms</strong> and <strong>Metrics</strong>. These pages will provide you with detailed information that you can use when you set up model monitoring. We will look at them in the next labs.</p>
+<ol start="136">
+<li>In the left navigation, choose <strong>Log groups</strong>.</li>
+</ol>
+<p>A list of all the log groups is displayed. Looking at the log groups, you can see that each Lambda function has its own group along with each Amazon SageMaker endpoint and CodeBuild project. </p>
+<ol start="137">
+<li><p>In the search bar type <input readonly="" class="copyable-inline-input" size="17" type="text" value="buildImageProject"></p></li>
+<li><p>Choose the log group listed.</p></li>
+<li><p>Choose the first log stream listed.</p></li>
+</ol>
+<p>The log stream events load. This stream shows all the events from the CodeBuild run. This is the same log you saw in the CodeBuild console. You can expand log messages by choosing the <i class="fas fa-caret-right"></i> right caret. By default only the latest messages are displayed. You can show more events, using the <strong>load more</strong> link at the top of the log list. </p>
+
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> For processes that are actively running, you would resume the auto retry at the bottom of the log list.</p>
+
+<p><i class="fas fa-chalkboard-teacher" style="color:black;"></i> To continue with the lab, see <a href="https://aws.qwiklabs.com/classrooms/59034/labs/335512#lab-instructions-start" target="_self">Task 1</a> Updating the AWS Step Functions state machine.</p>
+
+<p>For more information about AWS Training and Certification, see <a href="https://aws.amazon.com/training/" target="_blank"><em>https://aws.amazon.com/training/</em></a>.</p>
+
+<p><em>Your feedback is welcome and appreciated.</em></p>
+
+<p>If you would like to share any feedback, suggestions, or corrections, please provide the details in our <a href="https://support.aws.amazon.com/#/contacts/aws-training" target="_blank"><em>AWS Training and Certification Contact Form</em></a>.</p>
+
+</div>
+</div>
+
+
+<div class="lab-content__end-lab-button js-end-lab-button-container hidden">
+<ql-lab-control-button class="js-end-lab-button" running=""></ql-lab-control-button>
+</div>
+<!-- / TODO: Move recommendations into the end lab modal -->
+</ql-drawer-content>
+<ql-drawer end="" id="outline-drawer" open="" slot="drawer" width="320" aria-hidden="false" role="region" mode="side" style="width: 320px; visibility: visible;">
+<div aria-label="Lab Table of Contents" role="navigation">
+
+</div>
+<ul class="lab-content__outline js-lab-content-outline">
+<li><a href="https://aws.qwiklabs.com/classrooms/59034/labs/335512#step1">Lab overview</a></li><li><a href="https://aws.qwiklabs.com/classrooms/59034/labs/335512#step2">Objectives</a></li><li><a href="https://aws.qwiklabs.com/classrooms/59034/labs/335512#step3">Start Lab</a></li><li><a href="https://aws.qwiklabs.com/classrooms/59034/labs/335512#step4">Task 1:  Update the Step Functions state machine</a></li><li><a href="https://aws.qwiklabs.com/classrooms/59034/labs/335512#step5">Task 2: Train the model using a new dataset</a></li><li><a href="https://aws.qwiklabs.com/classrooms/59034/labs/335512#step6">Task 3: Edit the model using CodeCommit</a></li><li><a href="https://aws.qwiklabs.com/classrooms/59034/labs/335512#step7">Task 4: Train the model using different data</a></li><li><a href="https://aws.qwiklabs.com/classrooms/59034/labs/335512#step8">End Lab</a></li><li><a href="https://aws.qwiklabs.com/classrooms/59034/labs/335512#step9">Additional Resources</a></li><li><a href="https://aws.qwiklabs.com/classrooms/59034/labs/335512#step10">Supplemental: AWS Console walkthrough</a></li>
+</ul></ql-drawer>
+</ql-drawer-container>
+</ql-drawer-content>
+</ql-drawer-container>
+
+
+
+</div>
+</main>
+
+<span class="hidden" id="flash-sibling-before"></span>
+<ql-snackbar aria-live="polite" role="alert"></ql-snackbar>
+
+
+<div class="modal fade" id="lab-details-modal">
+<div class="modal-container">
+<div class="modal-content mdl-shadow--24dp">
+<div class="modal-body">
+<p class="l-mbm">
+This lab provides you with a deep overview of Machine Learning operations
+</p>
+<p class="small-label l-mbs">
+<strong>
+Duration:
+</strong>
+3m setup
+·
+180m access
+·
+180m completion
+</p>
+<p class="small-label l-mbs">
+<strong>AWS Region:</strong>
+[us-west-2] <strong>US West (Oregon)</strong>
+</p>
+<p class="small-label l-mbs">
+
+</p>
+<p class="small-label">
+<strong>
+Permalink:
+</strong>
+<a href="https://aws.qwiklabs.com/catalog_lab/11885">https://aws.qwiklabs.com/catalog_lab/11885</a>
+</p>
+</div>
+<div class="modal-actions">
+<a class="button button--text" data-dismiss="modal">
+Got It
+</a>
+</div>
+
+
+</div>
+</div>
+<iframe class="l-ie-iframe-fix" src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/saved_resource(2).html"></iframe>
+</div>
+<ql-dialog headline="How satisfied are you with this lab?&lt;span aria-hidden=&quot;true&quot;&gt;*&lt;/span&gt;" id="lab-review-dialog" tabindex="-1" aria-hidden="true">
+<form class="simple_form js-lab-review-form" id="new_lab_review" action="https://aws.qwiklabs.com/lab_reviews" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><div aria-labelledby="lab-review-dialog" aria-required="true" aria-valuemax="5" aria-valuemin="0" aria-valuenow="0" class="rateit js-rateit" data-rateit-max="5" data-rateit-min="0" data-rateit-resetable="false" data-rateit-step="1" data-rateit-value="0" id="lab-review-rateit" role="slider" tabindex="0"><div class="rateit-reset" style="display: none;"></div><div class="rateit-range" style="width: 80px; height: 16px;"><div class="rateit-selected" style="height: 16px; width: 0px;"></div><div class="rateit-hover" style="height:16px"></div></div></div>
+<div class="l-mtm">
+
+<div class="control-group hidden lab_review_user_id"><div class="controls"><input class="hidden" type="hidden" value="526414" name="lab_review[user_id]" id="lab_review_user_id"></div></div>
+<div class="control-group hidden lab_review_classroom_id"><div class="controls"><input class="hidden" type="hidden" value="59034" name="lab_review[classroom_id]" id="lab_review_classroom_id"></div></div>
+<div class="control-group hidden lab_review_lab_id"><div class="controls"><input class="hidden" type="hidden" value="11885" name="lab_review[lab_id]" id="lab_review_lab_id"></div></div>
+<div class="control-group hidden lab_review_focus_id"><div class="controls"><input class="hidden" type="hidden" value="335512" name="lab_review[focus_id]" id="lab_review_focus_id"></div></div>
+<div class="control-group hidden lab_review_rating"><div class="controls"><input class="hidden js-rating-input" type="hidden" name="lab_review[rating]" id="lab_review_rating"></div></div>
+<div class="control-group text optional lab_review_comment"><label class="text optional control-label" for="lab_review_comment">Additional Comments</label><div class="controls"><textarea class="text optional" name="lab_review[comment]" id="lab_review_comment"></textarea></div></div>
+</div>
+</form><ql-button disabled="" id="submit" label="Submit" slot="action" text=""></ql-button>
+</ql-dialog>
+
+<ql-dialog headline="All done? If you end this lab, you will lose all your work. You may not be able to restart the lab if there is a quota limit. Are you sure you want to end this lab?" icon="error_outline" id="js-lab-are-you-sure-dialog" tabindex="-1" aria-hidden="true">
+<ql-button id="js-are-you-sure-button" label="Submit" slot="action" text=""></ql-button>
+</ql-dialog>
+
+
+<script>
+  $( function() {
+    ql.initMaterialInputs();
+    initChosen();
+    initSearch();
+    initTabs();
+    ql.list.init();
+    ql.favoriting.init();
+    ql.header.myAccount.init();
+    initTooltips();
+    ql.autocomplete.init();
+    ql.modals.init();
+    ql.toggleButtons.init();
+    ql.analytics.init();
+    ql.chat.init();
+  initLabContent();
+  ql.labOutline.links.init();
+  initLabReviewModal();
+  initLabReviewTranslations( {"star_amount_1":"1 of 5 stars","star_amount_2":"2 of 5 stars","star_amount_3":"3 of 5 stars","star_amount_4":"4 of 5 stars","star_amount_5":"5 of 5 stars"} )
+  ql.labAssessment.init();
+  ql.labData.init();
+  initLabTranslations( {"are_you_sure":"All done? If you end this lab, you will lose all your work. You may not be able to restart the lab if there is a quota limit. Are you sure you want to end this lab?","in_progress":"*In Progress*","ending":"*Ending*","starting":"*Starting, please wait*","end_concurrent_labs":"Sorry, you can only run one lab at a time. To start this lab, please confirm that you want all of your existing labs to end.","copied":"Copied","no_resource":"Error retrieving resource.","no_support":"No Support","mac_press":"Press ⌘-C to copy","thanks_review":"Thanks for reviewing this lab.","windows_press":"Press Ctrl-C to copy","days":"days"} );
+  ql.labRun.init();
+  ql.initHeader();
+  ql.navPanel.init();
+  ql.navigation.init();
+  
+  });
+</script>
+
+
+
+
+<iframe data-product="web_widget" title="No content" tabindex="-1" aria-hidden="true" src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/saved_resource(3).html" style="width: 0px; height: 0px; border: 0px; position: absolute; top: -9999px;"></iframe><div><iframe title="Opens a widget where you can chat to one of our agents" id="launcher" tabindex="-1" style="width: 107px; height: 50px; padding: 0px; margin: 10px 20px; position: fixed; bottom: 30px; overflow: visible; opacity: 0; border: 0px; z-index: 999998; transition-duration: 250ms; transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1); transition-property: opacity, top, bottom; top: -9999px; visibility: hidden;" src="./Lab 1 - Bring Your Own Algorithm to an MLOps Pipeline _ Qwiklabs_files/saved_resource(4).html"></iframe></div></body></html>

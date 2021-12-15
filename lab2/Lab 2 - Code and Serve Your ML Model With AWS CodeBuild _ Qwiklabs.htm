@@ -1,0 +1,661 @@
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<title>Lab 2 - Code and Serve Your ML Model With AWS CodeBuild | Qwiklabs</title>
+<script>
+//<![CDATA[
+window.gon={};gon.current_user={"firstname":"Chris","lastname":"Tran","fullname":"Chris Tran","company":"Verisk Analytics, Inc.","email":"khanh.tran@verisk.com","origin":"aws, direct","subscriptions":0,"id":"bbf593d8f0f0f6529ddd84904111d6f8","qlCreatedAt":"2021-12-13 05:59:01 UTC","optIn":true,"current_organization_id":null,"current_organization_role":null};gon.segment=null;gon.deployment="aws";gon.content={"type":"Lab","id":11886,"name":"Lab 2 - Code and Serve Your ML Model With AWS CodeBuild"};
+//]]>
+</script>
+<script>
+  dataLayer = [
+    {user: gon.current_user},
+    {content: gon.content}
+  ];
+</script>
+<script src="https://cdn.qwiklabs.com/assets/hallofmirrors/polyfills/webcomponents-loader-60a166e60df2787cca5915e2ced8c317457f421a20f02601b937a72275ac441a.js"></script>
+<script src="https://cdn.qwiklabs.com/assets/vendor-2beee108ba05276bc429223ee82ed81449d233c93d45af5da84add895e101218.js"></script>
+<script src="https://cdn.qwiklabs.com/assets/application-20e85c71d4f4b37cfc2dc06e60190b99242d9643fbadcfd864742b7c1bb1e5d2.js"></script>
+<script src="https://cdn.qwiklabs.com/assets/hallofmirrors/hallofmirrors-f156fe7fa0c7e87b54b4cf089f02ed02d6cda63c2bf0016afd130174d632bda8.js"></script>
+<!--[if lt IE 9]>
+<script src='http://html5shim.googlecode.com/svn/trunk/html5.js' type='text/javascript'></script>
+<![endif]-->
+<!--[endif]>  <![endif]-->
+<script type='application/ld+json'>
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "https://www.qwiklabs.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.qwiklabs.com/catalog?keywords={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script id='ze-snippet' src='https://static.zdassets.com/ekr/snippet.js?key=511e4158-0aec-4e3c-b2e6-4daa1769f51e'></script>
+
+
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="jncezjytDF8fda/l801G9LuaYZY4z9cH2qnDantqlWM/rP4scI3GdtIArDRLT9cHpJ4NTx5Rz4T462GzGlhnbA==" />
+<meta content='width=device-width, initial-scale=1.0, user-scalable=yes' name='viewport'>
+<meta content='1rRsY0INj8RvwB5EF5pwdxt2A2P9aDgAlsICaJ0d5w0' name='google-site-verification'>
+<meta content='#3681E4' property='msapplication-TileColor'>
+<meta content='/favicon-144.png' property='msapplication-TileImage'>
+<meta content='[{&quot;id&quot;:&quot;recaptcha_experiment&quot;,&quot;optimize_id&quot;:&quot;dpViOcLkT3qS4TvL2mRojA&quot;,&quot;title&quot;:&quot;No Recaptcha shown for trusted users&quot;,&quot;variant_index&quot;:0,&quot;variant&quot;:&quot;original&quot;}]' name='active-experiments'>
+<meta content='{&quot;userId&quot;:526414}' name='help-api-product-data'>
+<meta content='This lab explores how to setup Amazon CodeBuild to build custom containers for your model.' name='description'>
+<meta content='Qwiklabs' name='author'>
+<meta content='Lab 2 - Code and Serve Your ML Model With AWS CodeBuild | Qwiklabs' property='og:title'>
+<meta content='website' property='og:type'>
+<meta content='/favicon-144.png' property='og:image'>
+<meta content='Qwiklabs' property='og:site_name'>
+<meta content='This lab explores how to setup Amazon CodeBuild to build custom containers for your model.' property='og:description'>
+<meta content='/qwiklabs_logo_900x887.png' property='og:logo' size='900x887'>
+<meta content='/qwiklabs_logo_994x187.png' property='og:logo' size='994x187'>
+
+
+
+<link color='#3681E4' href='/favicon-svg.svg' rel='mask-icon'>
+<link href='/favicon-180.png' rel='apple-touch-icon-precomposed'>
+<link href='/favicon-32.png' rel='shortcut icon' type='image/x-icon'>
+
+
+
+<link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Oswald:400|Roboto+Mono:400,700|Roboto:300,400,500,700|Google+Sans:300,400,500,700|Google+Sans+Display:400|Material+Icons|Google+Material+Icons" />
+
+
+<link rel="stylesheet" media="all" href="https://cdn.qwiklabs.com/assets/application-57393f6342c112e8870e0841812e8cdf12dde8b2f9c1ed9646cd3550c981e68b.css" />
+
+<style>
+  :root {
+    --primary-text-on-surface-color: #1A73E8;
+    --primary-text-on-surface-color-dark: #1568d6;
+    --primary-text-on-surface-color-darker: #135ec1;
+    --primary-text-on-surface-color-darkest: #1154ac;
+    --primary-surface-color: #1A73E8;
+    --primary-surface-color-rgb: 26,115,232;
+    --primary-surface-color-light: #d1e3fa;
+    --primary-surface-color-lightest: #e8f1fd;
+    --text-on-primary-color: #FFFFFF;
+    --accent-text-on-surface-color: #F29900;
+    --accent-surface-color: #F9AB00;
+    --accent-surface-color-rgb: 249,171,0;
+    --accent-surface-color-light: #ffefcc;
+    --text-on-accent-color: #202124;
+  }
+</style>
+
+
+
+</head>
+<body class='lab-show l-full no-nav application-new focuses focuses-show lab-show l-full no-nav '>
+<div class='header-container'>
+<div class='header'>
+<ql-toolbar jumpEnabled>
+<div class='header__title' slot='title'>
+<ql-icon-button label="Back" href="/classrooms/59034" id="3761778881788d1f" target="_self" tip="Back">arrow_back</ql-icon-button>
+<h1 class='ql-headline-6'>Lab 2 - Code and Serve Your ML Model With AWS CodeBuild</h1>
+</div>
+<div class='header__actions' slot='action'>
+<ql-icon-button id='control-panel-target' style='display: none;'>
+dashboard
+</ql-icon-button>
+<ql-menu for='control-panel-target' id='control-panel-menu'></ql-menu>
+<ql-icon-button class='mobile-hide' icon='help_outline' id='help-menu-button' label='Open help menu' tip='Help'></ql-icon-button>
+<ql-menu for='help-menu-button' id='help-menu'>
+<ql-menu-item data-analytics-action='opened_help' data-analytics-label='lab' label='Help Center' onclick='hallofmirrors.helpService.startHelp({&quot;productData&quot;:{&quot;userId&quot;:526414},&quot;context&quot;:&quot;lab&quot;})'></ql-menu-item>
+<ql-menu-item href='https://support.google.com/qwiklabs/contact/contact_us' label='Email support' target='_blank'></ql-menu-item>
+<ql-menu-item label='Chat support' onClick='ql.chat.open()'></ql-menu-item>
+</ql-menu>
+
+<ql-icon-button class='mobile-hide' icon='language' id='language' label='Select your language preference' tip='Language'></ql-icon-button>
+<ql-menu for='language'>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='ar' href='/classrooms/59034/labs/335513?locale=ar' label='العربية‬‎' lang='ar'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='de' href='/classrooms/59034/labs/335513?locale=de' label='Deutsch' lang='de'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='en' href='/classrooms/59034/labs/335513?locale=en' label='English' lang='en'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='es' href='/classrooms/59034/labs/335513?locale=es' label='español (Latinoamérica)' lang='es'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='fr' href='/classrooms/59034/labs/335513?locale=fr' label='français' lang='fr'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='fr_CA' href='/classrooms/59034/labs/335513?locale=fr_CA' label='français (Canada)' lang='fr-CA'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='he' href='/classrooms/59034/labs/335513?locale=he' label='עברית' lang='he'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='id' href='/classrooms/59034/labs/335513?locale=id' label='bahasa Indonesia' lang='id'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='it' href='/classrooms/59034/labs/335513?locale=it' label='Italiano' lang='it'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='ja' href='/classrooms/59034/labs/335513?locale=ja' label='日本語' lang='ja'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='ko' href='/classrooms/59034/labs/335513?locale=ko' label='한국어' lang='ko'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='pl' href='/classrooms/59034/labs/335513?locale=pl' label='Polski' lang='pl'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='pt_BR' href='/classrooms/59034/labs/335513?locale=pt_BR' label='português (Brasil)' lang='pt-BR'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='pt_PT' href='/classrooms/59034/labs/335513?locale=pt_PT' label='português (Portugal)' lang='pt-PT'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='ru' href='/classrooms/59034/labs/335513?locale=ru' label='русский' lang='ru'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='tr' href='/classrooms/59034/labs/335513?locale=tr' label='Türkçe' lang='tr'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='zh' href='/classrooms/59034/labs/335513?locale=zh' label='简体中文' lang='zh'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='zh_TW' href='/classrooms/59034/labs/335513?locale=zh_TW' label='繁體中文' lang='zh-TW'></ql-menu-item>
+</ql-menu>
+
+<ql-icon-button id='my_account' label='My account' tip='My account'>
+<ql-avatar></ql-avatar>
+</ql-icon-button>
+<ql-menu for='my_account' id='my_account_menu' style='max-height: 640px'>
+<div class='my-account-menu'>
+<ql-avatar class='l-mtl l-mbl' size='120'></ql-avatar>
+<div class='my-account-menu__user-info l-mbl'>
+<h4 class='ql-subhead-1'>Chris Tran</h4>
+<p class='ql-body-2 text--light'>khanh.tran@verisk.com</p>
+<p class='ql-body-2 text--light'>
+</p>
+</div>
+<div class='buttons l-mbl'>
+<a class="button button--hairline" id="settings" href="/my_account/profile">Settings</a>
+</div>
+<hr>
+<ql-button data-analytics-action='clicked_sign_out' href='/users/sign_out' method='delete'>
+Sign Out
+</ql-button>
+<div class='privacy l-mtl'>
+<a class="ql-caption text--light" href="/privacy_policy">Privacy</a>
+<span class='ql-caption text--light l-mls l-mrs'>&middot;</span>
+<a class="ql-caption text--light" href="/terms_of_service">Terms</a>
+</div>
+</div>
+</ql-menu>
+
+</div>
+</ql-toolbar>
+
+</div>
+<div class='header__search-bar js-header-search-bar'>
+<form class="js-search-form-mobile" onsubmit="ql.searchFilter(); return false;" action="/searches/lab" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="FRrhco70Cx+zSFcfr4I1325xnSlK7aZK67Swa89g3WikwQGQwtTBNn49VM4XgKQscXXx8GxzvsnJ9hKyrlIvZw==" />
+<input type="text" name="keywords" id="search" placeholder="Search for learning activities." maxlength="255" aria-label="catalog search bar" />
+</form>
+
+<ql-icon-button class='js-close-search-bar'>close</ql-icon-button>
+</div>
+</div>
+
+<nav class='nav-panel js-nav-panel'>
+<div class='nav-panel__logo'>
+<div class="custom-logo"><img alt="Qwiklabs" height="24" aria-label="Qwiklabs" src="https://cdn.qwiklabs.com/i0qFEQoJiBanlKZQElmSw%2B6HzGe37MLn2bL3nInH6MM%3D" /></div>
+</div>
+<nav class='ql-sidenav'>
+<ql-sidenav-item href='/' icon='home' label='Home'></ql-sidenav-item>
+
+<ql-sidenav-item href='/catalog' icon='school' label='Catalog'></ql-sidenav-item>
+
+<ql-sidenav-item active href='/profile' icon='event_note' label='Profile'></ql-sidenav-item>
+
+</nav>
+
+</nav>
+<div class='nav-panel__overlay js-nav-toggle'></div>
+
+<main class='js-main' id='jump-content'>
+<div class='l-main-wrapper' id='main-wrapper'>
+
+
+
+
+<ql-drawer-container class='js-lab-state' data-analytics-payload='{&quot;label&quot;:&quot;Lab 2 - Code and Serve Your ML Model With AWS CodeBuild&quot;,&quot;lab_name&quot;:&quot;Lab 2 - Code and Serve Your ML Model With AWS CodeBuild&quot;,&quot;classroom_name&quot;:null,&quot;deployment&quot;:&quot;aws&quot;}' data-focus-id='335513' data-lab-billing-limit='0.0' data-lab-duration='10800' data-parent='classroom' id='lab-container'>
+<ql-drawer id='terminal-drawer' slot='drawer' style='width: calc(100% - 480px)'>
+<iframe allow='clipboard-read' class='terminal' id='embedded-resource'></iframe>
+</ql-drawer>
+<ql-drawer-content class='js-lab-wrapper' id='lab-content' slot='drawer-content'>
+<ql-drawer-container id='lab-content-container'>
+<ql-drawer id='control-panel-drawer' open slot='drawer' width='320'>
+<ql-lab-control-panel class='ql-lab-control-panel__max-height control-panel js-lab-control-panel' connectionFiles='[]' labControlButton='{&quot;disabled&quot;:false,&quot;pending&quot;:false,&quot;running&quot;:false}' labDetails='[]' labTimer='{&quot;ticking&quot;:false,&quot;secondsRemaining&quot;:10800}' studentResources='[]'>
+</ql-lab-control-panel>
+</ql-drawer>
+<ql-drawer-content id='lab-instructions' slot='drawer-content'>
+<ql-snackbar id='alert-snackbar'></ql-snackbar>
+<div class='alert alert--fake js-alert'>
+<p class='alert__message js-alert-message' role='alert'></p>
+<ql-icon-button class='alert__close js-alert-close' icon='clear'></ql-icon-button>
+<iframe class='l-ie-iframe-fix'></iframe>
+</div>
+<div class='lab-content__renderable-instructions js-lab-content'>
+<div class='lab-preamble'>
+<h1 class='lab-preamble__title'>
+Lab 2 - Code and Serve Your ML Model With AWS CodeBuild
+</h1>
+<div class='lab-preamble__details subtitle-headline-1'>
+<span>3 hours </span>
+<span>Free</span>
+<div class='lab__rating'>
+<a aria-label="Lab Reviews" href="/focuses/335513/reviews?parent=classroom"><div class='rateit' data-rateit-readonly='true' data-rateit-value='4.4634'></div>
+
+</a><ql-button aria-label='Rate Lab' id='rate-lab-btn' label='Rate Lab' text></ql-button>
+</div>
+</div>
+</div>
+<div class='lab-outline-place-holder'></div>
+
+<div class='markdown-lab-instructions js-markdown-instructions no-select' id='markdown-lab-instructions'>
+<p><img src="https://s3-us-west-2.amazonaws.com/us-west-2-aws-training/awsu-spl/sts-sign-in-images/media/aws-logo.png" alt=""></p>
+
+
+
+<p>© 2021 Amazon Web Services, Inc. and its affiliates. All rights reserved. This work may not be reproduced or redistributed, in whole or in part, without prior written permission from Amazon Web Services, Inc. Commercial copying, lending, or selling is prohibited. All trademarks are the property of their owners.</p>
+
+<p>Note: Do not include any personal, identifying, or confidential information into the lab environment. Information entered may be visible to others.</p>
+
+<p>Corrections, feedback, or other questions? Contact us at <a href="https://support.aws.amazon.com/#/contacts/aws-training" target="_blank"><em>AWS Training and Certification</em></a>.</p>
+
+<h2 id="step1">Lab overview</h2>
+
+<p>In the previous lab, you saw what a machine learning (ML) pipeline looks like and how to use it. Now, you will build the model training pipeline in AWS CodePipeline. You will also configure the build project in AWS CodeBuild to support it.</p>
+
+<h2 id="step2">Objectives</h2>
+
+<p>After completing this lab, you will be able to:</p>
+<ul>
+<li>Create a pipeline using AWS CodePipeline</li>
+<li>Configure an AWS CodeBuild build project that allows the creation of an ECR image</li>
+</ul>
+<h3>Prerequisites</h3>
+
+<p>This lab requires:</p>
+<ul>
+<li>Access to a notebook computer with Wi-Fi and Microsoft Windows, Mac OS X, or Linux (Ubuntu, SuSE, or Red Hat)</li>
+<li>The lab environment is not accessible using an iPad or tablet device, but you can use these devices to access the student guide.</li>
+<li>For Microsoft Windows users: Administrator access to the computer</li>
+<li>An Internet browser such as Chrome, Firefox, or IE9 (previous versions of Internet Explorer are not supported)</li>
+</ul>
+<h3>Duration</h3>
+
+<p>This lab will require <em>30</em> minutes to complete.</p>
+
+<h3>Scenario</h3>
+
+<p><em>Overview of the scenario:</em></p>
+
+<p>You are working to build a fully automated ML pipeline. After reviewing your company's operating procedures, you have designed a basic architecture that uses several AWS services.</p>
+
+<p><img src="https://us-west-2-tcprod.s3.amazonaws.com/courses/ILT-DD-200-MLPOPS/v1.0.5/lab-2/instructions/en_us/images/diagram1_main-architecture.png" alt="Diagram of the reference architecture that shows all planed services and how they are linked"></p>
+
+<p>You have already created many of the components, including the AWS Step Functions state machine, AWS Lambda functions, Amazon DynamoDB, Amazon Virtual Private Cloud (Amazon VPC), and AWS Identity and Access Management (IAM) components. Now you need to focus on setting up the main CodePipeline that builds the training image and starts the model training.</p>
+
+<p><img src="https://us-west-2-tcprod.s3.amazonaws.com/courses/ILT-DD-200-MLPOPS/v1.0.5/lab-2/instructions/en_us/images/diagram2_model-training-pipeline.png" alt="Diagram of architecutre highlighting the components you will build in this lab"></p>
+
+
+
+<h2 id="step3">Start Lab</h2>
+<ol start="1">
+<li>At the top of your screen, launch your lab by choosing <span style="background-color:#34A853;font-family:Google Sans;font-weight:bold;font-size:90%;color:white;border-color:#34A853;border-radius:4px;border-width:2px;border-style:solid;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;">Start Lab</span>
+</li>
+</ol>
+<p>This starts the process of provisioning your lab resources. An estimated amount of time to provision your lab resources is displayed. You must wait for your resources to be provisioned before continuing.</p>
+
+<p><i class="fas fa-info-circle"></i> If you are prompted for a token, use the one distributed to you (or credits you have purchased). </p>
+<ol start="2">
+<li>Open your lab by choosing <span style="background-color:white;font-family:Google Sans;font-weight:bold;font-size:90%;color:#1a73e8;border-color:#dadce0;border-radius:4px;border-width:2px;border-style:solid;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;">Open Console</span>
+</li>
+</ol>
+<p>This opens an AWS Management Console sign-in page.</p>
+<ol start="3">
+<li>On the sign-in page, configure:</li>
+</ol><ul>
+<li>
+<strong>IAM user name:</strong> <input readonly class="copyable-inline-input" size="10" type="text" value="awsstudent">
+</li>
+<li>
+<strong>Password:</strong> Paste the value of <strong>Password</strong> from the left side of the lab page</li>
+<li>Choose <span style="background-color:#257ACF;font-weight:bold;font-size:90%;color:white;border-radius:5px;padding-top:3px;padding-bottom:3px;padding-left:10px;padding-right:10px;white-space:nowrap;">Sign In</span>
+</li>
+</ul>
+<p><i class="fas fa-exclamation-triangle"></i> <strong>Do not change the Region unless instructed.</strong></p>
+
+
+
+<h3>Common Login Errors</h3>
+
+<p><strong>Error: You must first log out</strong></p>
+
+<p><img src="https://s3-us-west-2.amazonaws.com/us-west-2-aws-training/awsu-spl/sts-sign-in-images/media/logouterror.png" alt=""></p>
+
+<p>If you see the message, <strong>You must first log out before logging into a different AWS account:</strong> </p>
+<ul>
+<li>Choose <strong>click here</strong>
+</li>
+<li>Close your browser tab to return to your initial lab window</li>
+<li>Choose <span style="background-color:white;font-family:Google Sans;font-weight:bold;font-size:90%;color:#1a73e8;border-color:#dadce0;border-radius:4px;border-width:2px;border-style:solid;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;">Open Console</span> again</li>
+</ul>
+
+
+<h2 id="step4">Task 1: Create pipeline using AWS CodePipeline</h2>
+
+<p>Your first goal is to use AWS CodePipeline to create a pipeline. You will start by defining the code source that the pipeline will process.</p>
+<ol start="4">
+<li>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>CodePipeline</strong>.</li>
+</ol>
+<p>The <em>StepFunctionsPipeline</em> is listed. You will manually create the <strong>ModelDeploy</strong> pipeline.</p>
+
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> Make sure that the region listed in the console matches the <strong>AWSRegion</strong> value from the left side of the lab page.</p>
+<ol start="5">
+<li><p>Choose <strong>Create pipeline</strong>.</p></li>
+<li><p>For <strong>Pipeline name</strong>, enter <input readonly class="copyable-inline-input" size="19" type="text" value="ModelDeployPipeline"></p></li>
+<li><p>Choose <strong>Existing service role</strong>.</p></li>
+<li><p>For <strong>Role ARN</strong>, in the search box, choose the role name that contains <strong>deployModelPipelineRole</strong>.</p></li>
+<li><p>Expand the <strong>Advanced settings</strong> section.</p></li>
+<li><p>For <strong>Artifact store</strong>, choose <strong>Custom location</strong>.</p></li>
+<li><p>For <strong>Bucket</strong>, in the search box, choose the bucket name that contains <strong>modelartifactbucket</strong>.</p></li>
+</ol>
+<p><i class="fas fa-chalkboard-teacher" style="color:black;"></i> The model artifact bucket is a pre-created bucket that CodePipeline will use to save artifacts. Any <em>private</em> bucket in your account will work; you need to decide what resource structure meets your needs the best. </p>
+<ol start="12">
+<li>For <strong>Encryption key</strong>, choose <strong>Default AWS Managed Key</strong>.</li>
+</ol>
+<p><i class="fas fa-sticky-note fa-lg" style="color:orange;"></i> <strong>Note</strong> Encryption is used by default for CodePipeline. You can use a default AWS managed key or a customer managed key. For your own production environment, you should choose the option that best fits your business needs.</p>
+<ol start="13">
+<li><p>Choose <strong>Next</strong>.</p></li>
+<li><p>For <strong>Source provider</strong>, choose <strong>AWS CodeCommit</strong>.</p></li>
+<li><p>For <strong>Repository name</strong>, in the search box, choose the repository name that contains <strong>modelCode</strong>.</p></li>
+<li><p>For <strong>Branch name</strong>, in the search box, choose <strong>main</strong>.</p></li>
+<li><p>Choose <strong>Next</strong>.</p></li>
+</ol>
+<p>You have now defined your pipeline source. In the next task, you will continue to define your pipeline, adding a build stage and configuring AWS CodeBuild.</p>
+
+
+
+<h2 id="step5">Task 2: Define your build stage</h2>
+
+<p>When you start creating your build stage, you will be able to create a CodeBuild project. The build project runs commands in your <a href="https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html" target="_blank">buildspec</a> file to create an Amazon Elastic Container Registry (Amazon ECR) image that contains your model. There are several settings that you need to configure to ensure that data is passed correctly and that CodeBuild is able to create the Amazon ECR image for publication. </p>
+
+<p>This step is optional, however you must define at least two stages before you may save your pipeline. Once you have created a pipeline you are able to modify it and add stages later. For this activity, you will add the build stage now.</p>
+<ol start="18">
+<li>For <strong>Build provider</strong>, choose <strong>AWS CodeBuild</strong>.</li>
+</ol>
+<p>A CodeBuild project needs to be created for this stage.</p>
+<ol start="19">
+<li>Under <strong>Project name</strong>, choose <strong>Create project</strong>.</li>
+</ol>
+<p>A new browser window opens.</p>
+<ol start="20">
+<li><p>For <strong>Project name</strong>, enter <input readonly class="copyable-inline-input" size="23" type="text" value="modelDeployBuildProject"></p></li>
+<li><p>In the <strong>Environment</strong> section, for <strong>Operating system</strong>, choose <strong>Amazon Linux 2</strong>.</p></li>
+</ol>
+<p>When you choose the build environment, you must pick the environment that your model code is configured for. The code you are using is configured to run in Linux. For the image to build properly, you must choose the Linux build environment. Make sure to consider the environment when you build your model and <em>buildspec.yml</em>. See <a href="https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html" target="_blank">Docker images provided by CodeBuild</a> for information on what environments are available.</p>
+<ol start="22">
+<li><p>For <strong>Runtime(s)</strong>, choose <strong>Standard</strong>.</p></li>
+<li><p>For <strong>Image</strong>, choose <strong>aws/codebuild/amazonlinux2-x86_64-standard:3.0</strong>.</p></li>
+<li><p>For <strong>Privileged</strong>, select the check box to enable the flag.</p></li>
+</ol>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> <em>Privileged</em> mode must be enabled for CodeBuild to create a Docker image. This is critical for the "bring your own algorithm" method.</p>
+<ol start="25">
+<li><p>For <strong>Service role</strong>, choose <strong>Existing service role</strong>.</p></li>
+<li><p>For <strong>Role ARN</strong>, in the search box, choose the role name that contains <strong>buildProjectRole</strong>.</p></li>
+<li><p>For <strong>Allow AWS CodeBuild to modify this service role</strong>, un-check the box to <em>disable</em> this functionality.</p></li>
+</ol>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> The role has been pre-created so that you do not need to update it. This follows the best-practice security principal of least privileges. </p>
+<ol start="28">
+<li><p>Expand <strong>Additional configuration</strong>.</p></li>
+<li><p>For <strong>Timeout</strong> update the values to:</p></li>
+</ol><ul>
+<li>Hours: <input readonly class="copyable-inline-input" size="1" type="text" value="0">
+</li>
+<li>Minutes: <input readonly class="copyable-inline-input" size="1" type="text" value="5">
+</li>
+</ul><ol start="30">
+<li>In the <strong>Environment variables</strong> section, add the following Name/Value pair:</li>
+</ol><ul>
+<li>Name: <input readonly class="copyable-inline-input" size="10" type="text" value="IMAGE_NAME">
+</li>
+<li>Value <input readonly class="copyable-inline-input" size="13" type="text" value="trained_model">
+</li>
+</ul><ol start="31">
+<li>Choose <strong>Add environment variable</strong>.</li>
+</ol><ul>
+<li>Name: <input readonly class="copyable-inline-input" size="7" type="text" value="ECR_URI">
+</li>
+<li>Value: Copy the <strong>ECRModelRepo</strong> value from the left side of the lab page and paste it into the box.</li>
+</ul>
+<p>There are several other configuration options in the advanced section that you must consider for your model deployment needs. For this activity, leave the rest of the settings as default.</p>
+<ol start="32">
+<li>Choose <strong>Continue to CodePipeline</strong>.</li>
+</ol>
+<p>The new browser window closes, and the <strong>Project name</strong> is auto-filled.</p>
+<ol start="33">
+<li><p>In the <strong>Environment variables</strong> section, choose  <strong>Add environment variable</strong>.</p></li>
+<li><p>Add the following Name/Value pair:</p></li>
+</ol><ul>
+<li>Name: <input readonly class="copyable-inline-input" size="5" type="text" value="RunId">
+</li>
+<li>Value: <input readonly class="copyable-inline-input" size="35" type="text" value="#{codepipeline.PipelineExecutionId}">
+</li>
+</ul>
+<p>This passes the CodePipeline executionId to CodeBuild so that a unique identifier is attached to each asset created. See <a href="https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-variables.html" target="_blank">Reference variables</a> to learn more about CodePipeline reference variables.</p>
+<ol start="35">
+<li>Choose <strong>Next</strong>.</li>
+</ol>
+<p>To complete the pipeline setup, you must skip the deploy stage setup and finalize the creation of the pipeline.</p>
+<ol start="36">
+<li>Choose <strong>Skip deploy stage</strong>.</li>
+</ol>
+<p>Training (using AWS Step Functions) must be added later.</p>
+<ol start="37">
+<li><p>In the pop-up, choose <strong>Skip</strong>.</p></li>
+<li><p>Choose <strong>Create pipeline</strong>.</p></li>
+</ol>
+<p>Because there is no training stage, there is no reason for this execution to complete.</p>
+<ol start="39">
+<li><p>Choose <strong>Stop execution</strong>.</p></li>
+<li><p>In the pop-up, for <strong>Select execution</strong> choose the option that is listed as <strong>In progress</strong>.</p></li>
+<li><p>Choose <strong>Stop and abandon</strong>.</p></li>
+</ol>
+<p>You have now configured your build stage. Next, you will continue and configure the training stage.</p>
+
+
+
+<h2 id="step6">Task 3: Set up the training stage</h2>
+
+<p>The next stage you need to configure is the training stage. The <em>create new pipeline</em> workflow expects you to configure a deploy stage, but that does not meet your requirements. In this task, you will complete the <em>create new pipeline</em> workflow, and then you will update the pipeline to add a training stage. </p>
+
+<p>Once you understand your pipeline setup requirements, you can automate building the pipeline with AWS CloudFormation or the AWS CLI. With either choice, you can set up a pipeline with the exact stages and settings you require in a repeatable fashion.</p>
+
+<p>Next, you will use AWS Step Functions to add a training stage.</p>
+<ol start="42">
+<li><p>Choose <strong>Edit</strong>.</p></li>
+<li><p>At the bottom of the page, after the <strong>Build</strong> stage choose <strong>Add stage</strong>.</p></li>
+<li><p>For <strong>Stage name</strong>, enter <input readonly class="copyable-inline-input" size="5" type="text" value="Train"></p></li>
+<li><p>Choose <strong>Add stage</strong>.</p></li>
+<li><p>On the <strong>Train</strong> stage card, choose <strong>Add action group</strong>.</p></li>
+<li><p>For <strong>Action name</strong>, enter <input readonly class="copyable-inline-input" size="5" type="text" value="Train"></p></li>
+<li><p>For <strong>Action provider</strong>, choose <strong>AWS Step Functions</strong>.</p></li>
+<li><p>For <strong>Input artifacts</strong>, choose <strong>SourceArtifact</strong>.</p></li>
+<li><p>For <strong>State machine ARN</strong>, in the search box, choose the state machine name that contains <strong>trainingStateMachine</strong>.</p></li>
+<li><p>For <strong>Input</strong>, enter the following text block:</p></li>
+</ol>
+<p><i class="fas fa-exclamation fa-lg" style="color:orange;"></i> <strong>Note</strong> Before entering the following text block, be sure to replace <strong>&lt;ECRModelRepo&gt;</strong>, <strong>&lt;modelDataBucket&gt;</strong>, and <strong>&lt;DynamoDBTable&gt;</strong> with the appropriate values from the left side of the lab page.</p>
+
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> Tip: You may copy and paste the following text block into a notepad, update the three values, then paste the resulting text block.</p>
+<pre class="highlight shell"><code><span class="o">{</span>&#x000A;  <span class="s2">"BuildId"</span>:<span class="s2">"#{codepipeline.PipelineExecutionId}"</span>,&#x000A;  <span class="s2">"Job"</span>:<span class="s2">"Job-#{codepipeline.PipelineExecutionId}"</span>,&#x000A;  <span class="s2">"Model"</span>:<span class="s2">"Model-#{codepipeline.PipelineExecutionId}"</span>,&#x000A;  <span class="s2">"Endpoint"</span>:<span class="s2">"Endpoint-#{codepipeline.PipelineExecutionId}"</span>,&#x000A;  <span class="s2">"ecrArn"</span>:<span class="s2">"&lt;ECRModelRepo&gt;:#{codepipeline.PipelineExecutionId}"</span>,&#x000A;  <span class="s2">"dataBucketPath"</span>:<span class="s2">"s3://&lt;modelDataBucket&gt;/v1.0/train"</span>,&#x000A;  <span class="s2">"triggerSource"</span>:<span class="s2">"pipeline"</span>,&#x000A;  <span class="s2">"DynamoDBTable"</span>:<span class="s2">"&lt;DynamoDBTable&gt;"</span>,&#x000A;  <span class="s2">"commitId"</span>:<span class="s2">"#{SourceVariables.CommitId}"</span>,&#x000A;  <span class="s2">"authorDate"</span>:<span class="s2">"#{SourceVariables.AuthorDate}"</span>&#x000A;<span class="o">}</span>&#x000A;</code></pre><ol start="52">
+<li><p>For <strong>Output artifacts</strong>, enter <input readonly class="copyable-inline-input" size="19" type="text" value="trainingJobArtifact"></p></li>
+<li><p>Choose <strong>Done</strong>.</p></li>
+<li><p>At the top of the page, choose <strong>Save</strong>.</p></li>
+<li><p>In the pop-up, choose <strong>Save</strong>.</p></li>
+</ol>
+<p>You have now completed the creation of the pipeline.</p>
+
+<p>To run the pipeline, you must tell CodePipeline to release the changes you have just saved. </p>
+<ol start="56">
+<li><p>At the top of the page, choose <strong>Release change</strong>.</p></li>
+<li><p>In the pop-up, choose <strong>Release</strong>.</p></li>
+</ol>
+<p>The pipeline starts running and will take 10-15 minutes to complete. </p>
+
+<p>Once the pipeline status changes to complete, verify that the artifact store in Amazon DynamoDB has been updated.</p>
+<ol start="58">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>DynamoDB</strong>.</p></li>
+<li><p>In the left navigation, choose <strong>Items</strong>.</p></li>
+<li><p>Choose the <i class="far fa-dot-circle"></i> DynamoDB table.</p></li>
+</ol>
+<p>Review the items in the table to ensure the accuracy of the model has been filled in. This indicates that the pipeline completed successfully.</p>
+
+<h2 id="step7">Supplemental: AWS CloudFormation example template</h2>
+
+<p>With AWS CloudFormation, you can convert your cloud resources into infrastructure as code (IaC). This way, you can redeploy in new environments without worry of configuration differences. The following sample template shows how to automatically create a pipeline in CodePipeline.</p>
+
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> This is an example template. It is not configured to work in a production environment, and it should not be used unless you have verified all resources match your business needs. Regarding security, especially, the four roles needed for this template to work have been removed.</p>
+<pre class="highlight yaml"><code><span class="na">AWSTemplateFormatVersion</span><span class="pi">:</span> <span class="s">2010-09-09</span>&#x000A;<span class="na">Description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">A</span><span class="nv"> </span><span class="s">MLOPS</span><span class="nv"> </span><span class="s">lab"</span>&#x000A;&#x000A;<span class="na">Resources</span><span class="pi">:</span>&#x000A;  <span class="na">buildImageProject</span><span class="pi">:</span>&#x000A;    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::CodeBuild::Project</span>&#x000A;    <span class="na">Properties</span><span class="pi">:</span>&#x000A;      <span class="na">Description</span><span class="pi">:</span> <span class="s">Build a Model Image</span>&#x000A;      <span class="na">ServiceRole</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">buildImageProjectRole.Arn</span>&#x000A;      <span class="na">Artifacts</span><span class="pi">:</span>&#x000A;        <span class="na">Type</span><span class="pi">:</span> <span class="s">CODEPIPELINE</span>&#x000A;      <span class="na">Source</span><span class="pi">:</span>&#x000A;        <span class="na">Type</span><span class="pi">:</span> <span class="s">CODEPIPELINE</span>&#x000A;        <span class="na">BuildSpec</span><span class="pi">:</span> <span class="s">buildspec.yml</span>&#x000A;      <span class="na">Environment</span><span class="pi">:</span>&#x000A;        <span class="na">Type</span><span class="pi">:</span> <span class="s">LINUX_CONTAINER</span>&#x000A;        <span class="na">ComputeType</span><span class="pi">:</span> <span class="s">BUILD_GENERAL1_SMALL</span>&#x000A;        <span class="na">Image</span><span class="pi">:</span> <span class="s">aws/codebuild/standard:4.0</span>&#x000A;        <span class="na">PrivilegedMode</span><span class="pi">:</span> <span class="s">True</span>&#x000A;        <span class="na">EnvironmentVariables</span><span class="pi">:</span>&#x000A;          <span class="pi">-</span> <span class="na">Name</span><span class="pi">:</span> <span class="s">IMAGE_REPO_NAME</span>&#x000A;            <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ecrModelRepo</span>&#x000A;          <span class="pi">-</span> <span class="na">Name</span><span class="pi">:</span> <span class="s">AWS_ACCOUNT_ID</span>&#x000A;            <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${AWS::AccountId}</span>&#x000A;          <span class="pi">-</span> <span class="na">Name</span><span class="pi">:</span> <span class="s">AWS_DEFAULT_REGION</span>&#x000A;            <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${AWS::Region}</span>&#x000A;          <span class="pi">-</span> <span class="na">Name</span><span class="pi">:</span> <span class="s">IMAGE_NAME</span>&#x000A;            <span class="na">Value</span><span class="pi">:</span> <span class="s">trained_model</span>&#x000A;          <span class="pi">-</span> <span class="na">Name</span><span class="pi">:</span> <span class="s">ECR_URI</span>&#x000A;            <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${ecrModelRepo}</span>&#x000A;&#x000A;  <span class="na">deployModelPipeline</span><span class="pi">:</span>&#x000A;    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::CodePipeline::Pipeline</span>&#x000A;    <span class="na">Properties</span><span class="pi">:</span>&#x000A;      <span class="na">RoleArn</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">deployModelPipelineRole.Arn</span>&#x000A;      <span class="na">ArtifactStore</span><span class="pi">:</span>&#x000A;          <span class="na">Type</span><span class="pi">:</span> <span class="s">S3</span>&#x000A;          <span class="na">Location</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">modelArtifactBucket</span>&#x000A;      <span class="na">Stages</span><span class="pi">:</span>&#x000A;        <span class="pi">-</span>&#x000A;          <span class="na">Name</span><span class="pi">:</span> <span class="s">Source</span>&#x000A;          <span class="na">Actions</span><span class="pi">:</span>&#x000A;            <span class="pi">-</span>&#x000A;              <span class="na">Name</span><span class="pi">:</span> <span class="s">GetSource</span>&#x000A;              <span class="na">Namespace</span><span class="pi">:</span> <span class="s">Source</span>&#x000A;              <span class="na">ActionTypeId</span><span class="pi">:</span>&#x000A;                <span class="na">Category</span><span class="pi">:</span> <span class="s">Source</span>&#x000A;                <span class="na">Owner</span><span class="pi">:</span> <span class="s">AWS</span>&#x000A;                <span class="na">Version</span><span class="pi">:</span> <span class="s">1</span>&#x000A;                <span class="na">Provider</span><span class="pi">:</span> <span class="s">CodeCommit</span>&#x000A;              <span class="na">OutputArtifacts</span><span class="pi">:</span>&#x000A;                <span class="pi">-</span> <span class="na">Name</span><span class="pi">:</span> <span class="s">ModelSourceOutput</span>&#x000A;              <span class="na">Configuration</span><span class="pi">:</span>&#x000A;                <span class="na">BranchName</span><span class="pi">:</span> <span class="s">main</span>&#x000A;                <span class="na">RepositoryName</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">modelCodeRepository</span>&#x000A;                <span class="na">PollForSourceChanges</span><span class="pi">:</span> <span class="s">false</span>&#x000A;              <span class="na">RunOrder</span><span class="pi">:</span> <span class="s">1</span>&#x000A;        <span class="pi">-</span>&#x000A;          <span class="na">Name</span><span class="pi">:</span> <span class="s">Build</span>&#x000A;          <span class="na">Actions</span><span class="pi">:</span>&#x000A;            <span class="pi">-</span>&#x000A;              <span class="na">Name</span><span class="pi">:</span> <span class="s">BuildImage</span>&#x000A;              <span class="na">InputArtifacts</span><span class="pi">:</span>&#x000A;                <span class="pi">-</span> <span class="na">Name</span><span class="pi">:</span> <span class="s">ModelSourceOutput</span>&#x000A;              <span class="na">ActionTypeId</span><span class="pi">:</span>&#x000A;                <span class="na">Category</span><span class="pi">:</span> <span class="s">Build</span>&#x000A;                <span class="na">Owner</span><span class="pi">:</span> <span class="s">AWS</span>&#x000A;                <span class="na">Version</span><span class="pi">:</span> <span class="s">1</span>&#x000A;                <span class="na">Provider</span><span class="pi">:</span> <span class="s">CodeBuild</span>&#x000A;              <span class="na">OutputArtifacts</span><span class="pi">:</span>&#x000A;                <span class="pi">-</span> <span class="na">Name</span><span class="pi">:</span> <span class="s">ModelBuildOutput</span>&#x000A;              <span class="na">Configuration</span><span class="pi">:</span>&#x000A;                <span class="na">ProjectName</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">buildImageProject</span>&#x000A;                <span class="na">EnvironmentVariables</span><span class="pi">:</span> <span class="s2">"</span><span class="s">[{</span><span class="se">\"</span><span class="s">name</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">RunId</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">value</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">#{codepipeline.PipelineExecutionId}</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">type</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">PLAINTEXT</span><span class="se">\"</span><span class="s">}]"</span>&#x000A;              <span class="na">RunOrder</span><span class="pi">:</span> <span class="s">1</span>&#x000A;        <span class="pi">-</span>&#x000A;          <span class="na">Name</span><span class="pi">:</span> <span class="s">Train</span>&#x000A;          <span class="na">Actions</span><span class="pi">:</span>&#x000A;            <span class="pi">-</span>&#x000A;              <span class="na">Name</span><span class="pi">:</span> <span class="s">Train</span>&#x000A;              <span class="na">InputArtifacts</span><span class="pi">:</span>&#x000A;                <span class="pi">-</span> <span class="na">Name</span><span class="pi">:</span> <span class="s">ModelSourceOutput</span>&#x000A;              <span class="na">ActionTypeId</span><span class="pi">:</span>&#x000A;                <span class="na">Category</span><span class="pi">:</span> <span class="s">Invoke</span>&#x000A;                <span class="na">Owner</span><span class="pi">:</span> <span class="s">AWS</span>&#x000A;                <span class="na">Version</span><span class="pi">:</span> <span class="s">1</span>&#x000A;                <span class="na">Provider</span><span class="pi">:</span> <span class="s">StepFunctions</span>&#x000A;              <span class="na">Configuration</span><span class="pi">:</span>&#x000A;                <span class="na">Input</span><span class="pi">:</span> <span class="kt">!Join</span>&#x000A;                  <span class="pi">-</span> <span class="s1">'</span><span class="s">'</span>&#x000A;                  <span class="pi">-</span> <span class="pi">-</span> <span class="s1">'</span><span class="s">{"BuildId":"#{codepipeline.PipelineExecutionId}",'</span>&#x000A;                    <span class="pi">-</span> <span class="s1">'</span><span class="s">"Job":"Job-#{codepipeline.PipelineExecutionId}",'</span>&#x000A;                    <span class="pi">-</span> <span class="s1">'</span><span class="s">"Model":"Model-#{codepipeline.PipelineExecutionId}",'</span>&#x000A;                    <span class="pi">-</span> <span class="s1">'</span><span class="s">"Endpoint":"Endpoint-#{codepipeline.PipelineExecutionId}",'</span>&#x000A;                    <span class="pi">-</span> <span class="kt">!Sub</span> <span class="s1">'</span><span class="s">"ecrArn":"${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${ecrModelRepo}:#{codepipeline.PipelineExecutionId}",'</span>&#x000A;                    <span class="pi">-</span> <span class="kt">!Sub</span> <span class="s1">'</span><span class="s">"dataBucketPath":"s3://${modelDataBucket}/v1.0/train",'</span>&#x000A;                    <span class="pi">-</span> <span class="s1">'</span><span class="s">"triggerSource":"pipeline",'</span>&#x000A;                    <span class="pi">-</span> <span class="kt">!Sub</span> <span class="s1">'</span><span class="s">"DynamoDBTable":"${DynamoDBTable}",'</span>&#x000A;                    <span class="pi">-</span> <span class="s1">'</span><span class="s">"commitId":"#{Source.CommitId}",'</span>&#x000A;                    <span class="pi">-</span> <span class="s1">'</span><span class="s">"authorDate":"#{Source.AuthorDate}"}'</span>&#x000A;                <span class="na">StateMachineArn</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">trainingStepFunction</span>&#x000A;              <span class="na">OutputArtifacts</span><span class="pi">:</span>&#x000A;                <span class="pi">-</span> <span class="na">Name</span><span class="pi">:</span> <span class="s">trainingJobArtifact</span>&#x000A;              <span class="na">RunOrder</span><span class="pi">:</span> <span class="s">1</span>&#x000A;&#x000A;  <span class="na">ecrModelRepo</span><span class="pi">:</span>&#x000A;    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ECR::Repository</span>&#x000A;&#x000A;  <span class="na">DynamoDBTable</span><span class="pi">:</span>&#x000A;    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::DynamoDB::Table</span>&#x000A;    <span class="na">Properties</span><span class="pi">:</span> &#x000A;      <span class="na">AttributeDefinitions</span><span class="pi">:</span>&#x000A;        <span class="pi">-</span> <span class="na">AttributeName</span><span class="pi">:</span> <span class="s2">"</span><span class="s">RunId"</span>&#x000A;          <span class="na">AttributeType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">S"</span>&#x000A;      <span class="na">KeySchema</span><span class="pi">:</span> &#x000A;        <span class="pi">-</span> <span class="na">AttributeName</span><span class="pi">:</span> <span class="s2">"</span><span class="s">RunId"</span>&#x000A;          <span class="na">KeyType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">HASH"</span>&#x000A;      <span class="na">ProvisionedThroughput</span><span class="pi">:</span> &#x000A;        <span class="na">ReadCapacityUnits</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1"</span>&#x000A;        <span class="na">WriteCapacityUnits</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1"</span>&#x000A;      <span class="na">StreamSpecification</span><span class="pi">:</span>&#x000A;        <span class="na">StreamViewType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">NEW_IMAGE"</span>&#x000A;&#x000A;  <span class="na">modelDataBucket</span><span class="pi">:</span>&#x000A;    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::S3::Bucket</span>&#x000A;    <span class="na">Properties</span><span class="pi">:</span>&#x000A;      <span class="na">AccessControl</span><span class="pi">:</span> <span class="s">Private</span>&#x000A;&#x000A;  <span class="na">modelArtifactBucket</span><span class="pi">:</span>&#x000A;    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::S3::Bucket</span>&#x000A;    <span class="na">Properties</span><span class="pi">:</span>&#x000A;      <span class="na">AccessControl</span><span class="pi">:</span> <span class="s">Private</span>&#x000A;&#x000A;  <span class="na">modelCodeRepository</span><span class="pi">:</span>&#x000A;    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::CodeCommit::Repository</span>&#x000A;    <span class="na">Properties</span><span class="pi">:</span> &#x000A;      <span class="na">RepositoryName</span><span class="pi">:</span> <span class="s">modelCode</span>&#x000A;&#x000A;  <span class="na">trainingStateMachine</span><span class="pi">:</span>&#x000A;    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::StepFunctions::StateMachine</span>&#x000A;    <span class="na">Properties</span><span class="pi">:</span> &#x000A;      <span class="na">RoleArn</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">StepFunctionsRole.Arn</span>&#x000A;      <span class="na">DefinitionString</span><span class="pi">:</span> &#x000A;        <span class="kt">!Sub</span> <span class="pi">|</span>&#x000A;            <span class="no">{</span>&#x000A;              <span class="no">"StartAt": "Train Step",</span>&#x000A;              <span class="no">"States": {</span>&#x000A;                <span class="no">"Train Step": {</span>&#x000A;                  <span class="no">"Resource": "arn:aws:states:::sagemaker:createTrainingJob.sync",</span>&#x000A;                  <span class="no">"Parameters": {</span>&#x000A;                    <span class="no">"RoleArn": "${SageMakerRole.Arn}",</span>&#x000A;                    <span class="no">"TrainingJobName.$": "$$.Execution.Input['JobName']",</span>&#x000A;                    <span class="no">"AlgorithmSpecification": {</span>&#x000A;                      <span class="no">"TrainingImage": "${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${ecrModelRepo}:latest", </span>&#x000A;                      <span class="no">"TrainingInputMode": "File"</span>&#x000A;                    <span class="no">},</span>&#x000A;                    <span class="no">"ResourceConfig": {</span>&#x000A;                      <span class="no">"InstanceCount": 1,</span>&#x000A;                      <span class="no">"InstanceType": "ml.m5.large",</span>&#x000A;                      <span class="no">"VolumeSizeInGB": 10</span>&#x000A;                    <span class="no">},</span>&#x000A;                    <span class="no">"InputDataConfig": [</span>&#x000A;                      <span class="no">{</span>&#x000A;                        <span class="no">"ChannelName": "training",</span>&#x000A;                        <span class="no">"DataSource": {</span>&#x000A;                          <span class="no">"S3DataSource": {</span>&#x000A;                            <span class="no">"S3DataType": "S3Prefix",</span>&#x000A;                            <span class="no">"S3Uri": "s3://modelDataBucket/v1.0/train",</span>&#x000A;                            <span class="no">"S3DataDistributionType": "FullyReplicated"</span>&#x000A;                          <span class="no">}</span>&#x000A;                        <span class="no">},</span>&#x000A;                        <span class="no">"ContentType": "csv",</span>&#x000A;                        <span class="no">"CompressionType": "None"</span>&#x000A;                      <span class="no">}</span>&#x000A;                    <span class="no">],</span>&#x000A;                    <span class="no">"StoppingCondition": {</span>&#x000A;                      <span class="no">"MaxRuntimeInSeconds": 3600</span>&#x000A;                    <span class="no">},</span>&#x000A;                    <span class="no">"OutputDataConfig": {</span>&#x000A;                      <span class="no">"S3OutputPath": "s3://${modelArtifactBucket}/$$.Execution.Input['JobName']"</span>&#x000A;                    <span class="no">}</span>&#x000A;                  <span class="no">},</span>&#x000A;                  <span class="no">"Type": "Task",</span>&#x000A;                  <span class="no">"Next": "Save model"</span>&#x000A;                <span class="no">},</span>&#x000A;                <span class="no">"Save model": {</span>&#x000A;                  <span class="no">"Parameters": {</span>&#x000A;                    <span class="no">"ExecutionRoleArn": "${SageMakerRole.Arn}",</span>&#x000A;                    <span class="no">"ModelName.$": "$$.Execution.Input['ModelName']",</span>&#x000A;                    <span class="no">"PrimaryContainer": {</span>&#x000A;                      <span class="no">"Environment": {},</span>&#x000A;                      <span class="no">"Image": "${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${ecrModelRepo}:latest",</span>&#x000A;                      <span class="no">"ModelDataUrl.$": "$['ModelArtifacts']['S3ModelArtifacts']"</span>&#x000A;                    <span class="no">}</span>&#x000A;                  <span class="no">},</span>&#x000A;                  <span class="no">"Resource": "arn:aws:states:::sagemaker:createModel",</span>&#x000A;                  <span class="no">"Type": "Task",</span>&#x000A;                  <span class="no">"End": true</span>&#x000A;                <span class="no">}</span>&#x000A;              <span class="no">}</span>&#x000A;            <span class="no">}</span>&#x000A;</code></pre>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> The AWS CodeCommit repo must already exist for this template to work.</p>
+
+
+
+<h2 id="step8">End Lab</h2>
+
+<p>Follow these steps to close the console, end your lab, and evaluate the experience.</p>
+<ol start="61">
+<li><p>Return to the AWS Management Console.</p></li>
+<li><p>On the navigation bar, choose <strong>awsstudent@&lt;AccountNumber&gt;</strong>, and then choose <strong>Sign Out</strong>.</p></li>
+<li><p>Choose <span style="background-color:#D93025;font-family:Google Sans;font-weight:bold;font-size:90%;color:white;border-color:#D93025;border-radius:4px;border-width:2px;border-style:solid;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;">End Lab</span></p></li>
+<li><p>Choose <span style="background-color:#DEDEDE;font-family:Google Sans;font-weight:bold;font-size:90%;color:#444;border-width:1px;border-style:solid;border-color:#444;padding-top:3px;padding-bottom:3px;padding-left:10px;padding-right:10px;">OK</span></p></li>
+<li><p>(Optional):</p></li>
+</ol><ul>
+<li>Select the applicable number of stars <i class="far fa-star"></i>
+</li>
+<li>Type a comment</li>
+<li>
+<p>Choose <strong>Submit</strong></p>
+<ul>
+<li>1 star = Very dissatisfied</li>
+<li>2 stars = Dissatisfied</li>
+<li>3 stars = Neutral</li>
+<li>4 stars = Satisfied</li>
+<li>5 stars = Very satisfied</li>
+</ul>
+</li>
+</ul>
+<p>You may close the window if you don't want to provide feedback.</p>
+
+<h2 id="step9">Additional Resources</h2>
+<ul>
+<li><a href="https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-variables.html#w2aac47c29b9b7" target="_blank">CodePipeline variables</a></li>
+<li><a href="https://boto3.amazonaws.com/v1/documentation/api/1.9.42/reference/services/sagemaker-runtime.html#SageMakerRuntime.Client.invoke_endpoint" target="_blank">Call SageMaker endpoint</a></li>
+</ul>
+<p>For more information about AWS Training and Certification, see <a href="https://aws.amazon.com/training/" target="_blank"><em>https://aws.amazon.com/training/</em></a>.</p>
+
+<p><em>Your feedback is welcome and appreciated.</em></p>
+
+<p>If you would like to share any feedback, suggestions, or corrections, please provide the details in our <a href="https://support.aws.amazon.com/#/contacts/aws-training" target="_blank"><em>AWS Training and Certification Contact Form</em></a>.</p>
+
+</div>
+</div>
+
+
+<div class='lab-content__end-lab-button js-end-lab-button-container hidden'>
+<ql-lab-control-button class='js-end-lab-button' running></ql-lab-control-button>
+</div>
+<!-- / TODO: Move recommendations into the end lab modal -->
+</ql-drawer-content>
+<ql-drawer end id='outline-drawer' open slot='drawer' width='320'>
+<div aria-label='Lab Table of Contents' role='navigation'>
+<ul class='lab-content__outline js-lab-content-outline'>
+<li><a href='#step1'>Lab overview</a></li><li><a href='#step2'>Objectives</a></li><li><a href='#step3'>Start Lab</a></li><li><a href='#step4'>Task 1: Create pipeline using AWS CodePipeline</a></li><li><a href='#step5'>Task 2: Define your build stage</a></li><li><a href='#step6'>Task 3: Set up the training stage</a></li><li><a href='#step7'>Supplemental: AWS CloudFormation example template</a></li><li><a href='#step8'>End Lab</a></li><li><a href='#step9'>Additional Resources</a></li>
+</ul>
+</div>
+</ql-drawer>
+</ql-drawer-container>
+</ql-drawer-content>
+</ql-drawer-container>
+
+
+
+</div>
+</main>
+
+<span class='hidden' id='flash-sibling-before'></span>
+<ql-snackbar></ql-snackbar>
+
+
+<div class='modal fade' id='lab-details-modal'>
+<div class='modal-container'>
+<div class='modal-content mdl-shadow--24dp'>
+<div class='modal-body'>
+<p class='l-mbm'>
+This lab explores how to setup Amazon CodeBuild to build custom containers for your model.
+</p>
+<p class='small-label l-mbs'>
+<strong>
+Duration:
+</strong>
+4m setup
+&middot;
+180m access
+&middot;
+180m completion
+</p>
+<p class='small-label l-mbs'>
+<strong>AWS Region:</strong>
+[us-west-2] <strong>US West (Oregon)</strong>
+</p>
+<p class='small-label l-mbs'>
+
+</p>
+<p class='small-label'>
+<strong>
+Permalink:
+</strong>
+<a href="https://aws.qwiklabs.com/catalog_lab/11886">https://aws.qwiklabs.com/catalog_lab/11886</a>
+</p>
+</div>
+<div class='modal-actions'>
+<a class='button button--text' data-dismiss='modal'>
+Got It
+</a>
+</div>
+
+
+</div>
+</div>
+<iframe class='l-ie-iframe-fix'></iframe>
+</div>
+<ql-dialog headline='How satisfied are you with this lab?&lt;span aria-hidden=&quot;true&quot;&gt;*&lt;/span&gt;' id='lab-review-dialog'>
+<form class="simple_form js-lab-review-form" id="new_lab_review" action="/lab_reviews" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><div aria-labelledby='lab-review-dialog' aria-required='true' aria-valuemax='5' aria-valuemin='0' aria-valuenow='0' class='rateit js-rateit' data-rateit-max='5' data-rateit-min='0' data-rateit-resetable='false' data-rateit-step='1' data-rateit-value='0' id='lab-review-rateit' role='slider' tabindex='0'></div>
+<div class='l-mtm'>
+
+<div class="control-group hidden lab_review_user_id"><div class="controls"><input class="hidden" type="hidden" value="526414" name="lab_review[user_id]" id="lab_review_user_id" /></div></div>
+<div class="control-group hidden lab_review_classroom_id"><div class="controls"><input class="hidden" type="hidden" value="59034" name="lab_review[classroom_id]" id="lab_review_classroom_id" /></div></div>
+<div class="control-group hidden lab_review_lab_id"><div class="controls"><input class="hidden" type="hidden" value="11886" name="lab_review[lab_id]" id="lab_review_lab_id" /></div></div>
+<div class="control-group hidden lab_review_focus_id"><div class="controls"><input class="hidden" type="hidden" value="335513" name="lab_review[focus_id]" id="lab_review_focus_id" /></div></div>
+<div class="control-group hidden lab_review_rating"><div class="controls"><input class="hidden js-rating-input" type="hidden" name="lab_review[rating]" id="lab_review_rating" /></div></div>
+<div class="control-group text optional lab_review_comment"><label class="text optional control-label" for="lab_review_comment">Additional Comments</label><div class="controls"><textarea class="text optional" name="lab_review[comment]" id="lab_review_comment">
+</textarea></div></div>
+</div>
+</form><ql-button disabled id='submit' label='Submit' slot='action' text></ql-button>
+</ql-dialog>
+
+<ql-dialog headline='All done? If you end this lab, you will lose all your work. You may not be able to restart the lab if there is a quota limit. Are you sure you want to end this lab?' icon='error_outline' id='js-lab-are-you-sure-dialog'>
+<ql-button id='js-are-you-sure-button' label='Submit' slot='action' text></ql-button>
+</ql-dialog>
+
+
+<script>
+  $( function() {
+    ql.initMaterialInputs();
+    initChosen();
+    initSearch();
+    initTabs();
+    ql.list.init();
+    ql.favoriting.init();
+    ql.header.myAccount.init();
+    initTooltips();
+    ql.autocomplete.init();
+    ql.modals.init();
+    ql.toggleButtons.init();
+    ql.analytics.init();
+    ql.chat.init();
+  initLabContent();
+  ql.labOutline.links.init();
+  initLabReviewModal();
+  initLabReviewTranslations( {"star_amount_1":"1 of 5 stars","star_amount_2":"2 of 5 stars","star_amount_3":"3 of 5 stars","star_amount_4":"4 of 5 stars","star_amount_5":"5 of 5 stars"} )
+  ql.labAssessment.init();
+  ql.labData.init();
+  initLabTranslations( {"are_you_sure":"All done? If you end this lab, you will lose all your work. You may not be able to restart the lab if there is a quota limit. Are you sure you want to end this lab?","in_progress":"*In Progress*","ending":"*Ending*","starting":"*Starting, please wait*","end_concurrent_labs":"Sorry, you can only run one lab at a time. To start this lab, please confirm that you want all of your existing labs to end.","copied":"Copied","no_resource":"Error retrieving resource.","no_support":"No Support","mac_press":"Press ⌘-C to copy","thanks_review":"Thanks for reviewing this lab.","windows_press":"Press Ctrl-C to copy","days":"days"} );
+  ql.labRun.init();
+  ql.initHeader();
+  ql.navPanel.init();
+  ql.navigation.init();
+  
+  });
+</script>
+
+</body>
+</html>
+
