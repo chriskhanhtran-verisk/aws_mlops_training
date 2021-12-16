@@ -1,0 +1,42 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - echo `python --version`
+      - echo `aws --version`
+      # This is the command that is supposed to work with aws cli v2
+      - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 774090264386.dkr.ecr.us-west-2.amazonaws.com
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image for modelCodeA...          
+      - echo Path `pwd` 
+      - echo Permissions `ls -la` 
+      - chmod -R 775 modelCodeA
+      - echo Decision Tree Permissions `cd modelCodeA && ls -la`
+      # $IMAGE_NAMEA is defined as an environmental variable for the build project
+      - cd modelCodeA && docker build -t $IMAGE_NAMEA:$RunId . 
+      - echo Path `pwd`
+      - docker tag $IMAGE_NAMEA:$RunId $ECR_URIA:$RunId
+      # Added Section:
+      - echo Building the Docker image for modelCodeB...          
+      # Change to modelCodeB directory
+      - echo Path `cd ../modelCodeB && pwd` 
+      - echo Permissions `ls -la ../modelCodeB` 
+      - chmod -R 775 ../modelCodeB
+      - echo Random Forest Permissions `cd ../modelCodeB && ls -la`
+      # $IMAGE_NAMEB is defined as an environmental variable for the build project
+      - cd ../modelCodeB && docker build -t $IMAGE_NAMEB:$RunId . 
+      # Create the modelCodeB Docker image
+      - docker tag $IMAGE_NAMEB:$RunId $ECR_URIB:$RunId
+  post_build:
+    commands:
+      - echo Path `pwd`
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      # Push the modelCodeA Docker image
+      - cd ../modelCodeA && docker push $ECR_URIA:$RunId
+      # Added: push the modelCodeB Docker image
+      - cd ../modelCodeB && docker push $ECR_URIB:$RunId

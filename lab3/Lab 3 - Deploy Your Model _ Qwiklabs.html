@@ -1,0 +1,778 @@
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"caff0d62ed","applicationID":"588106829","transactionName":"IQ1XRUEOVV1dFxlRXAEXSlRATkpZVxI=","queueTime":0,"applicationTime":220,"agent":""}</script>
+<script type="text/javascript">(window.NREUM||(NREUM={})).init={ajax:{deny_list:["bam.nr-data.net"]}};(window.NREUM||(NREUM={})).loader_config={licenseKey:"caff0d62ed",applicationID:"588106829"};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var i=e[n]={exports:{}};t[n][0].call(i.exports,function(e){var i=t[n][1][e];return r(i||e)},i,i.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<n.length;i++)r(n[i]);return r}({1:[function(t,e,n){function r(){}function i(t,e,n,r){return function(){return s.recordSupportability("API/"+e+"/called"),o(t+e,[u.now()].concat(c(arguments)),n?null:this,r),n?void 0:this}}var o=t("handle"),a=t(10),c=t(11),f=t("ee").get("tracer"),u=t("loader"),s=t(4),d=NREUM;"undefined"==typeof window.newrelic&&(newrelic=d);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],l="api-",v=l+"ixn-";a(p,function(t,e){d[e]=i(l,e,!0,"api")}),d.addPageAction=i(l,"addPageAction",!0),d.setCurrentRouteName=i(l,"routeName",!0),e.exports=newrelic,d.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(t,e){var n={},r=this,i="function"==typeof e;return o(v+"tracer",[u.now(),t,n],r),function(){if(f.emit((i?"":"no-")+"fn-start",[u.now(),r,i],n),i)try{return e.apply(this,arguments)}catch(t){throw f.emit("fn-err",[arguments,this,t],n),t}finally{f.emit("fn-end",[u.now()],n)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){m[e]=i(v,e)}),newrelic.noticeError=function(t,e){"string"==typeof t&&(t=new Error(t)),s.recordSupportability("API/noticeError/called"),o("err",[t,u.now(),!1,e])}},{}],2:[function(t,e,n){function r(t){if(NREUM.init){for(var e=NREUM.init,n=t.split("."),r=0;r<n.length-1;r++)if(e=e[n[r]],"object"!=typeof e)return;return e=e[n[n.length-1]]}}e.exports={getConfiguration:r}},{}],3:[function(t,e,n){var r=!1;try{var i=Object.defineProperty({},"passive",{get:function(){r=!0}});window.addEventListener("testPassive",null,i),window.removeEventListener("testPassive",null,i)}catch(o){}e.exports=function(t){return r?{passive:!0,capture:!!t}:!!t}},{}],4:[function(t,e,n){function r(t,e){var n=[a,t,{name:t},e];return o("storeMetric",n,null,"api"),n}function i(t,e){var n=[c,t,{name:t},e];return o("storeEventMetrics",n,null,"api"),n}var o=t("handle"),a="sm",c="cm";e.exports={constants:{SUPPORTABILITY_METRIC:a,CUSTOM_METRIC:c},recordSupportability:r,recordCustom:i}},{}],5:[function(t,e,n){function r(){return c.exists&&performance.now?Math.round(performance.now()):(o=Math.max((new Date).getTime(),o))-a}function i(){return o}var o=(new Date).getTime(),a=o,c=t(12);e.exports=r,e.exports.offset=a,e.exports.getLastTimestamp=i},{}],6:[function(t,e,n){function r(t){return!(!t||!t.protocol||"file:"===t.protocol)}e.exports=r},{}],7:[function(t,e,n){function r(t,e){var n=t.getEntries();n.forEach(function(t){"first-paint"===t.name?p("timing",["fp",Math.floor(t.startTime)]):"first-contentful-paint"===t.name&&p("timing",["fcp",Math.floor(t.startTime)])})}function i(t,e){var n=t.getEntries();if(n.length>0){var r=n[n.length-1];if(f&&f<r.startTime)return;p("lcp",[r])}}function o(t){t.getEntries().forEach(function(t){t.hadRecentInput||p("cls",[t])})}function a(t){if(t instanceof g&&!y){var e=Math.round(t.timeStamp),n={type:t.type};e<=l.now()?n.fid=l.now()-e:e>l.offset&&e<=Date.now()?(e-=l.offset,n.fid=l.now()-e):e=l.now(),y=!0,p("timing",["fi",e,n])}}function c(t){"hidden"===t&&(f=l.now(),p("pageHide",[f]))}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var f,u,s,d,p=t("handle"),l=t("loader"),v=t(9),m=t(3),g=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){u=new PerformanceObserver(r);try{u.observe({entryTypes:["paint"]})}catch(h){}s=new PerformanceObserver(i);try{s.observe({entryTypes:["largest-contentful-paint"]})}catch(h){}d=new PerformanceObserver(o);try{d.observe({type:"layout-shift",buffered:!0})}catch(h){}}if("addEventListener"in document){var y=!1,w=["click","keydown","mousedown","pointerdown","touchstart"];w.forEach(function(t){document.addEventListener(t,a,m(!1))})}v(c)}},{}],8:[function(t,e,n){function r(t,e){if(!i)return!1;if(t!==i)return!1;if(!e)return!0;if(!o)return!1;for(var n=o.split("."),r=e.split("."),a=0;a<r.length;a++)if(r[a]!==n[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var c=navigator.userAgent,f=c.match(a);f&&c.indexOf("Chrome")===-1&&c.indexOf("Chromium")===-1&&(i="Safari",o=f[1])}e.exports={agent:i,version:o,match:r}},{}],9:[function(t,e,n){function r(t){function e(){t(c&&document[c]?document[c]:document[o]?"hidden":"visible")}"addEventListener"in document&&a&&document.addEventListener(a,e,i(!1))}var i=t(3);e.exports=r;var o,a,c;"undefined"!=typeof document.hidden?(o="hidden",a="visibilitychange",c="visibilityState"):"undefined"!=typeof document.msHidden?(o="msHidden",a="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(o="webkitHidden",a="webkitvisibilitychange",c="webkitVisibilityState")},{}],10:[function(t,e,n){function r(t,e){var n=[],r="",o=0;for(r in t)i.call(t,r)&&(n[o]=e(r,t[r]),o+=1);return n}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],11:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,i=n-e||0,o=Array(i<0?0:i);++r<i;)o[r]=t[e+r];return o}e.exports=r},{}],12:[function(t,e,n){e.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(t,e,n){function r(){}function i(t){function e(t){return t&&t instanceof r?t:t?u(t,f,a):a()}function n(n,r,i,o,a){if(a!==!1&&(a=!0),!l.aborted||o){t&&a&&t(n,r,i);for(var c=e(i),f=m(n),u=f.length,s=0;s<u;s++)f[s].apply(c,r);var p=d[w[n]];return p&&p.push([b,n,r,c]),c}}function o(t,e){y[t]=m(t).concat(e)}function v(t,e){var n=y[t];if(n)for(var r=0;r<n.length;r++)n[r]===e&&n.splice(r,1)}function m(t){return y[t]||[]}function g(t){return p[t]=p[t]||i(n)}function h(t,e){l.aborted||s(t,function(t,n){e=e||"feature",w[n]=e,e in d||(d[e]=[])})}var y={},w={},b={on:o,addEventListener:o,removeEventListener:v,emit:n,get:g,listeners:m,context:e,buffer:h,abort:c,aborted:!1};return b}function o(t){return u(t,f,a)}function a(){return new r}function c(){(d.api||d.feature)&&(l.aborted=!0,d=l.backlog={})}var f="nr@context",u=t("gos"),s=t(10),d={},p={},l=e.exports=i();e.exports.getOrSetContext=o,l.backlog=d},{}],gos:[function(t,e,n){function r(t,e,n){if(i.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return t[e]=r,r}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){i.buffer([t],r),i.emit(t,e,n)}var i=t("ee").get("handle");e.exports=r,r.ee=i},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,o,function(){return i++})}var i=1,o="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!T++){var t=P.info=NREUM.info,e=g.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return u.abort();f(O,function(e,n){t[e]||(t[e]=n)});var n=a();c("mark",["onload",n+P.offset],null,"api"),c("timing",["load",n]);var r=g.createElement("script");0===t.agent.indexOf("http://")||0===t.agent.indexOf("https://")?r.src=t.agent:r.src=v+"://"+t.agent,e.parentNode.insertBefore(r,e)}}function i(){"complete"===g.readyState&&o()}function o(){c("mark",["domContent",a()+P.offset],null,"api")}var a=t(5),c=t("handle"),f=t(10),u=t("ee"),s=t(8),d=t(6),p=t(2),l=t(3),v=p.getConfiguration("ssl")===!1?"http":"https",m=window,g=m.document,h="addEventListener",y="attachEvent",w=m.XMLHttpRequest,b=w&&w.prototype,E=!d(m.location);NREUM.o={ST:setTimeout,SI:m.setImmediate,CT:clearTimeout,XHR:w,REQ:m.Request,EV:m.Event,PR:m.Promise,MO:m.MutationObserver};var x=""+location,O={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1212.min.js"},M=w&&b&&b[h]&&!/CriOS/.test(navigator.userAgent),P=e.exports={offset:a.getLastTimestamp(),now:a,origin:x,features:{},xhrWrappable:M,userAgent:s,disabled:E};if(!E){t(1),t(7),g[h]?(g[h]("DOMContentLoaded",o,l(!1)),m[h]("load",r,l(!1))):(g[y]("onreadystatechange",i),m[y]("onload",r)),c("mark",["firstbyte",a.getLastTimestamp()],null,"api");var T=0}},{}],"wrap-function":[function(t,e,n){function r(t,e){function n(e,n,r,f,u){function nrWrapper(){var o,a,s,p;try{a=this,o=d(arguments),s="function"==typeof r?r(o,a):r||{}}catch(l){i([l,"",[o,a,f],s],t)}c(n+"start",[o,a,f],s,u);try{return p=e.apply(a,o)}catch(v){throw c(n+"err",[o,a,v],s,u),v}finally{c(n+"end",[o,a,p],s,u)}}return a(e)?e:(n||(n=""),nrWrapper[p]=e,o(e,nrWrapper,t),nrWrapper)}function r(t,e,r,i,o){r||(r="");var c,f,u,s="-"===r.charAt(0);for(u=0;u<e.length;u++)f=e[u],c=t[f],a(c)||(t[f]=n(c,s?f+r:r,i,f,o))}function c(n,r,o,a){if(!v||e){var c=v;v=!0;try{t.emit(n,r,o,e,a)}catch(f){i([f,n,r,o],t)}v=c}}return t||(t=s),n.inPlace=r,n.flag=p,n}function i(t,e){e||(e=s);try{e.emit("internal-error",t)}catch(n){}}function o(t,e,n){if(Object.defineProperty&&Object.keys)try{var r=Object.keys(t);return r.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(o){i([o],n)}for(var a in t)l.call(t,a)&&(e[a]=t[a]);return e}function a(t){return!(t&&t instanceof Function&&t.apply&&!t[p])}function c(t,e){var n=e(t);return n[p]=t,o(t,n,s),n}function f(t,e,n){var r=t[e];t[e]=c(r,n)}function u(){for(var t=arguments.length,e=new Array(t),n=0;n<t;++n)e[n]=arguments[n];return e}var s=t("ee"),d=t(11),p="nr@original",l=Object.prototype.hasOwnProperty,v=!1;e.exports=r,e.exports.wrapFunction=c,e.exports.wrapInPlace=f,e.exports.argsToArray=u},{}]},{},["loader"]);</script>
+<title>Lab 3 - Deploy Your Model | Qwiklabs</title>
+<script>
+//<![CDATA[
+window.gon={};gon.current_user={"firstname":"Chris","lastname":"Tran","fullname":"Chris Tran","company":"Verisk Analytics, Inc.","email":"khanh.tran@verisk.com","origin":"aws, direct","subscriptions":0,"id":"bbf593d8f0f0f6529ddd84904111d6f8","qlCreatedAt":"2021-12-13 05:59:01 UTC","optIn":true,"current_organization_id":null,"current_organization_role":null};gon.segment=null;gon.deployment="aws";gon.content={"type":"Lab","id":11887,"name":"Lab 3 - Deploy Your Model"};
+//]]>
+</script>
+<script>
+  dataLayer = [
+    {user: gon.current_user},
+    {content: gon.content}
+  ];
+</script>
+<script src="https://cdn.qwiklabs.com/assets/hallofmirrors/polyfills/webcomponents-loader-60a166e60df2787cca5915e2ced8c317457f421a20f02601b937a72275ac441a.js"></script>
+<script src="https://cdn.qwiklabs.com/assets/vendor-2beee108ba05276bc429223ee82ed81449d233c93d45af5da84add895e101218.js"></script>
+<script src="https://cdn.qwiklabs.com/assets/application-20e85c71d4f4b37cfc2dc06e60190b99242d9643fbadcfd864742b7c1bb1e5d2.js"></script>
+<script src="https://cdn.qwiklabs.com/assets/hallofmirrors/hallofmirrors-f156fe7fa0c7e87b54b4cf089f02ed02d6cda63c2bf0016afd130174d632bda8.js"></script>
+<!--[if lt IE 9]>
+<script src='http://html5shim.googlecode.com/svn/trunk/html5.js' type='text/javascript'></script>
+<![endif]-->
+<!--[endif]>  <![endif]-->
+<script type='application/ld+json'>
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "https://www.qwiklabs.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.qwiklabs.com/catalog?keywords={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script id='ze-snippet' src='https://static.zdassets.com/ekr/snippet.js?key=511e4158-0aec-4e3c-b2e6-4daa1769f51e'></script>
+
+
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="S2VfQwTddE9wQrU6lJKF0XwBgd26nEF13rAc56F6BiCXXXk5vfGmyQyzBEP3Zu/kbxEhnZb9dUEPHWjx5FZ9Xw==" />
+<meta content='width=device-width, initial-scale=1.0, user-scalable=yes' name='viewport'>
+<meta content='1rRsY0INj8RvwB5EF5pwdxt2A2P9aDgAlsICaJ0d5w0' name='google-site-verification'>
+<meta content='#3681E4' property='msapplication-TileColor'>
+<meta content='/favicon-144.png' property='msapplication-TileImage'>
+<meta content='[{&quot;id&quot;:&quot;recaptcha_experiment&quot;,&quot;optimize_id&quot;:&quot;dpViOcLkT3qS4TvL2mRojA&quot;,&quot;title&quot;:&quot;No Recaptcha shown for trusted users&quot;,&quot;variant_index&quot;:0,&quot;variant&quot;:&quot;original&quot;}]' name='active-experiments'>
+<meta content='{&quot;userId&quot;:526414}' name='help-api-product-data'>
+<meta content='This lab provides you with an example of how to take your tested model and deploy it to production.' name='description'>
+<meta content='Qwiklabs' name='author'>
+<meta content='Lab 3 - Deploy Your Model | Qwiklabs' property='og:title'>
+<meta content='website' property='og:type'>
+<meta content='/favicon-144.png' property='og:image'>
+<meta content='Qwiklabs' property='og:site_name'>
+<meta content='This lab provides you with an example of how to take your tested model and deploy it to production.' property='og:description'>
+<meta content='/qwiklabs_logo_900x887.png' property='og:logo' size='900x887'>
+<meta content='/qwiklabs_logo_994x187.png' property='og:logo' size='994x187'>
+
+
+
+<link color='#3681E4' href='/favicon-svg.svg' rel='mask-icon'>
+<link href='/favicon-180.png' rel='apple-touch-icon-precomposed'>
+<link href='/favicon-32.png' rel='shortcut icon' type='image/x-icon'>
+
+
+
+<link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Oswald:400|Roboto+Mono:400,700|Roboto:300,400,500,700|Google+Sans:300,400,500,700|Google+Sans+Display:400|Material+Icons|Google+Material+Icons" />
+
+
+<link rel="stylesheet" media="all" href="https://cdn.qwiklabs.com/assets/application-82fcfd3403ef9e251dc88630e141dc601e3ccab184f32fd76bdc37f34261c793.css" />
+
+<style>
+  :root {
+    --primary-text-on-surface-color: #1A73E8;
+    --primary-text-on-surface-color-dark: #1568d6;
+    --primary-text-on-surface-color-darker: #135ec1;
+    --primary-text-on-surface-color-darkest: #1154ac;
+    --primary-surface-color: #1A73E8;
+    --primary-surface-color-rgb: 26,115,232;
+    --primary-surface-color-light: #d1e3fa;
+    --primary-surface-color-lightest: #e8f1fd;
+    --text-on-primary-color: #FFFFFF;
+    --accent-text-on-surface-color: #F29900;
+    --accent-surface-color: #F9AB00;
+    --accent-surface-color-rgb: 249,171,0;
+    --accent-surface-color-light: #ffefcc;
+    --text-on-accent-color: #202124;
+  }
+</style>
+
+
+
+</head>
+<body class='lab-show l-full no-nav application-new focuses focuses-show lab-show l-full no-nav '>
+<div class='header-container'>
+<div class='header'>
+<ql-toolbar jumpEnabled>
+<div class='header__title' slot='title'>
+<ql-icon-button label="Back" href="/classrooms/59034" id="b3a40ef5a0e1c5f0" target="_self" tip="Back">arrow_back</ql-icon-button>
+<h1 class='ql-headline-6'>Lab 3 - Deploy Your Model</h1>
+</div>
+<div class='header__actions' slot='action'>
+<ql-icon-button id='control-panel-target' style='display: none;'>
+dashboard
+</ql-icon-button>
+<ql-menu for='control-panel-target' id='control-panel-menu'></ql-menu>
+<ql-icon-button class='mobile-hide' icon='help_outline' id='help-menu-button' label='Open help menu' tip='Help'></ql-icon-button>
+<ql-menu for='help-menu-button' id='help-menu'>
+<ql-menu-item data-analytics-action='opened_help' data-analytics-label='lab' label='Help Center' onclick='hallofmirrors.helpService.startHelp({&quot;productData&quot;:{&quot;userId&quot;:526414},&quot;context&quot;:&quot;lab&quot;})'></ql-menu-item>
+<ql-menu-item href='https://support.google.com/qwiklabs/contact/contact_us' label='Email support' target='_blank'></ql-menu-item>
+<ql-menu-item label='Chat support' onClick='ql.chat.open()'></ql-menu-item>
+</ql-menu>
+
+<ql-icon-button class='mobile-hide' icon='language' id='language' label='Select your language preference' tip='Language'></ql-icon-button>
+<ql-menu for='language'>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='ar' href='/classrooms/59034/labs/335514?locale=ar' label='العربية‬‎' lang='ar'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='de' href='/classrooms/59034/labs/335514?locale=de' label='Deutsch' lang='de'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='en' href='/classrooms/59034/labs/335514?locale=en' label='English' lang='en'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='es' href='/classrooms/59034/labs/335514?locale=es' label='español (Latinoamérica)' lang='es'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='fr' href='/classrooms/59034/labs/335514?locale=fr' label='français' lang='fr'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='fr_CA' href='/classrooms/59034/labs/335514?locale=fr_CA' label='français (Canada)' lang='fr-CA'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='he' href='/classrooms/59034/labs/335514?locale=he' label='עברית' lang='he'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='id' href='/classrooms/59034/labs/335514?locale=id' label='bahasa Indonesia' lang='id'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='it' href='/classrooms/59034/labs/335514?locale=it' label='Italiano' lang='it'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='ja' href='/classrooms/59034/labs/335514?locale=ja' label='日本語' lang='ja'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='ko' href='/classrooms/59034/labs/335514?locale=ko' label='한국어' lang='ko'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='pl' href='/classrooms/59034/labs/335514?locale=pl' label='Polski' lang='pl'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='pt_BR' href='/classrooms/59034/labs/335514?locale=pt_BR' label='português (Brasil)' lang='pt-BR'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='pt_PT' href='/classrooms/59034/labs/335514?locale=pt_PT' label='português (Portugal)' lang='pt-PT'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='ru' href='/classrooms/59034/labs/335514?locale=ru' label='русский' lang='ru'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='tr' href='/classrooms/59034/labs/335514?locale=tr' label='Türkçe' lang='tr'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='zh' href='/classrooms/59034/labs/335514?locale=zh' label='简体中文' lang='zh'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='zh_TW' href='/classrooms/59034/labs/335514?locale=zh_TW' label='繁體中文' lang='zh-TW'></ql-menu-item>
+</ql-menu>
+
+<ql-icon-button id='my_account' label='My account' tip='My account'>
+<ql-avatar></ql-avatar>
+</ql-icon-button>
+<ql-menu for='my_account' id='my_account_menu' style='max-height: 640px'>
+<div class='my-account-menu'>
+<ql-avatar class='l-mtl l-mbl' size='120'></ql-avatar>
+<div class='my-account-menu__user-info l-mbl'>
+<h4 class='ql-subhead-1'>Chris Tran</h4>
+<p class='ql-body-2 text--light'>khanh.tran@verisk.com</p>
+<p class='ql-body-2 text--light'>
+</p>
+</div>
+<div class='buttons l-mbl'>
+<a class="button button--hairline" id="settings" href="/my_account/profile">Settings</a>
+</div>
+<hr>
+<ql-button data-analytics-action='clicked_sign_out' href='/users/sign_out' method='delete'>
+Sign Out
+</ql-button>
+<div class='privacy l-mtl'>
+<a class="ql-caption text--light" href="/privacy_policy">Privacy</a>
+<span class='ql-caption text--light l-mls l-mrs'>&middot;</span>
+<a class="ql-caption text--light" href="/terms_of_service">Terms</a>
+</div>
+</div>
+</ql-menu>
+
+</div>
+</ql-toolbar>
+
+</div>
+<div class='header__search-bar js-header-search-bar'>
+<form class="js-search-form-mobile" onsubmit="ql.searchFilter(); return false;" action="/searches/lab" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="4/tVAi4mkrG6fXaDKST26hJ17p5lL1+eBxafOILGLPk/w3N4lwpAN8aMx/pK0JzfAWVO3klOa6rWu+sux+pXhg==" />
+<input type="text" name="keywords" id="search" placeholder="Search for learning activities." maxlength="255" aria-label="catalog search bar" />
+</form>
+
+<ql-icon-button class='js-close-search-bar'>close</ql-icon-button>
+</div>
+</div>
+
+<nav class='nav-panel js-nav-panel'>
+<div class='nav-panel__logo'>
+<div class="custom-logo"><img alt="Qwiklabs" height="24" aria-label="Qwiklabs" src="https://cdn.qwiklabs.com/i0qFEQoJiBanlKZQElmSw%2B6HzGe37MLn2bL3nInH6MM%3D" /></div>
+</div>
+<nav class='ql-sidenav'>
+<ql-sidenav-item href='/' icon='home' label='Home'></ql-sidenav-item>
+
+<ql-sidenav-item href='/catalog' icon='school' label='Catalog'></ql-sidenav-item>
+
+<ql-sidenav-item active href='/profile' icon='event_note' label='Profile'></ql-sidenav-item>
+
+</nav>
+
+</nav>
+<div class='nav-panel__overlay js-nav-toggle'></div>
+
+<main class='js-main' id='jump-content'>
+<div class='l-main-wrapper' id='main-wrapper'>
+
+
+
+
+<ql-drawer-container class='js-lab-state' data-analytics-payload='{&quot;label&quot;:&quot;Lab 3 - Deploy Your Model&quot;,&quot;lab_name&quot;:&quot;Lab 3 - Deploy Your Model&quot;,&quot;classroom_name&quot;:null,&quot;deployment&quot;:&quot;aws&quot;}' data-focus-id='335514' data-lab-billing-limit='0.0' data-lab-duration='10800' data-parent='classroom' id='lab-container'>
+<ql-drawer id='terminal-drawer' slot='drawer' style='width: calc(100% - 480px)'>
+<iframe allow='clipboard-read' class='terminal' id='embedded-resource'></iframe>
+</ql-drawer>
+<ql-drawer-content class='js-lab-wrapper' id='lab-content' slot='drawer-content'>
+<ql-drawer-container id='lab-content-container'>
+<ql-drawer id='control-panel-drawer' open slot='drawer' width='320'>
+<ql-lab-control-panel class='ql-lab-control-panel__max-height control-panel js-lab-control-panel' connectionFiles='[]' labControlButton='{&quot;disabled&quot;:false,&quot;pending&quot;:false,&quot;running&quot;:false}' labDetails='[]' labTimer='{&quot;ticking&quot;:false,&quot;secondsRemaining&quot;:10800}' studentResources='[]'>
+</ql-lab-control-panel>
+</ql-drawer>
+<ql-drawer-content id='lab-instructions' slot='drawer-content'>
+<ql-snackbar id='alert-snackbar'></ql-snackbar>
+<div class='alert alert--fake js-alert'>
+<p class='alert__message js-alert-message' role='alert'></p>
+<ql-icon-button class='alert__close js-alert-close' icon='clear'></ql-icon-button>
+<iframe class='l-ie-iframe-fix'></iframe>
+</div>
+<div class='lab-content__renderable-instructions js-lab-content'>
+<div class='lab-preamble'>
+<h1 class='lab-preamble__title'>
+Lab 3 - Deploy Your Model
+</h1>
+<div class='lab-preamble__details subtitle-headline-1'>
+<span>3 hours </span>
+<span>Free</span>
+<div class='lab__rating'>
+<a aria-label="Lab Reviews" href="/focuses/335514/reviews?parent=classroom"><div class='rateit' data-rateit-readonly='true' data-rateit-value='4.6136'></div>
+
+</a><ql-button aria-label='Rate Lab' id='rate-lab-btn' label='Rate Lab' text></ql-button>
+</div>
+</div>
+</div>
+<div class='lab-outline-place-holder'></div>
+
+<div class='markdown-lab-instructions js-markdown-instructions no-select' id='markdown-lab-instructions'>
+<p><img src="https://s3-us-west-2.amazonaws.com/us-west-2-aws-training/awsu-spl/sts-sign-in-images/media/aws-logo.png" alt=""></p>
+
+
+
+<p>© 2021 Amazon Web Services, Inc. and its affiliates. All rights reserved. This work may not be reproduced or redistributed, in whole or in part, without prior written permission from Amazon Web Services, Inc. Commercial copying, lending, or selling is prohibited. All trademarks are the property of their owners.</p>
+
+<p>Note: Do not include any personal, identifying, or confidential information into the lab environment. Information entered may be visible to others.</p>
+
+<p>Corrections, feedback, or other questions? Contact us at <a href="https://support.aws.amazon.com/#/contacts/aws-training" target="_blank"><em>AWS Training and Certification</em></a>.</p>
+
+<h2 id="step1">Lab overview</h2>
+
+<p>In the previous labs, you explored the basics of setting up, testing, and evaluating your trained machine learning model. Now, you will explore the basics of deploying the trained model into production. </p>
+
+<p>In this lab, you will update AWS CodePipeline to have a manual approval step and a step that launches an AWS CloudFormation template. This template will take the trained model and create a production endpoint for you to use. Depending on your business use case, you will need to extend this setup to meet your needs. </p>
+
+<p>Some enhancements to consider include:</p>
+<ul>
+<li>Deploying a new version of the model</li>
+<li>Deploying the model in a different AWS Account</li>
+<li>Updating the artifact store to include the production endpoint information</li>
+<li>Adding an API Gateway to access the endpoint</li>
+<li>Moving the endpoint to a VPC to restrict external access</li>
+</ul>
+<h2 id="step2">Objectives</h2>
+
+<p>After completing this lab, you will be able to:</p>
+<ul>
+<li>Extend CodePipeline by adding a manual approval step</li>
+<li>Invoke AWS CloudFormation with CodePipeline </li>
+<li>Pass parameters from CodePipeline to AWS CloudFormation</li>
+</ul>
+<h3>Prerequisites</h3>
+
+<p>This lab requires:</p>
+<ul>
+<li>Access to a notebook computer with Wi-Fi and Microsoft Windows, Mac OS X, or Linux (Ubuntu, SuSE, or Red Hat)</li>
+<li>The lab environment is not accessible using an iPad or tablet device, but you can use these devices to access the student guide.</li>
+<li>For Microsoft Windows users: Administrator access to the computer</li>
+<li>An Internet browser such as Chrome, Firefox, or IE9 (previous versions of Internet Explorer are not supported)</li>
+</ul>
+<h3>Duration</h3>
+
+<p>This lab will require <em>60</em> minutes to complete.</p>
+
+<h3>Scenario</h3>
+
+<p>Now that you understand how to manage a machine learning pipeline, you will learn one method to deploy a trained model into production. Your business goals will determine  the deployment strategy that meets your needs.</p>
+
+
+
+<h2 id="step3">Start Lab</h2>
+<ol start="1">
+<li>At the top of your screen, launch your lab by choosing <span style="background-color:#34A853;font-family:Google Sans;font-weight:bold;font-size:90%;color:white;border-color:#34A853;border-radius:4px;border-width:2px;border-style:solid;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;">Start Lab</span>
+</li>
+</ol>
+<p>This starts the process of provisioning your lab resources. An estimated amount of time to provision your lab resources is displayed. You must wait for your resources to be provisioned before continuing.</p>
+
+<p><i class="fas fa-info-circle"></i> If you are prompted for a token, use the one distributed to you (or credits you have purchased). </p>
+<ol start="2">
+<li>Open your lab by choosing <span style="background-color:white;font-family:Google Sans;font-weight:bold;font-size:90%;color:#1a73e8;border-color:#dadce0;border-radius:4px;border-width:2px;border-style:solid;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;">Open Console</span>
+</li>
+</ol>
+<p>This opens an AWS Management Console sign-in page.</p>
+<ol start="3">
+<li>On the sign-in page, configure:</li>
+</ol><ul>
+<li>
+<strong>IAM user name:</strong> <input readonly class="copyable-inline-input" size="10" type="text" value="awsstudent">
+</li>
+<li>
+<strong>Password:</strong> Paste the value of <strong>Password</strong> from the left side of the lab page</li>
+<li>Choose <span style="background-color:#257ACF;font-weight:bold;font-size:90%;color:white;border-radius:5px;padding-top:3px;padding-bottom:3px;padding-left:10px;padding-right:10px;white-space:nowrap;">Sign In</span>
+</li>
+</ul>
+<p><i class="fas fa-exclamation-triangle"></i> <strong>Do not change the Region unless instructed.</strong></p>
+
+
+
+<h3>Common Login Errors</h3>
+
+<p><strong>Error: You must first log out</strong></p>
+
+<p><img src="https://s3-us-west-2.amazonaws.com/us-west-2-aws-training/awsu-spl/sts-sign-in-images/media/logouterror.png" alt=""></p>
+
+<p>If you see the message, <strong>You must first log out before logging into a different AWS account:</strong> </p>
+<ul>
+<li>Choose <strong>click here</strong>
+</li>
+<li>Close your browser tab to return to your initial lab window</li>
+<li>Choose <span style="background-color:white;font-family:Google Sans;font-weight:bold;font-size:90%;color:#1a73e8;border-color:#dadce0;border-radius:4px;border-width:2px;border-style:solid;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;">Open Console</span> again</li>
+</ul>
+
+
+<h2 id="step4">Task 1: Manually creating an Amazon SageMaker endpoint</h2>
+
+<p>Manual deployment of a trained model is possible; however, it does not scale. To understand the deployment process, you will first manually deploy a trained model. You will then automate the deployment process in a later task. This will help you to understand how to take a stored, trained model and deploy it (once or many times) to meet your business goals. Storing trained models for deployment helps to maintain data continuity, rather than attempting to retrain a model. Using stored models may also reduce the cost of rerunning long training jobs.</p>
+
+<p>The following workflow was established in previous labs. You will use the output from Amazon SageMaker, stored in Amazon Simple Storage Service (Amazon S3), to manually create a SageMaker endpoint.</p>
+
+<p><img src="https://us-west-2-tcprod.s3.amazonaws.com/courses/ILT-DD-200-MLPOPS/v1.0.5/lab-3/instructions/en_us/images/diagram1_main-arch.png" alt="AWS architecture diagram showing the staging configuration you have been working with in previous labs"></p>
+
+<p>In this task, you will access the S3 console to identify where the model artifact is, and then you will use this artifact to manually create an endpoint. </p>
+<ol start="4">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>S3</strong>.</p></li>
+<li><p>Choose the name of the bucket that contains <strong>modelArtifactBucket</strong>.</p></li>
+</ol>
+<p>This bucket contains all the artifacts from AWS CodeBuild and Amazon SageMaker. The model registry, stored in Amazon DynamoDB, provides the information needed to identify where each training job artifact is located. As you build your infrastructure you want to consider the implications of commingling artifacts into a single bucket. Depending on your use case, you will need to choose a data storage structure that is easy for you to maintain. For our simple example here, we will only create 2-4 artifacts that will be easy to identify in a commingled bucket. It is always important to think about what decisions will aid long-term maintenance.</p>
+
+<p>You should see multiple objects in the artifact bucket. Each AWS CodePipeline pipeline run will create an object in this bucket that contains the artifacts from that run. </p>
+
+<p>In addition, one object has a name that starts with <strong>Job-####</strong>. This is the output from the training job as specified by the Step Functions state machine.</p>
+<ol start="6">
+<li><p>Choose the name of the object that starts with <strong>Job-####</strong>.</p></li>
+<li><p>Choose the object named <strong>output</strong>.</p></li>
+<li><p>Choose the object named <strong>model.tar.gz</strong>.</p></li>
+</ol>
+<p>The model object properties are displayed. </p>
+
+<p>For learning purposes, you can download the <strong>model.tar.gz</strong> file and use it to deploy an endpoint in a different account, or use it directly with your application code. To maintain security, you should consider storing model artifacts in a restricted bucket that does not allow modification. Or, for deployment into another account, you may establish cross-account privileges to allow model deployment. In this task, you will reference this trained model and manually deploy it in this account.</p>
+
+<p>First, you will manually deploy an endpoint with a trained model. Then, in the next task, you will start to automate the process.</p>
+<ol start="9">
+<li>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>DynamoDB</strong>. </li>
+</ol>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> Make sure that the region listed in the console matches the <strong>AWSRegion</strong> value from the left side of the lab page.</p>
+<ol start="10">
+<li><p>In the left navigation, choose <strong>Items</strong>.</p></li>
+<li><p>Choose the <i class="far fa-dot-circle"></i> DynamoDB table.</p></li>
+<li><p>In the item results, find the <strong>ecrImageTag</strong> and <strong>modelArtifactObjectPath</strong> columns, and then copy and paste both of these values into a notepad to use later.</p></li>
+<li><p>Open the AWS Management Console in a new tab.</p></li>
+<li><p>In the console, on the <strong>Services</strong> menu, choose <strong>Amazon SageMaker</strong>.</p></li>
+<li><p>In the left navigation under <em>Inference</em>, choose <strong>Models</strong>.</p></li>
+</ol>
+<p>The first step to creating an inference endpoint is to register a trained model in Amazon SageMaker.</p>
+<ol start="16">
+<li><p>Choose <strong>Create model</strong>.</p></li>
+<li><p>For <strong>Model name</strong>, enter: <input readonly class="copyable-inline-input" size="21" type="text" value="ManualProductionModel"></p></li>
+<li><p>For <strong>IAM role</strong>, choose the role that contains <strong>ProductionModelRole</strong>.</p></li>
+</ol>
+<p>This role has been pre-created on your behalf.</p>
+
+<p>Next, you must fill in the <strong>Location of inference code image</strong>. For this, you need the full ECR repo path, including the tag that you found in the Amazon DynamoDB artifact store. Because the values will be from multiple locations, it will be easier to build the full path in a notepad, and then copy and paste the final value into the console</p>
+<ol start="19">
+<li><p>Copy the <strong>ECRModelRepo</strong> value from the left side of the lab page and paste it into your notepad.</p></li>
+<li><p>Add a colon directly after the value for <strong>ECRModelRepo</strong>.</p></li>
+<li><p>Paste the <strong>ecrImageTag</strong> you saved earlier directly after the colon.</p></li>
+</ol>
+<p>You should have a single line that looks like this:</p>
+<pre class="highlight shell"><code>  111122223333.dkr.ecr.us-west-2.amazonaws.com/ecrmodelrepo-repidexample:1111acbd-22ef-33gh-44ij-5555klmn9999&#x000A;</code></pre><ol start="22">
+<li><p>Copy the entire value from your notepad, and then paste it into the <strong>Location of inference code image</strong> text box.</p></li>
+<li><p>Copy the <strong>modelArtifactObjectPath</strong> from your notepad, and then paste it into the <strong>Location of model artifacts</strong> text box.</p></li>
+</ol>
+<p><i class="fas fa-sticky-note fa-lg" style="color:orange;"></i> <strong>Note</strong> When you are building an architecture to support your own production environment, you will need to consider how to secure and isolate your model and if you want to deploy the endpoint into your VPC.</p>
+<ol start="24">
+<li>Choose <strong>Create model</strong>.</li>
+</ol>
+<p>Next, you must create an endpoint configuration that identifies the Amazon SageMaker model, and then identifies what instance type will be used to create the inference endpoint.</p>
+<ol start="25">
+<li><p>In the left navigation under <em>Inference</em>, choose <strong>Endpoint configurations</strong>.</p></li>
+<li><p>Choose <strong>Create endpoint configuration</strong>.</p></li>
+<li><p>For <strong>Endpoint configuration name</strong>, enter <input readonly class="copyable-inline-input" size="37" type="text" value="ManualProductionEndpointConfiguration"></p></li>
+<li><p>Choose <strong>Add model</strong>.</p></li>
+<li><p>Choose <strong>ManualProductionModel</strong> from the list.</p></li>
+<li><p>Choose <strong>Save</strong>.</p></li>
+</ol>
+<p><i class="fas fa-times-circle fa-lg" style="color:orange;"></i> <strong>Note</strong> You can add multiple model variants. You will explore multi-variant endpoints in the next lab.</p>
+<ol start="31">
+<li><p>In the <strong>Actions</strong> column, choose <strong>Edit</strong>.</p></li>
+<li><p>For <strong>Instance type</strong>, select <strong>ml.m5.large</strong>.</p></li>
+<li><p>Choose <strong>Save</strong>.</p></li>
+<li><p>Choose <strong>Create endpoint configuration</strong>.</p></li>
+</ol>
+<p>Finally, you will create the inference endpoint that will host your trained model.</p>
+<ol start="35">
+<li><p>In the left navigation under <em>Inference</em>, choose <strong>Endpoints</strong>.</p></li>
+<li><p>Choose <strong>Create endpoint</strong>.</p></li>
+<li><p>For <strong>Endpoint name</strong>, enter <input readonly class="copyable-inline-input" size="24" type="text" value="ManualProductionEndpoint"></p></li>
+<li><p>In the <strong>Endpoint configuration</strong> section, choose the button next to <strong>ManualProductionEndpointConfiguration</strong>.</p></li>
+</ol>
+<p><i class="fas fa-sticky-note fa-lg" style="color:orange;"></i> <strong>Note</strong> If you cannot find the endpoint configuration, enter the name in the search bar to filter the resources.</p>
+<ol start="39">
+<li>Choose <strong>Create endpoint</strong>.</li>
+</ol>
+<p>You have now created an Amazon SageMaker endpoint. You do not need to wait for the endpoint to be <em>InService</em> before you proceed to the next task. There, you will update the CI/CD pipeline to automate the production deployment process.</p>
+
+
+
+<h2 id="step5">Task 2: Update the AWS CodePipeline to include a manual approval step</h2>
+
+<p>Automated processes are consistent and efficient, but there are times when human judgment is critical for business or quality reasons. AWS CodePipeline can help you add steps that require manual approval. </p>
+
+<p>The final architecture will require you to add to the model deployment pipeline, and will require you to add a CloudFormation template that creates a new model and endpoint. </p>
+
+<p><img src="https://us-west-2-tcprod.s3.amazonaws.com/courses/ILT-DD-200-MLPOPS/v1.0.5/lab-3/instructions/en_us/images/diagram2_prod-arch.png" alt="AWS architecture diagram showing the full staging and production configuration"></p>
+
+<p>You have developed most of this architecture in previous labs, so you will focus on updating the training CodePipeline here. In this task, you will create a new deployment stage and add a manual approval step that will send a notification requesting approval. </p>
+
+<p><img src="https://us-west-2-tcprod.s3.amazonaws.com/courses/ILT-DD-200-MLPOPS/v1.0.5/lab-3/instructions/en_us/images/diagram2_prod-arch-simplified.png" alt="AWS architecture diagram showing the updates that will be made to CodePipeline"></p>
+<ol start="40">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>CodePipeline</strong>. </p></li>
+<li><p>Choose the name of the pipeline that contains <strong>deployModelPipeline</strong>.</p></li>
+<li><p>Choose the <strong>Edit</strong> button.</p></li>
+<li><p>At the bottom of the page, after the <em>Train</em> stage, choose <strong>Add stage</strong>.</p></li>
+<li><p>For <strong>Stage name</strong>, enter <input readonly class="copyable-inline-input" size="6" type="text" value="Deploy"></p></li>
+<li><p>Choose <strong>Add stage</strong>.</p></li>
+<li><p>In the <strong>Deploy</strong> card, choose <strong>Add action group</strong>.</p></li>
+<li><p>For <strong>Action name</strong>, enter <input readonly class="copyable-inline-input" size="14" type="text" value="ManualApproval"></p></li>
+<li><p>For <strong>Action provider</strong>, choose <strong>Manual approval</strong>.</p></li>
+</ol>
+<p>An Amazon SNS topic has been created on your behalf. This topic will send notifications (to the employees you choose) each time a model is created and passes automated testing.</p>
+<ol start="49">
+<li><p>For <strong>SNS topic ARN</strong>, choose the name of the topic that contains <strong>ManualApprovalSNSTopic</strong>.</p></li>
+<li><p>Choose <strong>Done</strong>.</p></li>
+</ol>
+<p>You have now added a manual approval step. You do not need to save the pipeline because you will be adding to it in the next task.</p>
+
+<p>Next, you will add an Amazon CloudFormation action that will launch a template. The template will automatically generate all the needed information.</p>
+
+
+
+<h2 id="step6">Task 3: Update the AWS CodePipeline to include an Amazon CloudFormation step</h2>
+
+<p>Now that the manual approval step has been created, you will add a CloudFormation step that will automate the deployment after approval.</p>
+<ol start="51">
+<li><p>In the <strong>Deploy</strong> card, choose the <em>bottom</em> <strong>Add action group</strong>.</p></li>
+<li><p>For <strong>Action name</strong>, enter <input readonly class="copyable-inline-input" size="24" type="text" value="CloudFormationDeployment"></p></li>
+<li><p>For <strong>Action provider</strong>, choose <strong>AWS CloudFormation</strong>.</p></li>
+<li><p>For <strong>Input artifacts</strong>, choose <strong>ModelSourceOutput</strong>.</p></li>
+</ol>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> ModelSourceOutput was defined in the CodePipeline source stage. In this example, we will be using the modeCode repository that the model code is stored in to store the deployment script. Depending on your needs, you could use a separate CodeCommit repository, upload the deployment script to an Amazon S3 bucket, or use a third-party source. </p>
+<ol start="55">
+<li><p>For <strong>Action mode</strong>, choose <strong>Create or update a stack</strong>.</p></li>
+<li><p>For <strong>Stack name</strong>, enter: <input readonly class="copyable-inline-input" size="46" type="text" value="Production-#{codepipeline.PipelineExecutionId}"></p></li>
+</ol>
+<p>This will automatically generate a unique stack name each time the pipeline is run. <strong>#{codepipeline.PipelineExecutionId}</strong> will add the execution id that CodePipeline generates when invoked. In your own production environment, you will need to decide if deploying a new stack is appropriate for your use case. You may want to update a stack instead of creating a new one.</p>
+<ol start="57">
+<li><p>In the <em>Template</em> section for <strong>Artifact name</strong>, choose <strong>ModelSourceOutput</strong>.</p></li>
+<li><p>In the <em>Template</em> section for <strong>File name</strong>, enter <input readonly class="copyable-inline-input" size="11" type="text" value="deploy.yaml"></p></li>
+</ol>
+<p>In the next task, you will create a new file named <em>deploy.yaml</em> and commit it to the model repo. This is how you define the source for the production deployment. In your own production environment, you will have to consider your entire architecture to determine the best way to integrate this step.</p>
+<ol start="59">
+<li>For <strong>Role name</strong>, choose the role that contains <strong>ProductionCloudFormationRole</strong>.</li>
+</ol>
+<p>This role has been pre-created for you to maintain the best-practice security principal of least privileges. </p>
+<ol start="60">
+<li>Choose <strong>Advanced</strong> to expand the section.</li>
+</ol>
+<p>Adding parameter overrides sends unique configuration information from CodePipeline to be passed to CloudFormation. In this way, you can write a dynamic CloudFormation template that does not need to be updated each time you train a new model.</p>
+<ol start="61">
+<li>Copy the following JSON block to a notepad:</li>
+</ol><pre class="highlight json"><code><span class="p">{</span><span class="w">&#x000A;  </span><span class="s2">"S3Bucket"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;modelArtifactBucket&gt;"</span><span class="p">,</span><span class="w"> &#x000A;  </span><span class="s2">"ProductionModelRole"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;ProductionModelRole&gt;"</span><span class="p">,</span><span class="w"> &#x000A;  </span><span class="s2">"TrainingJob"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Job-#{codepipeline.PipelineExecutionId}"</span><span class="p">,</span><span class="w"> &#x000A;  </span><span class="s2">"ECRImage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;ECRModelRepo&gt;:#{codepipeline.PipelineExecutionId}"</span><span class="w">&#x000A;</span><span class="p">}</span><span class="w">&#x000A;</span></code></pre><ol start="62">
+<li><p>Update <strong>modelArtifactBucket</strong>, <strong>ProductionModelRole</strong>, and <strong>ECRModelRepo</strong> with the values from the left side of the labs page.</p></li>
+<li><p>Copy the resulting JSON block and paste it into the <strong>Parameter overrides</strong> box.</p></li>
+<li><p>Choose <strong>Done</strong>.</p></li>
+<li><p>At the top of the page, choose <strong>Save</strong>.</p></li>
+<li><p>On the <em>Save pipeline changes</em> message window that appears, choose <strong>Save</strong>.</p></li>
+</ol>
+<p>You have now configured CodePipeline to have a manual approval step, and a CloudFormation step that will automate the deployment.</p>
+
+<p>Next, you will update the SNS topic to have a subscription that will notify you when a new model is ready for deployment.</p>
+
+<h2 id="step7">Task 4: Add a subscription to the SNS Topic</h2>
+
+<p>Before you invoke the pipeline, you can subscribe to an SNS topic to receive notifications. These steps are optional.</p>
+<ol start="67">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>Simple Notification Service</strong>. </p></li>
+<li><p>In the left navigation, choose <strong>Topics</strong>.</p></li>
+<li><p>Choose the name of the topic that contains <strong>ManualApprovalSNSTopic</strong>.</p></li>
+<li><p>Choose <strong>Create subscription</strong>.</p></li>
+<li><p>For <strong>Protocol</strong>, choose <strong>Email</strong>.</p></li>
+</ol>
+<p><i class="fas fa-sticky-note fa-lg" style="color:orange;"></i> <strong>Note</strong> You can choose another delivery method, but Email-JSON and SNS are the only ones that will work without additional setup.</p>
+<ol start="72">
+<li><p>For <strong>Endpoint</strong>, enter an email address you are able to access.</p></li>
+<li><p>Choose <strong>Create subscription</strong>.</p></li>
+</ol>
+<p>Your email account will receive an automated message that asks you to approve the subscription.</p>
+<ol start="74">
+<li>Confirm the SNS subscription in the email account you created the subscription for.</li>
+</ol>
+<p>Next, you will update the model code repo to include the deployment CloudFormation template.</p>
+
+
+
+<h2 id="step8">Task 5: Update the model repo to include a deployment script</h2>
+
+<p>In this task, you will add a deployment template to the CodeCommit repository. This will automatically invoke a build so you can test the production deployment process.</p>
+<ol start="75">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>CodeCommit</strong>. </p></li>
+<li><p>Choose the name of the repository that includes <strong>modelCode</strong>.</p></li>
+<li><p>Choose <strong>Add file</strong> and select <strong>Create file</strong>.</p></li>
+<li><p>Paste the following code into the text box:</p></li>
+</ol><pre class="highlight yaml"><code><span class="na">AWSTemplateFormatVersion</span><span class="pi">:</span> <span class="s">2010-09-09</span>&#x000A;<span class="na">Description</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Deploy</span><span class="nv"> </span><span class="s">trained</span><span class="nv"> </span><span class="s">ML</span><span class="nv"> </span><span class="s">model</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">production'</span>&#x000A;&#x000A;<span class="c1"># Parameters are values set when the template is launched.</span>&#x000A;<span class="c1"># The values for these parameters will be passed in by </span>&#x000A;<span class="c1"># CodePipeline as defined in the parameter overrides</span>&#x000A;<span class="na">Parameters</span><span class="pi">:</span>&#x000A;  <span class="na">S3Bucket</span><span class="pi">:</span>&#x000A;    <span class="na">Description</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Name</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">S3</span><span class="nv"> </span><span class="s">bucket</span><span class="nv"> </span><span class="s">where</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">model</span><span class="nv"> </span><span class="s">artifact</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">stored'</span>&#x000A;    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>&#x000A;    <span class="na">Default</span><span class="pi">:</span> <span class="s1">'</span><span class="s">none'</span>&#x000A;  <span class="na">ProductionModelRole</span><span class="pi">:</span>&#x000A;    <span class="na">Description</span><span class="pi">:</span> <span class="s1">'</span><span class="s">The</span><span class="nv"> </span><span class="s">Arn</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">ProductionModelRole</span><span class="nv"> </span><span class="s">used</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">CloudFormation'</span>&#x000A;    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>&#x000A;    <span class="na">Default</span><span class="pi">:</span> <span class="s1">'</span><span class="s">none'</span>&#x000A;  <span class="na">TrainingJob</span><span class="pi">:</span>&#x000A;    <span class="na">Description</span><span class="pi">:</span> <span class="s1">'</span><span class="s">The</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">training</span><span class="nv"> </span><span class="s">job'</span>&#x000A;    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>&#x000A;    <span class="na">Default</span><span class="pi">:</span> <span class="s1">'</span><span class="s">none'</span>&#x000A;  <span class="na">ECRImage</span><span class="pi">:</span>&#x000A;    <span class="na">Description</span><span class="pi">:</span> <span class="s1">'</span><span class="s">The</span><span class="nv"> </span><span class="s">ERC</span><span class="nv"> </span><span class="s">image</span><span class="nv"> </span><span class="s">URI:Tag'</span>&#x000A;    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>&#x000A;    <span class="na">Default</span><span class="pi">:</span> <span class="s1">'</span><span class="s">none'</span>&#x000A;  <span class="na">InstanceType</span><span class="pi">:</span>&#x000A;    <span class="na">Description</span><span class="pi">:</span> <span class="s1">'</span><span class="s">The</span><span class="nv"> </span><span class="s">instance</span><span class="nv"> </span><span class="s">type</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">endpoint'</span>&#x000A;    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>&#x000A;    <span class="na">Default</span><span class="pi">:</span> <span class="s1">'</span><span class="s">ml.m5.large'</span>&#x000A;    <span class="na">AllowedValues</span><span class="pi">:</span>&#x000A;      <span class="pi">-</span> <span class="s1">'</span><span class="s">ml.m5.large'</span>&#x000A;      <span class="pi">-</span> <span class="s1">'</span><span class="s">m1.t2.large'</span>&#x000A;      <span class="pi">-</span> <span class="s1">'</span><span class="s">m1.t2.medium'</span>&#x000A;&#x000A;<span class="c1"># The resources section defines what services will be launched</span>&#x000A;<span class="c1"># by the template.</span>&#x000A;<span class="na">Resources</span><span class="pi">:</span>&#x000A;  <span class="c1"># Create an Amazon SageMaker model</span>&#x000A;  <span class="na">ProductionModel</span><span class="pi">:</span>&#x000A;    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::SageMaker::Model</span>&#x000A;    <span class="na">Properties</span><span class="pi">:</span> &#x000A;      <span class="na">ExecutionRoleArn</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ProductionModelRole</span>&#x000A;      <span class="na">PrimaryContainer</span><span class="pi">:</span> &#x000A;        <span class="na">Image</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ECRImage</span>&#x000A;        <span class="na">Mode</span><span class="pi">:</span> <span class="s">SingleModel</span>&#x000A;        <span class="na">ModelDataUrl</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">s3://${S3Bucket}/${TrainingJob}/output/model.tar.gz</span>&#x000A;&#x000A;  <span class="c1"># Create an endpoint configuration</span>&#x000A;  <span class="na">ProductionEndpointConfiguration</span><span class="pi">:</span>&#x000A;    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::SageMaker::EndpointConfig</span>&#x000A;    <span class="na">Properties</span><span class="pi">:</span> &#x000A;      <span class="na">ProductionVariants</span><span class="pi">:</span> &#x000A;        <span class="pi">-</span> <span class="na">InitialInstanceCount</span><span class="pi">:</span> <span class="s">1</span>&#x000A;          <span class="na">InitialVariantWeight</span><span class="pi">:</span> <span class="s">1.0</span>&#x000A;          <span class="na">InstanceType</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">InstanceType</span>&#x000A;          <span class="na">ModelName</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">ProductionModel.ModelName</span>&#x000A;          <span class="na">VariantName</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">ProductionModel.ModelName</span>&#x000A;&#x000A;  <span class="c1"># Create an endpoint</span>&#x000A;  <span class="na">ProductionEndpoint</span><span class="pi">:</span>&#x000A;    <span class="na">Type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">AWS::SageMaker::Endpoint"</span>&#x000A;    <span class="na">Properties</span><span class="pi">:</span>&#x000A;      <span class="na">EndpointConfigName</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">ProductionEndpointConfiguration.EndpointConfigName</span>&#x000A;&#x000A;<span class="c1"># Outputs are values that are displayed in the outputs section of</span>&#x000A;<span class="c1"># AWS CloudFormation.</span>&#x000A;<span class="na">Outputs</span><span class="pi">:</span>&#x000A;  <span class="na">EndpointId</span><span class="pi">:</span>&#x000A;    <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ProductionEndpoint</span>&#x000A;  <span class="na">EndpointName</span><span class="pi">:</span>&#x000A;    <span class="na">Value</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">ProductionEndpoint.EndpointName</span>&#x000A;  <span class="na">EndpointURL</span><span class="pi">:</span>&#x000A;    <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">https://runtime.sagemaker.${AWS::Region}.amazonaws.com/endpoints/${ProductionEndpoint}/invocations</span>&#x000A;</code></pre>
+<p>This template will take the parameters passed in by CodePipeline (which you setup in the previous task) and use them to create a new model, endpoint configuration, and endpoint the same way you manually created it earlier. </p>
+
+<p>A properly written template will work in any account because the parameters are passed in by CodePipeline. This means that you do not have to make any replacements in the code, which is one advantage of this method. </p>
+<ol start="79">
+<li>In the <strong>Commit changes to main</strong> section, fill in the following:</li>
+</ol><ul>
+<li>
+<strong>File name</strong>: <input readonly class="copyable-inline-input" size="11" type="text" value="deploy.yaml">
+</li>
+<li>
+<strong>Author name</strong>: enter your name</li>
+<li>
+<strong>Author email</strong>: enter your email address</li>
+<li>
+<strong>Commit message</strong>: <input readonly class="copyable-inline-input" size="55" type="text" value="Added deploy.yaml file to manage automated deployments.">
+</li>
+</ul><ol start="80">
+<li>Choose <strong>Commit changes</strong>.</li>
+</ol>
+<p>The CodePipeline will detect a change to the repo and automatically start running.</p>
+
+<p>Next, you will monitor and see what happens.</p>
+
+
+
+<h2 id="step9">Task 6: Review, approve, and test the model</h2>
+
+<p>Now that the model has been trained and deployed to a staging endpoint, a manual approval step must be completed. This is the final check before the model is deployed to the production endpoint. Manual approval is not needed for every use case, and you will need to decide if manual approval is appropriate for your own production environment. You should have received a notification from the SNS topic you set up earlier, notifying you that the production model is ready for approval. </p>
+<ol start="81">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>CodePipeline</strong>.</p></li>
+<li><p>Choose the name of the pipeline that contains <strong>deployModelPipeline</strong>.</p></li>
+<li><p>Wait for the pipeline to reach the <strong>Deploy</strong> stage.</p></li>
+</ol>
+<p>You should receive an email that asks you to approve the deployment. You may either follow the link in the email, or choose <strong>Approve</strong> from the Deploy stage in the CodePipeline console.</p>
+<ol start="84">
+<li><p>In the <strong>Deploy</strong> stage, choose <strong>Review</strong>.</p></li>
+<li><p>In the comment box, enter <input readonly class="copyable-inline-input" size="44" type="text" value="Reviewed stage endpoint accuracy and approve"></p></li>
+<li><p>Choose <strong>Approve</strong>.</p></li>
+</ol>
+<p>The AWS CloudFormation template will now be launched for the production endpoint.</p>
+<ol start="87">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>CloudFormation</strong>.</p></li>
+<li><p>Choose the name of the stack that starts with <strong>Production-####</strong>.</p></li>
+<li><p>Choose the <strong>Parameters</strong> tab.</p></li>
+</ol>
+<p>Notice that the parameters have been automatically filled in for you, with no complex copy and paste needed. This will also work every time the model code is updated, removing the need for human interaction beyond the manual approval.</p>
+
+<p>The CloudFormation template will take 10-15 minutes to deploy. While the stack is deploying, you may choose to review the Amazon SageMaker model, endpoint configuration, and endpoint pages to see how resources are deployed over time.</p>
+<ol start="90">
+<li>When the stack is listed as <strong>CREATE_COMPLETE</strong>, choose the <strong>Outputs</strong> tab.</li>
+</ol>
+<p>The outputs have been configured to list the endpoint connection information. The outputs can be used to automatically update code or configuration parameters as needed.</p>
+<ol start="91">
+<li>Copy the <strong>EndpointName</strong> value to your notepad to use in the next task.</li>
+</ol>
+<p>The <strong>EndpointName</strong> name is the DNS endpoint that you use to connect to the endpoint, send requests to, and receive predictions. </p>
+
+<p>You have fully automated the deployment of your model. You may now extend this basic example to meet your exact needs.</p>
+
+
+
+<h2 id="step10">Task 7: Test the endpoint to make sure it works</h2>
+
+<p>Once the endpoint has been created, you want to make sure that you can access it. To do this, you need to create a file with data in it for testing, and then send the values to the endpoint to see the results.</p>
+<ol start="92">
+<li><p>Copy the <strong>CommandHostSessionUrl</strong> value from the left side of the lab page.</p></li>
+<li><p>Paste the <strong>CommandHostSessionUrl</strong> into the browsers address bar, and press ENTER.</p></li>
+<li><p>In the terminal window run the following command to create a test payload file:</p></li>
+</ol><pre class="highlight shell"><code><span class="nb">cd</span> ~&#x000A;<span class="nb">echo</span> <span class="s2">",5.0,3.5,1.3,0.3&#x000A;,4.5,2.3,1.3,0.3&#x000A;,4.4,3.2,1.3,0.2&#x000A;,5.0,3.5,1.6,0.6&#x000A;,5.1,3.8,1.9,0.4&#x000A;,4.8,3.0,1.4,0.3&#x000A;,5.1,3.8,1.6,0.2&#x000A;,4.6,3.2,1.4,0.2&#x000A;,5.3,3.7,1.5,0.2&#x000A;,5.0,3.3,1.4,0.2&#x000A;,5.5,2.6,4.4,1.2&#x000A;,6.1,3.0,4.6,1.4&#x000A;,5.8,2.6,4.0,1.2&#x000A;,5.0,2.3,3.3,1.0&#x000A;,5.6,2.7,4.2,1.3&#x000A;,5.7,3.0,4.2,1.2&#x000A;,5.7,2.9,4.2,1.3&#x000A;,6.2,2.9,4.3,1.3&#x000A;,5.1,2.5,3.0,1.1&#x000A;,5.7,2.8,4.1,1.3&#x000A;,6.7,3.1,5.6,2.4&#x000A;,6.9,3.1,5.1,2.3&#x000A;,5.8,2.7,5.1,1.9&#x000A;,6.8,3.2,5.9,2.3&#x000A;,6.7,3.3,5.7,2.5&#x000A;,6.7,3.0,5.2,2.3&#x000A;,6.3,2.5,5.0,1.9&#x000A;,6.5,3.0,5.2,2.0&#x000A;,6.2,3.4,5.4,2.3&#x000A;,5.9,3.0,5.1,1.8"</span> &gt; payload.csv&#x000A;</code></pre>
+<p><strong>Note</strong> Depending on how you copy the command, you may need to press <em>enter</em> to run the final command that displays the predictions.</p>
+
+<p>Now that you have created a test payload to send to the endpoint, you must invoke the endpoint to retrieve the predictions.</p>
+<ol start="95">
+<li>Copy the following command into a notepad:</li>
+</ol><pre class="highlight shell"><code>aws sagemaker-runtime invoke-endpoint <span class="se">\</span>&#x000A;  --endpoint-name &lt;ProductionEndpoint&gt; <span class="se">\</span>&#x000A;  --body file://payload.csv <span class="se">\</span>&#x000A;  --content-type <span class="s2">"text/csv"</span> <span class="se">\</span>&#x000A;  predictions.txt&#x000A;cat predictions.txt &#x000A;</code></pre><ol start="96">
+<li><p>Replace <strong>&lt;ProductionEndpoint&gt;</strong> with the value you copied for the <strong>EndpointName</strong> in the previous task.</p></li>
+<li><p>Copy the resulting command, paste it into the terminal window, and press ENTER to run the command.</p></li>
+</ol>
+<p>A list of predictions is printed that looks similar to this:</p>
+<pre class="highlight shell"><code>setosa&#x000A;setosa&#x000A;setosa&#x000A;setosa&#x000A;setosa&#x000A;setosa&#x000A;setosa&#x000A;setosa&#x000A;setosa&#x000A;setosa&#x000A;versicolor&#x000A;versicolor&#x000A;versicolor&#x000A;versicolor&#x000A;versicolor&#x000A;versicolor&#x000A;versicolor&#x000A;versicolor&#x000A;versicolor&#x000A;versicolor&#x000A;virginica&#x000A;virginica&#x000A;virginica&#x000A;virginica&#x000A;virginica&#x000A;virginica&#x000A;virginica&#x000A;virginica&#x000A;virginica&#x000A;virginica&#x000A;</code></pre>
+<p>To test the model further, you may modify and resubmit the payload to the endpoint to retrieve new predictions.</p>
+
+<p>You have now validated that the endpoint is working. To extend this, you must automate your code so that it knows what endpoint is the correct one to use.</p>
+
+
+
+<h2 id="step11">End Lab</h2>
+
+<p>Follow these steps to close the console, end your lab, and evaluate the experience.</p>
+<ol start="98">
+<li><p>Return to the AWS Management Console.</p></li>
+<li><p>On the navigation bar, choose <strong>awsstudent@&lt;AccountNumber&gt;</strong>, and then choose <strong>Sign Out</strong>.</p></li>
+<li><p>Choose <span style="background-color:#D93025;font-family:Google Sans;font-weight:bold;font-size:90%;color:white;border-color:#D93025;border-radius:4px;border-width:2px;border-style:solid;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;">End Lab</span></p></li>
+<li><p>Choose <span style="background-color:#DEDEDE;font-family:Google Sans;font-weight:bold;font-size:90%;color:#444;border-width:1px;border-style:solid;border-color:#444;padding-top:3px;padding-bottom:3px;padding-left:10px;padding-right:10px;">OK</span></p></li>
+<li><p>(Optional):</p></li>
+</ol><ul>
+<li>Select the applicable number of stars <i class="far fa-star"></i>
+</li>
+<li>Type a comment</li>
+<li>
+<p>Choose <strong>Submit</strong></p>
+<ul>
+<li>1 star = Very dissatisfied</li>
+<li>2 stars = Dissatisfied</li>
+<li>3 stars = Neutral</li>
+<li>4 stars = Satisfied</li>
+<li>5 stars = Very satisfied</li>
+</ul>
+</li>
+</ul>
+<p>You may close the window if you don't want to provide feedback.</p>
+
+<h2 id="step12">Additional Resources</h2>
+<ul>
+<li>CodePipeline variables:
+<a href="https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-variables.html#w2aac47c29b9b7" target="_blank">https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-variables.html#w2aac47c29b9b7</a>
+</li>
+<li>Call SageMaker endpoint:
+<a href="https://boto3.amazonaws.com/v1/documentation/api/1.9.42/reference/services/sagemaker-runtime.html#SageMakerRuntime.Client.invoke_endpoint" target="_blank">https://boto3.amazonaws.com/v1/documentation/api/1.9.42/reference/services/sagemaker-runtime.html#SageMakerRuntime.Client.invoke_endpoint</a>
+</li>
+</ul>
+<p>For more information about AWS Training and Certification, see <a href="https://aws.amazon.com/training/" target="_blank"><em>https://aws.amazon.com/training/</em></a>.</p>
+
+<p><em>Your feedback is welcome and appreciated.</em></p>
+
+<p>If you would like to share any feedback, suggestions, or corrections, please provide the details in our <a href="https://support.aws.amazon.com/#/contacts/aws-training" target="_blank"><em>AWS Training and Certification Contact Form</em></a>.</p>
+
+</div>
+</div>
+
+
+<div class='lab-content__end-lab-button js-end-lab-button-container hidden'>
+<ql-lab-control-button class='js-end-lab-button' running></ql-lab-control-button>
+</div>
+<!-- / TODO: Move recommendations into the end lab modal -->
+</ql-drawer-content>
+<ql-drawer end id='outline-drawer' open slot='drawer' width='320'>
+<div aria-label='Lab Table of Contents' role='navigation'>
+<ul class='lab-content__outline js-lab-content-outline'>
+<li><a href='#step1'>Lab overview</a></li><li><a href='#step2'>Objectives</a></li><li><a href='#step3'>Start Lab</a></li><li><a href='#step4'>Task 1: Manually creating an Amazon SageMaker endpoint</a></li><li><a href='#step5'>Task 2: Update the AWS CodePipeline to include a manual approval step</a></li><li><a href='#step6'>Task 3: Update the AWS CodePipeline to include an Amazon CloudFormation step</a></li><li><a href='#step7'>Task 4: Add a subscription to the SNS Topic</a></li><li><a href='#step8'>Task 5: Update the model repo to include a deployment script</a></li><li><a href='#step9'>Task 6: Review, approve, and test the model</a></li><li><a href='#step10'>Task 7: Test the endpoint to make sure it works</a></li><li><a href='#step11'>End Lab</a></li><li><a href='#step12'>Additional Resources</a></li>
+</ul>
+</div>
+</ql-drawer>
+</ql-drawer-container>
+</ql-drawer-content>
+</ql-drawer-container>
+
+
+
+</div>
+</main>
+
+<span class='hidden' id='flash-sibling-before'></span>
+<ql-snackbar></ql-snackbar>
+
+
+<div class='modal fade' id='lab-details-modal'>
+<div class='modal-container'>
+<div class='modal-content mdl-shadow--24dp'>
+<div class='modal-body'>
+<p class='l-mbm'>
+This lab provides you with an example of how to take your tested model and deploy it to production.
+</p>
+<p class='small-label l-mbs'>
+<strong>
+Duration:
+</strong>
+5m setup
+&middot;
+180m access
+&middot;
+180m completion
+</p>
+<p class='small-label l-mbs'>
+<strong>AWS Region:</strong>
+[us-west-2] <strong>US West (Oregon)</strong>
+</p>
+<p class='small-label l-mbs'>
+
+</p>
+<p class='small-label'>
+<strong>
+Permalink:
+</strong>
+<a href="https://aws.qwiklabs.com/catalog_lab/11887">https://aws.qwiklabs.com/catalog_lab/11887</a>
+</p>
+</div>
+<div class='modal-actions'>
+<a class='button button--text' data-dismiss='modal'>
+Got It
+</a>
+</div>
+
+
+</div>
+</div>
+<iframe class='l-ie-iframe-fix'></iframe>
+</div>
+<ql-dialog headline='How satisfied are you with this lab?&lt;span aria-hidden=&quot;true&quot;&gt;*&lt;/span&gt;' id='lab-review-dialog'>
+<form class="simple_form js-lab-review-form" id="new_lab_review" action="/lab_reviews" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><div aria-labelledby='lab-review-dialog' aria-required='true' aria-valuemax='5' aria-valuemin='0' aria-valuenow='0' class='rateit js-rateit' data-rateit-max='5' data-rateit-min='0' data-rateit-resetable='false' data-rateit-step='1' data-rateit-value='0' id='lab-review-rateit' role='slider' tabindex='0'></div>
+<div class='l-mtm'>
+
+<div class="control-group hidden lab_review_user_id"><div class="controls"><input class="hidden" type="hidden" value="526414" name="lab_review[user_id]" id="lab_review_user_id" /></div></div>
+<div class="control-group hidden lab_review_classroom_id"><div class="controls"><input class="hidden" type="hidden" value="59034" name="lab_review[classroom_id]" id="lab_review_classroom_id" /></div></div>
+<div class="control-group hidden lab_review_lab_id"><div class="controls"><input class="hidden" type="hidden" value="11887" name="lab_review[lab_id]" id="lab_review_lab_id" /></div></div>
+<div class="control-group hidden lab_review_focus_id"><div class="controls"><input class="hidden" type="hidden" value="335514" name="lab_review[focus_id]" id="lab_review_focus_id" /></div></div>
+<div class="control-group hidden lab_review_rating"><div class="controls"><input class="hidden js-rating-input" type="hidden" name="lab_review[rating]" id="lab_review_rating" /></div></div>
+<div class="control-group text optional lab_review_comment"><label class="text optional control-label" for="lab_review_comment">Additional Comments</label><div class="controls"><textarea class="text optional" name="lab_review[comment]" id="lab_review_comment">
+</textarea></div></div>
+</div>
+</form><ql-button disabled id='submit' label='Submit' slot='action' text></ql-button>
+</ql-dialog>
+
+<ql-dialog headline='All done? If you end this lab, you will lose all your work. You may not be able to restart the lab if there is a quota limit. Are you sure you want to end this lab?' icon='error_outline' id='js-lab-are-you-sure-dialog'>
+<ql-button id='js-are-you-sure-button' label='Submit' slot='action' text></ql-button>
+</ql-dialog>
+
+
+<script>
+  $( function() {
+    ql.initMaterialInputs();
+    initChosen();
+    initSearch();
+    initTabs();
+    ql.list.init();
+    ql.favoriting.init();
+    ql.header.myAccount.init();
+    initTooltips();
+    ql.autocomplete.init();
+    ql.modals.init();
+    ql.toggleButtons.init();
+    ql.analytics.init();
+    ql.chat.init();
+  initLabContent();
+  ql.labOutline.links.init();
+  initLabReviewModal();
+  initLabReviewTranslations( {"star_amount_1":"1 of 5 stars","star_amount_2":"2 of 5 stars","star_amount_3":"3 of 5 stars","star_amount_4":"4 of 5 stars","star_amount_5":"5 of 5 stars"} )
+  ql.labAssessment.init();
+  ql.labData.init();
+  initLabTranslations( {"are_you_sure":"All done? If you end this lab, you will lose all your work. You may not be able to restart the lab if there is a quota limit. Are you sure you want to end this lab?","in_progress":"*In Progress*","ending":"*Ending*","starting":"*Starting, please wait*","end_concurrent_labs":"Sorry, you can only run one lab at a time. To start this lab, please confirm that you want all of your existing labs to end.","copied":"Copied","no_resource":"Error retrieving resource.","no_support":"No Support","mac_press":"Press ⌘-C to copy","thanks_review":"Thanks for reviewing this lab.","windows_press":"Press Ctrl-C to copy","days":"days"} );
+  ql.labRun.init();
+  ql.initHeader();
+  ql.navPanel.init();
+  ql.navigation.init();
+  
+  });
+</script>
+
+</body>
+</html>
+

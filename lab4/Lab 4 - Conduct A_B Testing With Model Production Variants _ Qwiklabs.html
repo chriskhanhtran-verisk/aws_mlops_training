@@ -1,0 +1,786 @@
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"caff0d62ed","applicationID":"587309806","transactionName":"IQ1XRUEOVV1dFxlRXAEXSlRATkpZVxI=","queueTime":0,"applicationTime":133,"agent":""}</script>
+<script type="text/javascript">(window.NREUM||(NREUM={})).init={ajax:{deny_list:["bam.nr-data.net"]}};(window.NREUM||(NREUM={})).loader_config={licenseKey:"caff0d62ed",applicationID:"587309806"};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var i=e[n]={exports:{}};t[n][0].call(i.exports,function(e){var i=t[n][1][e];return r(i||e)},i,i.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<n.length;i++)r(n[i]);return r}({1:[function(t,e,n){function r(){}function i(t,e,n,r){return function(){return s.recordSupportability("API/"+e+"/called"),o(t+e,[u.now()].concat(c(arguments)),n?null:this,r),n?void 0:this}}var o=t("handle"),a=t(10),c=t(11),f=t("ee").get("tracer"),u=t("loader"),s=t(4),d=NREUM;"undefined"==typeof window.newrelic&&(newrelic=d);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],l="api-",v=l+"ixn-";a(p,function(t,e){d[e]=i(l,e,!0,"api")}),d.addPageAction=i(l,"addPageAction",!0),d.setCurrentRouteName=i(l,"routeName",!0),e.exports=newrelic,d.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(t,e){var n={},r=this,i="function"==typeof e;return o(v+"tracer",[u.now(),t,n],r),function(){if(f.emit((i?"":"no-")+"fn-start",[u.now(),r,i],n),i)try{return e.apply(this,arguments)}catch(t){throw f.emit("fn-err",[arguments,this,t],n),t}finally{f.emit("fn-end",[u.now()],n)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){m[e]=i(v,e)}),newrelic.noticeError=function(t,e){"string"==typeof t&&(t=new Error(t)),s.recordSupportability("API/noticeError/called"),o("err",[t,u.now(),!1,e])}},{}],2:[function(t,e,n){function r(t){if(NREUM.init){for(var e=NREUM.init,n=t.split("."),r=0;r<n.length-1;r++)if(e=e[n[r]],"object"!=typeof e)return;return e=e[n[n.length-1]]}}e.exports={getConfiguration:r}},{}],3:[function(t,e,n){var r=!1;try{var i=Object.defineProperty({},"passive",{get:function(){r=!0}});window.addEventListener("testPassive",null,i),window.removeEventListener("testPassive",null,i)}catch(o){}e.exports=function(t){return r?{passive:!0,capture:!!t}:!!t}},{}],4:[function(t,e,n){function r(t,e){var n=[a,t,{name:t},e];return o("storeMetric",n,null,"api"),n}function i(t,e){var n=[c,t,{name:t},e];return o("storeEventMetrics",n,null,"api"),n}var o=t("handle"),a="sm",c="cm";e.exports={constants:{SUPPORTABILITY_METRIC:a,CUSTOM_METRIC:c},recordSupportability:r,recordCustom:i}},{}],5:[function(t,e,n){function r(){return c.exists&&performance.now?Math.round(performance.now()):(o=Math.max((new Date).getTime(),o))-a}function i(){return o}var o=(new Date).getTime(),a=o,c=t(12);e.exports=r,e.exports.offset=a,e.exports.getLastTimestamp=i},{}],6:[function(t,e,n){function r(t){return!(!t||!t.protocol||"file:"===t.protocol)}e.exports=r},{}],7:[function(t,e,n){function r(t,e){var n=t.getEntries();n.forEach(function(t){"first-paint"===t.name?p("timing",["fp",Math.floor(t.startTime)]):"first-contentful-paint"===t.name&&p("timing",["fcp",Math.floor(t.startTime)])})}function i(t,e){var n=t.getEntries();if(n.length>0){var r=n[n.length-1];if(f&&f<r.startTime)return;p("lcp",[r])}}function o(t){t.getEntries().forEach(function(t){t.hadRecentInput||p("cls",[t])})}function a(t){if(t instanceof g&&!y){var e=Math.round(t.timeStamp),n={type:t.type};e<=l.now()?n.fid=l.now()-e:e>l.offset&&e<=Date.now()?(e-=l.offset,n.fid=l.now()-e):e=l.now(),y=!0,p("timing",["fi",e,n])}}function c(t){"hidden"===t&&(f=l.now(),p("pageHide",[f]))}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var f,u,s,d,p=t("handle"),l=t("loader"),v=t(9),m=t(3),g=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){u=new PerformanceObserver(r);try{u.observe({entryTypes:["paint"]})}catch(h){}s=new PerformanceObserver(i);try{s.observe({entryTypes:["largest-contentful-paint"]})}catch(h){}d=new PerformanceObserver(o);try{d.observe({type:"layout-shift",buffered:!0})}catch(h){}}if("addEventListener"in document){var y=!1,w=["click","keydown","mousedown","pointerdown","touchstart"];w.forEach(function(t){document.addEventListener(t,a,m(!1))})}v(c)}},{}],8:[function(t,e,n){function r(t,e){if(!i)return!1;if(t!==i)return!1;if(!e)return!0;if(!o)return!1;for(var n=o.split("."),r=e.split("."),a=0;a<r.length;a++)if(r[a]!==n[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var c=navigator.userAgent,f=c.match(a);f&&c.indexOf("Chrome")===-1&&c.indexOf("Chromium")===-1&&(i="Safari",o=f[1])}e.exports={agent:i,version:o,match:r}},{}],9:[function(t,e,n){function r(t){function e(){t(c&&document[c]?document[c]:document[o]?"hidden":"visible")}"addEventListener"in document&&a&&document.addEventListener(a,e,i(!1))}var i=t(3);e.exports=r;var o,a,c;"undefined"!=typeof document.hidden?(o="hidden",a="visibilitychange",c="visibilityState"):"undefined"!=typeof document.msHidden?(o="msHidden",a="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(o="webkitHidden",a="webkitvisibilitychange",c="webkitVisibilityState")},{}],10:[function(t,e,n){function r(t,e){var n=[],r="",o=0;for(r in t)i.call(t,r)&&(n[o]=e(r,t[r]),o+=1);return n}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],11:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,i=n-e||0,o=Array(i<0?0:i);++r<i;)o[r]=t[e+r];return o}e.exports=r},{}],12:[function(t,e,n){e.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(t,e,n){function r(){}function i(t){function e(t){return t&&t instanceof r?t:t?u(t,f,a):a()}function n(n,r,i,o,a){if(a!==!1&&(a=!0),!l.aborted||o){t&&a&&t(n,r,i);for(var c=e(i),f=m(n),u=f.length,s=0;s<u;s++)f[s].apply(c,r);var p=d[w[n]];return p&&p.push([b,n,r,c]),c}}function o(t,e){y[t]=m(t).concat(e)}function v(t,e){var n=y[t];if(n)for(var r=0;r<n.length;r++)n[r]===e&&n.splice(r,1)}function m(t){return y[t]||[]}function g(t){return p[t]=p[t]||i(n)}function h(t,e){l.aborted||s(t,function(t,n){e=e||"feature",w[n]=e,e in d||(d[e]=[])})}var y={},w={},b={on:o,addEventListener:o,removeEventListener:v,emit:n,get:g,listeners:m,context:e,buffer:h,abort:c,aborted:!1};return b}function o(t){return u(t,f,a)}function a(){return new r}function c(){(d.api||d.feature)&&(l.aborted=!0,d=l.backlog={})}var f="nr@context",u=t("gos"),s=t(10),d={},p={},l=e.exports=i();e.exports.getOrSetContext=o,l.backlog=d},{}],gos:[function(t,e,n){function r(t,e,n){if(i.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return t[e]=r,r}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){i.buffer([t],r),i.emit(t,e,n)}var i=t("ee").get("handle");e.exports=r,r.ee=i},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,o,function(){return i++})}var i=1,o="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!T++){var t=P.info=NREUM.info,e=g.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return u.abort();f(O,function(e,n){t[e]||(t[e]=n)});var n=a();c("mark",["onload",n+P.offset],null,"api"),c("timing",["load",n]);var r=g.createElement("script");0===t.agent.indexOf("http://")||0===t.agent.indexOf("https://")?r.src=t.agent:r.src=v+"://"+t.agent,e.parentNode.insertBefore(r,e)}}function i(){"complete"===g.readyState&&o()}function o(){c("mark",["domContent",a()+P.offset],null,"api")}var a=t(5),c=t("handle"),f=t(10),u=t("ee"),s=t(8),d=t(6),p=t(2),l=t(3),v=p.getConfiguration("ssl")===!1?"http":"https",m=window,g=m.document,h="addEventListener",y="attachEvent",w=m.XMLHttpRequest,b=w&&w.prototype,E=!d(m.location);NREUM.o={ST:setTimeout,SI:m.setImmediate,CT:clearTimeout,XHR:w,REQ:m.Request,EV:m.Event,PR:m.Promise,MO:m.MutationObserver};var x=""+location,O={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1212.min.js"},M=w&&b&&b[h]&&!/CriOS/.test(navigator.userAgent),P=e.exports={offset:a.getLastTimestamp(),now:a,origin:x,features:{},xhrWrappable:M,userAgent:s,disabled:E};if(!E){t(1),t(7),g[h]?(g[h]("DOMContentLoaded",o,l(!1)),m[h]("load",r,l(!1))):(g[y]("onreadystatechange",i),m[y]("onload",r)),c("mark",["firstbyte",a.getLastTimestamp()],null,"api");var T=0}},{}],"wrap-function":[function(t,e,n){function r(t,e){function n(e,n,r,f,u){function nrWrapper(){var o,a,s,p;try{a=this,o=d(arguments),s="function"==typeof r?r(o,a):r||{}}catch(l){i([l,"",[o,a,f],s],t)}c(n+"start",[o,a,f],s,u);try{return p=e.apply(a,o)}catch(v){throw c(n+"err",[o,a,v],s,u),v}finally{c(n+"end",[o,a,p],s,u)}}return a(e)?e:(n||(n=""),nrWrapper[p]=e,o(e,nrWrapper,t),nrWrapper)}function r(t,e,r,i,o){r||(r="");var c,f,u,s="-"===r.charAt(0);for(u=0;u<e.length;u++)f=e[u],c=t[f],a(c)||(t[f]=n(c,s?f+r:r,i,f,o))}function c(n,r,o,a){if(!v||e){var c=v;v=!0;try{t.emit(n,r,o,e,a)}catch(f){i([f,n,r,o],t)}v=c}}return t||(t=s),n.inPlace=r,n.flag=p,n}function i(t,e){e||(e=s);try{e.emit("internal-error",t)}catch(n){}}function o(t,e,n){if(Object.defineProperty&&Object.keys)try{var r=Object.keys(t);return r.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(o){i([o],n)}for(var a in t)l.call(t,a)&&(e[a]=t[a]);return e}function a(t){return!(t&&t instanceof Function&&t.apply&&!t[p])}function c(t,e){var n=e(t);return n[p]=t,o(t,n,s),n}function f(t,e,n){var r=t[e];t[e]=c(r,n)}function u(){for(var t=arguments.length,e=new Array(t),n=0;n<t;++n)e[n]=arguments[n];return e}var s=t("ee"),d=t(11),p="nr@original",l=Object.prototype.hasOwnProperty,v=!1;e.exports=r,e.exports.wrapFunction=c,e.exports.wrapInPlace=f,e.exports.argsToArray=u},{}]},{},["loader"]);</script>
+<title>Lab 4 - Conduct A/B Testing With Model Production Variants | Qwiklabs</title>
+<script>
+//<![CDATA[
+window.gon={};gon.current_user={"firstname":"Chris","lastname":"Tran","fullname":"Chris Tran","company":"Verisk Analytics, Inc.","email":"khanh.tran@verisk.com","origin":"aws, direct","subscriptions":0,"id":"bbf593d8f0f0f6529ddd84904111d6f8","qlCreatedAt":"2021-12-13 05:59:01 UTC","optIn":true,"current_organization_id":null,"current_organization_role":null};gon.segment=null;gon.deployment="aws";gon.content={"type":"Lab","id":11888,"name":"Lab 4 - Conduct A/B Testing With Model Production Variants"};
+//]]>
+</script>
+<script>
+  dataLayer = [
+    {user: gon.current_user},
+    {content: gon.content}
+  ];
+</script>
+<script src="https://cdn.qwiklabs.com/assets/hallofmirrors/polyfills/webcomponents-loader-60a166e60df2787cca5915e2ced8c317457f421a20f02601b937a72275ac441a.js"></script>
+<script src="https://cdn.qwiklabs.com/assets/vendor-2beee108ba05276bc429223ee82ed81449d233c93d45af5da84add895e101218.js"></script>
+<script src="https://cdn.qwiklabs.com/assets/application-20e85c71d4f4b37cfc2dc06e60190b99242d9643fbadcfd864742b7c1bb1e5d2.js"></script>
+<script src="https://cdn.qwiklabs.com/assets/hallofmirrors/hallofmirrors-f156fe7fa0c7e87b54b4cf089f02ed02d6cda63c2bf0016afd130174d632bda8.js"></script>
+<!--[if lt IE 9]>
+<script src='http://html5shim.googlecode.com/svn/trunk/html5.js' type='text/javascript'></script>
+<![endif]-->
+<!--[endif]>  <![endif]-->
+<script type='application/ld+json'>
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "https://www.qwiklabs.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.qwiklabs.com/catalog?keywords={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script id='ze-snippet' src='https://static.zdassets.com/ekr/snippet.js?key=511e4158-0aec-4e3c-b2e6-4daa1769f51e'></script>
+
+
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="/dh7No744tMpQ/VMdfMAJoNX1BpxphlbCDbr3Ff4uUAh4F1MN9QwVVWyRDUWB2oTkEd0Wl3HLW/Zm5/KEtTCPw==" />
+<meta content='width=device-width, initial-scale=1.0, user-scalable=yes' name='viewport'>
+<meta content='1rRsY0INj8RvwB5EF5pwdxt2A2P9aDgAlsICaJ0d5w0' name='google-site-verification'>
+<meta content='#3681E4' property='msapplication-TileColor'>
+<meta content='/favicon-144.png' property='msapplication-TileImage'>
+<meta content='[{&quot;id&quot;:&quot;recaptcha_experiment&quot;,&quot;optimize_id&quot;:&quot;dpViOcLkT3qS4TvL2mRojA&quot;,&quot;title&quot;:&quot;No Recaptcha shown for trusted users&quot;,&quot;variant_index&quot;:0,&quot;variant&quot;:&quot;original&quot;}]' name='active-experiments'>
+<meta content='{&quot;userId&quot;:526414}' name='help-api-product-data'>
+<meta content='This lab provides general practice to perform AB Testing using different production variants' name='description'>
+<meta content='Qwiklabs' name='author'>
+<meta content='Lab 4 - Conduct A/B Testing With Model Production Variants | Qwiklabs' property='og:title'>
+<meta content='website' property='og:type'>
+<meta content='/favicon-144.png' property='og:image'>
+<meta content='Qwiklabs' property='og:site_name'>
+<meta content='This lab provides general practice to perform AB Testing using different production variants' property='og:description'>
+<meta content='/qwiklabs_logo_900x887.png' property='og:logo' size='900x887'>
+<meta content='/qwiklabs_logo_994x187.png' property='og:logo' size='994x187'>
+
+
+
+<link color='#3681E4' href='/favicon-svg.svg' rel='mask-icon'>
+<link href='/favicon-180.png' rel='apple-touch-icon-precomposed'>
+<link href='/favicon-32.png' rel='shortcut icon' type='image/x-icon'>
+
+
+
+<link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Oswald:400|Roboto+Mono:400,700|Roboto:300,400,500,700|Google+Sans:300,400,500,700|Google+Sans+Display:400|Material+Icons|Google+Material+Icons" />
+
+
+<link rel="stylesheet" media="all" href="https://cdn.qwiklabs.com/assets/application-1251f2e8757c4c063903603b8b009bfda57d5eb93de63a98ae7e7a2eff6b2aee.css" />
+
+<style>
+  :root {
+    --primary-text-on-surface-color: #1A73E8;
+    --primary-text-on-surface-color-dark: #1568d6;
+    --primary-text-on-surface-color-darker: #135ec1;
+    --primary-text-on-surface-color-darkest: #1154ac;
+    --primary-surface-color: #1A73E8;
+    --primary-surface-color-rgb: 26,115,232;
+    --primary-surface-color-light: #d1e3fa;
+    --primary-surface-color-lightest: #e8f1fd;
+    --text-on-primary-color: #FFFFFF;
+    --accent-text-on-surface-color: #F29900;
+    --accent-surface-color: #F9AB00;
+    --accent-surface-color-rgb: 249,171,0;
+    --accent-surface-color-light: #ffefcc;
+    --text-on-accent-color: #202124;
+  }
+</style>
+
+
+
+</head>
+<body class='lab-show l-full no-nav application-new focuses focuses-show lab-show l-full no-nav '>
+<div class='header-container'>
+<div class='header'>
+<ql-toolbar jumpEnabled>
+<div class='header__title' slot='title'>
+<ql-icon-button label="Back" href="/classrooms/59034" id="eeb513767cad6f14" target="_self" tip="Back">arrow_back</ql-icon-button>
+<h1 class='ql-headline-6'>Lab 4 - Conduct A/B Testing With Model Production Variants</h1>
+</div>
+<div class='header__actions' slot='action'>
+<ql-icon-button id='control-panel-target' style='display: none;'>
+dashboard
+</ql-icon-button>
+<ql-menu for='control-panel-target' id='control-panel-menu'></ql-menu>
+<ql-icon-button class='mobile-hide' icon='help_outline' id='help-menu-button' label='Open help menu' tip='Help'></ql-icon-button>
+<ql-menu for='help-menu-button' id='help-menu'>
+<ql-menu-item data-analytics-action='opened_help' data-analytics-label='lab' label='Help Center' onclick='hallofmirrors.helpService.startHelp({&quot;productData&quot;:{&quot;userId&quot;:526414},&quot;context&quot;:&quot;lab&quot;})'></ql-menu-item>
+<ql-menu-item href='https://support.google.com/qwiklabs/contact/contact_us' label='Email support' target='_blank'></ql-menu-item>
+<ql-menu-item label='Chat support' onClick='ql.chat.open()'></ql-menu-item>
+</ql-menu>
+
+<ql-icon-button class='mobile-hide' icon='language' id='language' label='Select your language preference' tip='Language'></ql-icon-button>
+<ql-menu for='language'>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='ar' href='/classrooms/59034/labs/335515?locale=ar' label='العربية‬‎' lang='ar'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='de' href='/classrooms/59034/labs/335515?locale=de' label='Deutsch' lang='de'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='en' href='/classrooms/59034/labs/335515?locale=en' label='English' lang='en'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='es' href='/classrooms/59034/labs/335515?locale=es' label='español (Latinoamérica)' lang='es'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='fr' href='/classrooms/59034/labs/335515?locale=fr' label='français' lang='fr'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='fr_CA' href='/classrooms/59034/labs/335515?locale=fr_CA' label='français (Canada)' lang='fr-CA'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='he' href='/classrooms/59034/labs/335515?locale=he' label='עברית' lang='he'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='id' href='/classrooms/59034/labs/335515?locale=id' label='bahasa Indonesia' lang='id'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='it' href='/classrooms/59034/labs/335515?locale=it' label='Italiano' lang='it'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='ja' href='/classrooms/59034/labs/335515?locale=ja' label='日本語' lang='ja'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='ko' href='/classrooms/59034/labs/335515?locale=ko' label='한국어' lang='ko'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='pl' href='/classrooms/59034/labs/335515?locale=pl' label='Polski' lang='pl'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='pt_BR' href='/classrooms/59034/labs/335515?locale=pt_BR' label='português (Brasil)' lang='pt-BR'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='pt_PT' href='/classrooms/59034/labs/335515?locale=pt_PT' label='português (Portugal)' lang='pt-PT'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='ru' href='/classrooms/59034/labs/335515?locale=ru' label='русский' lang='ru'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='tr' href='/classrooms/59034/labs/335515?locale=tr' label='Türkçe' lang='tr'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='zh' href='/classrooms/59034/labs/335515?locale=zh' label='简体中文' lang='zh'></ql-menu-item>
+<ql-menu-item data-analytics-action='changed_locale' data-analytics-label='zh_TW' href='/classrooms/59034/labs/335515?locale=zh_TW' label='繁體中文' lang='zh-TW'></ql-menu-item>
+</ql-menu>
+
+<ql-icon-button id='my_account' label='My account' tip='My account'>
+<ql-avatar></ql-avatar>
+</ql-icon-button>
+<ql-menu for='my_account' id='my_account_menu' style='max-height: 640px'>
+<div class='my-account-menu'>
+<ql-avatar class='l-mtl l-mbl' size='120'></ql-avatar>
+<div class='my-account-menu__user-info l-mbl'>
+<h4 class='ql-subhead-1'>Chris Tran</h4>
+<p class='ql-body-2 text--light'>khanh.tran@verisk.com</p>
+<p class='ql-body-2 text--light'>
+</p>
+</div>
+<div class='buttons l-mbl'>
+<a class="button button--hairline" id="settings" href="/my_account/profile">Settings</a>
+</div>
+<hr>
+<ql-button data-analytics-action='clicked_sign_out' href='/users/sign_out' method='delete'>
+Sign Out
+</ql-button>
+<div class='privacy l-mtl'>
+<a class="ql-caption text--light" href="/privacy_policy">Privacy</a>
+<span class='ql-caption text--light l-mls l-mrs'>&middot;</span>
+<a class="ql-caption text--light" href="/terms_of_service">Terms</a>
+</div>
+</div>
+</ql-menu>
+
+</div>
+</ql-toolbar>
+
+</div>
+<div class='header__search-bar js-header-search-bar'>
+<form class="js-search-form-mobile" onsubmit="ql.searchFilter(); return false;" action="/searches/lab" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="nEVybI5XODznwg35r6J3g+AACCerytnCIgE+wb9lPTpAfVQWN3vqupszvIDMVh228xCoZ4er7fbzrErX+klGRQ==" />
+<input type="text" name="keywords" id="search" placeholder="Search for learning activities." maxlength="255" aria-label="catalog search bar" />
+</form>
+
+<ql-icon-button class='js-close-search-bar'>close</ql-icon-button>
+</div>
+</div>
+
+<nav class='nav-panel js-nav-panel'>
+<div class='nav-panel__logo'>
+<div class="custom-logo"><img alt="Qwiklabs" height="24" aria-label="Qwiklabs" src="https://cdn.qwiklabs.com/i0qFEQoJiBanlKZQElmSw%2B6HzGe37MLn2bL3nInH6MM%3D" /></div>
+</div>
+<nav class='ql-sidenav'>
+<ql-sidenav-item href='/' icon='home' label='Home'></ql-sidenav-item>
+
+<ql-sidenav-item href='/catalog' icon='school' label='Catalog'></ql-sidenav-item>
+
+<ql-sidenav-item active href='/profile' icon='event_note' label='Profile'></ql-sidenav-item>
+
+</nav>
+
+</nav>
+<div class='nav-panel__overlay js-nav-toggle'></div>
+
+<main class='js-main' id='jump-content'>
+<div class='l-main-wrapper' id='main-wrapper'>
+
+
+
+
+<ql-drawer-container class='js-lab-state' data-analytics-payload='{&quot;label&quot;:&quot;Lab 4 - Conduct A/B Testing With Model Production Variants&quot;,&quot;lab_name&quot;:&quot;Lab 4 - Conduct A/B Testing With Model Production Variants&quot;,&quot;classroom_name&quot;:null,&quot;deployment&quot;:&quot;aws&quot;}' data-focus-id='335515' data-lab-billing-limit='0.0' data-lab-duration='10800' data-parent='classroom' id='lab-container'>
+<ql-drawer id='terminal-drawer' slot='drawer' style='width: calc(100% - 480px)'>
+<iframe allow='clipboard-read' class='terminal' id='embedded-resource'></iframe>
+</ql-drawer>
+<ql-drawer-content class='js-lab-wrapper' id='lab-content' slot='drawer-content'>
+<ql-drawer-container id='lab-content-container'>
+<ql-drawer id='control-panel-drawer' open slot='drawer' width='320'>
+<ql-lab-control-panel class='ql-lab-control-panel__max-height control-panel js-lab-control-panel' connectionFiles='[]' labControlButton='{&quot;disabled&quot;:false,&quot;pending&quot;:false,&quot;running&quot;:false}' labDetails='[]' labTimer='{&quot;ticking&quot;:false,&quot;secondsRemaining&quot;:10800}' studentResources='[]'>
+</ql-lab-control-panel>
+</ql-drawer>
+<ql-drawer-content id='lab-instructions' slot='drawer-content'>
+<ql-snackbar id='alert-snackbar'></ql-snackbar>
+<div class='alert alert--fake js-alert'>
+<p class='alert__message js-alert-message' role='alert'></p>
+<ql-icon-button class='alert__close js-alert-close' icon='clear'></ql-icon-button>
+<iframe class='l-ie-iframe-fix'></iframe>
+</div>
+<div class='lab-content__renderable-instructions js-lab-content'>
+<div class='lab-preamble'>
+<h1 class='lab-preamble__title'>
+Lab 4 - Conduct A/B Testing With Model Production Variants
+</h1>
+<div class='lab-preamble__details subtitle-headline-1'>
+<span>3 hours </span>
+<span>Free</span>
+<div class='lab__rating'>
+<a aria-label="Lab Reviews" href="/focuses/335515/reviews?parent=classroom"><div class='rateit' data-rateit-readonly='true' data-rateit-value='4.3235'></div>
+
+</a></div>
+</div>
+</div>
+<div class='lab-outline-place-holder'></div>
+
+<div class='markdown-lab-instructions js-markdown-instructions no-select' id='markdown-lab-instructions'>
+<p><img src="https://s3-us-west-2.amazonaws.com/us-west-2-aws-training/awsu-spl/sts-sign-in-images/media/aws-logo.png" alt=""></p>
+
+
+
+<p>© 2021 Amazon Web Services, Inc. and its affiliates. All rights reserved. This work may not be reproduced or redistributed, in whole or in part, without prior written permission from Amazon Web Services, Inc. Commercial copying, lending, or selling is prohibited. All trademarks are the property of their owners.</p>
+
+<p>Note: Do not include any personal, identifying, or confidential information into the lab environment. Information entered may be visible to others.</p>
+
+<p>Corrections, feedback, or other questions? Contact us at <a href="https://support.aws.amazon.com/#/contacts/aws-training" target="_blank"><em>AWS Training and Certification</em></a>.</p>
+
+<h2 id="step1">Lab overview</h2>
+
+<p>In the previous labs, you learned to set up a pipeline using the "bring your own algorithm" approach. You explored the AWS services used for a pipeline, made updates to your model code, and built a pipeline. </p>
+
+<p>In this lab, you will focus on A/B testing. For this type of testing, Amazon SageMaker endpoint configuration uses multiple production variants. You will use two variants in this lab, one for model A and one for model B. To begin, configure the settings for both models to balance traffic between them equally (50/50) and make sure they have identical instance configurations. After you monitor the performance of both models with equal weights, you can either gradually change the traffic weights to put the models out of balance (60/40, 80/20, etc.), or you can change the weights in a single step, continuing until a single model is processing all of the live traffic.</p>
+
+<p>The A/B testing you do here will use two different algorithms for the same classification problem. The code has been updated so that Model A uses the <strong>Decision Trees</strong> algorithm and Model B uses the <strong>Random Forest</strong> algorithm.</p>
+
+<p>You will use the AWS Management Console to review and validate the pipeline. You will then use an Amazon SageMaker notebook to generate traffic to each variant and modify traffic distribution.</p>
+
+<h2 id="step2">Objectives</h2>
+
+<p>After completing this lab, you will be able to:</p>
+<ul>
+<li>Identify key components needed for an A/B testing of your machine learning pipeline</li>
+<li>Evaluate models by invoking specific variants</li>
+<li>Gradually release a new model by specifying traffic distribution </li>
+</ul>
+<h3>Prerequisites</h3>
+
+<p>This lab requires:</p>
+<ul>
+<li>Access to a notebook computer with Wi-Fi and Microsoft Windows, Mac OS X, or Linux (Ubuntu, SuSE, or Red Hat)</li>
+<li>The lab environment is not accessible using an iPad or tablet device, but you can use these devices to access the student guide</li>
+<li>For Microsoft Windows users: Administrator access to the computer</li>
+<li>An Internet browser such as Chrome, Firefox, or IE9 (previous versions of Internet Explorer are not supported)</li>
+</ul>
+<h3>Duration</h3>
+
+<p>This lab will require <em>60</em> minutes to complete.</p>
+
+
+
+<h2 id="step3">Start Lab</h2>
+<ol start="1">
+<li>At the top of your screen, launch your lab by choosing <span style="background-color:#34A853;font-family:Google Sans;font-weight:bold;font-size:90%;color:white;border-color:#34A853;border-radius:4px;border-width:2px;border-style:solid;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;">Start Lab</span>
+</li>
+</ol>
+<p>This starts the process of provisioning your lab resources. An estimated amount of time to provision your lab resources is displayed. You must wait for your resources to be provisioned before continuing.</p>
+
+<p><i class="fas fa-info-circle"></i> If you are prompted for a token, use the one distributed to you (or credits you have purchased). </p>
+<ol start="2">
+<li>Open your lab by choosing <span style="background-color:white;font-family:Google Sans;font-weight:bold;font-size:90%;color:#1a73e8;border-color:#dadce0;border-radius:4px;border-width:2px;border-style:solid;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;">Open Console</span>
+</li>
+</ol>
+<p>This opens an AWS Management Console sign-in page.</p>
+<ol start="3">
+<li>On the sign-in page, configure:</li>
+</ol><ul>
+<li>
+<strong>IAM user name:</strong> <input readonly class="copyable-inline-input" size="10" type="text" value="awsstudent">
+</li>
+<li>
+<strong>Password:</strong> Paste the value of <strong>Password</strong> from the left side of the lab page</li>
+<li>Choose <span style="background-color:#257ACF;font-weight:bold;font-size:90%;color:white;border-radius:5px;padding-top:3px;padding-bottom:3px;padding-left:10px;padding-right:10px;white-space:nowrap;">Sign In</span>
+</li>
+</ul>
+<p><i class="fas fa-exclamation-triangle"></i> <strong>Do not change the Region unless instructed.</strong></p>
+
+
+
+<h3>Common Login Errors</h3>
+
+<p><strong>Error: You must first log out</strong></p>
+
+<p><img src="https://s3-us-west-2.amazonaws.com/us-west-2-aws-training/awsu-spl/sts-sign-in-images/media/logouterror.png" alt=""></p>
+
+<p>If you see the message, <strong>You must first log out before logging into a different AWS account:</strong> </p>
+<ul>
+<li>Choose <strong>click here</strong>
+</li>
+<li>Close your browser tab to return to your initial lab window</li>
+<li>Choose <span style="background-color:white;font-family:Google Sans;font-weight:bold;font-size:90%;color:#1a73e8;border-color:#dadce0;border-radius:4px;border-width:2px;border-style:solid;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;">Open Console</span> again</li>
+</ul>
+
+
+<h2 id="step4">Lab Environment</h2>
+
+<p>The following architectural diagram of the services is used in this lab.</p>
+
+<p><img src="https://us-west-2-tcprod.s3.amazonaws.com/courses/ILT-DD-200-MLPOPS/v1.0.5/lab-4/instructions/en_us/images/Lab-4-MLOPS.png" alt="AWS architecture diagram showing all services used and how they are linked"></p>
+
+<p>The diagram illustrates how services are linked to orchestrate the building of the training Step Functions workflow, the building of the Amazon ECR model container, the training of the model using Amazon SageMaker, and the building of a mechanism to deploy multiple variants using the A/B testing approach.</p>
+
+<h3>A/B testing approach</h3>
+
+<p>With SageMaker, you can use production variants to test multiple models or model versions behind the same endpoint. Each production variant identifies a machine learning model and the resources deployed for hosting the model. You can distribute endpoint invocation requests across multiple production variants by providing the traffic distribution for each variant or invoking a variant directly for each request. </p>
+
+<p><img src="https://us-west-2-tcprod.s3.amazonaws.com/courses/ILT-DD-200-MLPOPS/v1.0.5/lab-4/instructions/en_us/images/AB_testing-Approach.png" alt="Diagram showing the AB Testing approach"></p>
+
+<p>To test multiple models by invoking specific models for each request, set the TargetVariant header in the request. If you have already provided a traffic distribution by specifying weights and a TargetVariant, the targeted routing overrides the traffic distribution. The following diagram shows how this works in more detail, invoking ProductionVariant2 for an inference request. You can concurrently invoke different variants for each request.</p>
+
+<p><img src="https://us-west-2-tcprod.s3.amazonaws.com/courses/ILT-DD-200-MLPOPS/v1.0.5/lab-4/instructions/en_us/images/AB_testing-Approach-variant2.png" alt="Diagram showing the AB Testing approach"></p>
+
+<h3>Step Functions update</h3>
+
+<p>In continuation to the "bring your own algorithm" approach from previous labs, this lab uses two model codes. The state machine definition has been updated to run some tasks parallel and others sequential.   </p>
+
+<p>The following diagram shows the steps that will be used to train the models, create an endpoint with multiple variants, and test each variant.  </p>
+
+<p><img src="https://us-west-2-tcprod.s3.amazonaws.com/courses/ILT-DD-200-MLPOPS/v1.0.5/lab-4/instructions/en_us/images/stepfunctionFlow-Lab4.png" alt="Diagram showing the steps in the AWS Step Functions State Machine"></p>
+
+
+
+<h2 id="step5">Task 1: Update Step Functions for A/B testing</h2>
+
+<p><a id="lab-instructions-start" target="_blank"></a></p>
+
+<p>In this task, you will connect to an AWS Cloud9 IDE instance, clone a git repository, update code to change the state machine (to add ModelB definitions), and monitor the changes.</p>
+
+<h3>Review the Step Functions definition</h3>
+<ol start="4">
+<li>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>Step Functions</strong>.</li>
+</ol>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> Make sure that the region listed in the console matches the <strong>AWSRegion</strong> value from the left side of the lab page.</p>
+<ol start="5">
+<li><p>Choose the name of the state machine that contains <strong>trainingStateMachine</strong>.</p></li>
+<li><p>Choose the <strong>Definition</strong> tab.</p></li>
+</ol>
+<p>The definition loads. Looking at the graph, you should see seven steps between start and end. </p>
+
+<p><img src="https://us-west-2-tcprod.s3.amazonaws.com/courses/ILT-DD-200-MLPOPS/v1.0.5/lab-4/instructions/en_us/images/state-machine-original-lab4.png" alt="Image of the state machine graph with 7 steps">.</p>
+<ol start="7">
+<li><p>Copy the <strong>Cloud9url</strong> value from the left side of the lab page.</p></li>
+<li><p>Open a <em>new</em> browser tab, paste the <strong>Cloud9url</strong> into the address bar, and press ENTER.</p></li>
+</ol>
+<p>The AWS Cloud9 IDE has three main pieces: (1) A file browser located to the left of the screen, (2) a file editor window in the upper right, and (3) a terminal window in the lower right. You can resize the sections as needed using the vertical resize <i class="fas fa-arrows-alt-v"></i> or horizontal resize <i class="fas fa-arrows-alt-h"></i> cursor that appears when you move between two sections.</p>
+
+<p>The first thing we need to do is clone the CodeCommit repository.</p>
+<ol start="9">
+<li><p>Copy the <strong>stateMachineCodeRepo</strong> value from the left side of the lab page.</p></li>
+<li><p>Paste the value into the terminal window and press ENTER.</p></li>
+</ol>
+<p>A new folder is displayed in the file browser.</p>
+<ol start="11">
+<li><p>Expand the <strong>stateMachineCode</strong> folder in the file browser by choosing the <i class="fas fa-angle-right"></i> angle right icon.</p></li>
+<li><p>Open (double-click) the <strong>state_machine_manager.py</strong> file.</p></li>
+</ol>
+<p>The file opens in the file editor window. As you look through the file, there are seven steps defined: </p>
+<ul>
+<li>Model training</li>
+<li>Model creation</li>
+<li>Insert model data into registry</li>
+<li>Create multi-variant endpoint configuration</li>
+<li>Create endpoint</li>
+<li>Test endpoint in service</li>
+<li>Test model</li>
+</ul>
+<p>To enhance your training and testing, you will add a second, ModelB, to the definition. To do this, you must (1) replicate the first three steps for ModelB, (2) update the endpoint creation step to a multi-endpoint creation step, leveraging a pre-created Lambda function, (3) change the model evaluation Lambda to the multi-model test Lambda in the state_machine_manager.py file, and (4) update the workflow definition. </p>
+
+<h3>Add Training, Saving and Artifact registration for ModelB</h3>
+<ol start="13">
+<li>In the <em>state_machine_manager.py</em> file, after the register_artifact_step_a (around line 140), <strong>ADD</strong> the ModelB definition by inserting the following code:</li>
+</ol><pre class="highlight python"><code><span class="c"># Create an estimator with training specifications for modelB</span>&#x000A;<span class="n">custom_estimatorB</span> <span class="o">=</span> <span class="n">sagemaker</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">Estimator</span><span class="p">(</span>&#x000A;    <span class="n">ecr_ArnB</span><span class="p">,</span>&#x000A;    <span class="n">role</span> <span class="o">=</span> <span class="n">sagemaker_role</span><span class="p">,</span>&#x000A;    <span class="n">train_instance_count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>&#x000A;    <span class="n">train_instance_type</span> <span class="o">=</span> <span class="s">'ml.m5.xlarge'</span><span class="p">,</span>&#x000A;    <span class="n">train_volume_size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>&#x000A;    <span class="n">output_path</span><span class="o">=</span><span class="n">model_bucketB</span><span class="p">,</span>&#x000A;    <span class="n">volume_kms_key</span><span class="o">=</span><span class="n">kms_key</span>&#x000A;<span class="p">)</span>&#x000A;<span class="c"># Create a step to train for modelB</span>&#x000A;<span class="n">training_stepB</span> <span class="o">=</span> <span class="n">steps</span><span class="o">.</span><span class="n">TrainingStep</span><span class="p">(</span>&#x000A;    <span class="s">'Train ModelB'</span><span class="p">,</span>&#x000A;    <span class="n">estimator</span><span class="o">=</span><span class="n">custom_estimatorB</span><span class="p">,</span>&#x000A;    <span class="n">data</span><span class="o">=</span><span class="p">{</span>&#x000A;        <span class="s">'training'</span><span class="p">:</span> <span class="n">sagemaker</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">TrainingInput</span><span class="p">(</span><span class="n">event_input</span><span class="p">[</span><span class="s">'dataBucketPath'</span><span class="p">],</span> <span class="n">content_type</span><span class="o">=</span><span class="s">'csv'</span><span class="p">)</span>&#x000A;    <span class="p">},</span>&#x000A;    <span class="n">job_name</span><span class="o">=</span><span class="s">"States.Format('JobB-{}', $$.Execution.Input['BuildId'])"</span><span class="p">,</span>&#x000A;    <span class="n">result_path</span><span class="o">=</span><span class="s">'$.train_step_result'</span>&#x000A;<span class="p">)</span>&#x000A;<span class="c"># Add a retry configuration to the training_step</span>&#x000A;<span class="n">training_stepB</span><span class="o">.</span><span class="n">add_retry</span><span class="p">(</span><span class="n">SageMaker_throttling_retry</span><span class="p">)</span>&#x000A;&#x000A;<span class="c"># Create a step to save the modelB</span>&#x000A;<span class="n">model_stepB</span> <span class="o">=</span> <span class="n">steps</span><span class="o">.</span><span class="n">ModelStep</span><span class="p">(</span>&#x000A;    <span class="s">'Create ModelB'</span><span class="p">,</span>&#x000A;    <span class="n">model</span><span class="o">=</span><span class="n">training_stepB</span><span class="o">.</span><span class="n">get_expected_model</span><span class="p">(),</span>&#x000A;    <span class="n">model_name</span><span class="o">=</span><span class="n">event_input</span><span class="p">[</span><span class="s">'ModelB'</span><span class="p">],</span>&#x000A;    <span class="n">result_path</span><span class="o">=</span><span class="s">'$.save_step_result'</span>&#x000A;<span class="p">)</span>&#x000A;<span class="c"># Add a retry configuration to the model_step</span>&#x000A;<span class="n">model_stepB</span><span class="o">.</span><span class="n">add_retry</span><span class="p">(</span><span class="n">SageMaker_throttling_retry</span><span class="p">)</span>&#x000A;&#x000A;<span class="c"># Create a step to input model data into the model artifact store in DynamoDB</span>&#x000A;<span class="n">register_artifact_step_b</span> <span class="o">=</span> <span class="n">steps</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">DynamoDBPutItemStep</span><span class="p">(</span>&#x000A;    <span class="s">"Insert ModelB data into registry"</span><span class="p">,</span>&#x000A;    <span class="n">parameters</span><span class="o">=</span><span class="p">{</span>&#x000A;            <span class="s">"Item"</span><span class="p">:</span> <span class="p">{</span>&#x000A;                <span class="s">"RunId"</span><span class="p">:</span> <span class="p">{</span>&#x000A;                    <span class="s">"S"</span><span class="p">:</span> <span class="n">event_input</span><span class="p">[</span><span class="s">'ModelB'</span><span class="p">]</span>&#x000A;                <span class="p">},</span>&#x000A;                <span class="s">"authorDate"</span><span class="p">:</span> <span class="p">{</span>&#x000A;                    <span class="s">"S"</span><span class="p">:</span> <span class="n">event_input</span><span class="p">[</span><span class="s">'authorDate'</span><span class="p">]</span>&#x000A;                <span class="p">},</span>&#x000A;                <span class="s">"commitId"</span><span class="p">:</span> <span class="p">{</span>&#x000A;                    <span class="s">"S"</span><span class="p">:</span> <span class="n">event_input</span><span class="p">[</span><span class="s">'commitId'</span><span class="p">]</span>&#x000A;                <span class="p">},</span>&#x000A;                <span class="s">"JobId"</span><span class="p">:</span> <span class="p">{</span>&#x000A;                    <span class="s">"S.$"</span><span class="p">:</span> <span class="s">"States.Format('JobB-{}', $$.Execution.Input['BuildId'])"</span>&#x000A;                <span class="p">},</span>&#x000A;                <span class="s">"dataBucketPath"</span><span class="p">:</span> <span class="p">{</span>&#x000A;                    <span class="s">"S"</span><span class="p">:</span> <span class="n">event_input</span><span class="p">[</span><span class="s">'dataBucketPath'</span><span class="p">]</span>&#x000A;                <span class="p">},</span>&#x000A;                <span class="s">"ecrImageTag"</span><span class="p">:</span> <span class="p">{</span>&#x000A;                    <span class="s">"S"</span><span class="p">:</span> <span class="n">event_input</span><span class="p">[</span><span class="s">'BuildId'</span><span class="p">]</span>&#x000A;                <span class="p">},</span>&#x000A;                <span class="s">"endpointName"</span><span class="p">:</span> <span class="p">{</span>&#x000A;                    <span class="s">"S"</span><span class="p">:</span> <span class="n">event_input</span><span class="p">[</span><span class="s">'Endpoint'</span><span class="p">]</span>&#x000A;                <span class="p">},</span>&#x000A;                <span class="s">"triggerSource"</span><span class="p">:</span> <span class="p">{</span>&#x000A;                    <span class="s">"S"</span><span class="p">:</span> <span class="n">event_input</span><span class="p">[</span><span class="s">'triggerSource'</span><span class="p">]</span>&#x000A;                <span class="p">},</span>&#x000A;                <span class="s">"Accuracy"</span><span class="p">:</span> <span class="p">{</span>&#x000A;                    <span class="s">"N"</span><span class="p">:</span> <span class="s">"0"</span>&#x000A;                <span class="p">}</span>&#x000A;            <span class="p">},</span>&#x000A;            <span class="s">"TableName"</span><span class="p">:</span> <span class="n">dynamoDBTable</span>&#x000A;        <span class="p">},</span>&#x000A;        <span class="n">result_path</span><span class="o">=</span><span class="s">'$.record_artifact_step_result_b'</span>&#x000A;<span class="p">)</span>&#x000A;&#x000A;</code></pre>
+<p>In order to create a multi-variant endpoint, you will use the Lambda function <strong>createEndpointLambda</strong>. </p>
+
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note:</strong> You may review the <strong>createEndpointLambda</strong> Lambda function to see how it creates the multi-variant endpoint. If you are unable to find this Lambda function, see <a href="#lambda-instructions" target="_self">finding the createEndpoint Lambda function</a> appendix.</p>
+
+<p><a id="back-instructions" target="_blank"></a></p>
+<ol start="14">
+<li><p>In the <em>state_machine_manager.py</em> file, <strong>DELETE</strong> the <strong>endpoint_config_step</strong>.</p></li>
+<li><p>In the <em>state_machine_manager.py</em> file, <strong>REPLACE</strong> the existing <strong>endpoint_create_step</strong> code with the following:</p></li>
+</ol><pre class="highlight python"><code><span class="c"># Create Endpoint using Lambda</span>&#x000A;&#x000A;<span class="n">endpoint_create_step</span> <span class="o">=</span> <span class="n">steps</span><span class="o">.</span><span class="n">LambdaStep</span><span class="p">(</span>&#x000A;    <span class="s">"Create multi-variant endpoint"</span><span class="p">,</span>&#x000A;    <span class="n">parameters</span><span class="o">=</span><span class="p">{</span>&#x000A;        <span class="s">"FunctionName"</span><span class="p">:</span> <span class="n">endpoint_create_lambda</span><span class="p">,</span>&#x000A;        <span class="s">"Payload"</span><span class="p">:{</span>&#x000A;            <span class="s">"Input.$"</span><span class="p">:</span><span class="s">"$"</span>&#x000A;        <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;<span class="p">)</span>&#x000A;<span class="n">endpoint_create_step</span><span class="o">.</span><span class="n">add_retry</span><span class="p">(</span><span class="n">SageMaker_throttling_retry</span><span class="p">)</span>&#x000A;</code></pre>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note:</strong> You are not passing the result of the <strong>endpoint_create_step</strong> Step Functions step to the next step here. Instead, you are passing the return results from the Lambda function <strong>createEndpoint</strong> to the next step. </p>
+<ol start="16">
+<li>In the <em>state_machine_manager.py</em> file, <strong>REPLACE</strong> the existing <strong>model_test_step</strong> code to change the targeted Lambda function with the following code:</li>
+</ol><pre class="highlight python"><code><span class="c"># Create a step that invokes an AWS Lambda function to test multi model accuracy </span>&#x000A;<span class="c"># update the artifact store to reflect the accuracy for both variant of the models</span>&#x000A;<span class="n">model_test_step</span> <span class="o">=</span> <span class="n">steps</span><span class="o">.</span><span class="n">LambdaStep</span><span class="p">(</span>&#x000A;    <span class="s">"Test model"</span><span class="p">,</span>&#x000A;    <span class="n">parameters</span><span class="o">=</span><span class="p">{</span>&#x000A;        <span class="s">"FunctionName"</span><span class="p">:</span> <span class="n">multivariant_test_step</span><span class="p">,</span>&#x000A;        <span class="s">"Payload"</span><span class="p">:{</span>&#x000A;            <span class="s">"Input.$"</span><span class="p">:</span><span class="s">"$"</span>&#x000A;        <span class="p">}</span>&#x000A;    <span class="p">},</span>&#x000A;    <span class="n">result_path</span><span class="o">=</span><span class="s">'$.model_test_step_result'</span>&#x000A;<span class="p">)</span>&#x000A;</code></pre>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note:</strong> Here, you replaced the FunctionName value to <strong>multivariant_test_step</strong>.</p>
+
+<p>Lastly, you must update the workflow definition to parallelize the Training, Saving<br>
+and Artifact registration steps. The other steps will remain in the chain.</p>
+<ol start="17">
+<li>In the <em>state_machine_manager.py</em> file, just below <em>train_step_A</em>, <strong>ADD</strong> the following code:</li>
+</ol><pre class="highlight python"><code><span class="n">train_step_B</span> <span class="o">=</span> <span class="n">steps</span><span class="o">.</span><span class="n">Chain</span><span class="p">([</span>&#x000A;    <span class="n">training_stepB</span><span class="p">,</span>&#x000A;    <span class="n">model_stepB</span><span class="p">,</span>&#x000A;    <span class="n">register_artifact_step_b</span>&#x000A;    <span class="p">])</span>&#x000A;&#x000A;<span class="n">training_step</span> <span class="o">=</span> <span class="n">stepfunctions</span><span class="o">.</span><span class="n">steps</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">Parallel</span><span class="p">(</span><span class="s">"Customer Estimators"</span><span class="p">)</span>&#x000A;<span class="n">training_step</span><span class="o">.</span><span class="n">add_branch</span><span class="p">(</span><span class="n">train_step_A</span><span class="p">)</span>&#x000A;<span class="n">training_step</span><span class="o">.</span><span class="n">add_branch</span><span class="p">(</span><span class="n">train_step_B</span><span class="p">)</span>&#x000A;</code></pre>
+<p>Here, you added a new step (train_step_B), chaining the first three steps. In the second code block, you tied the first three steps for the models to run in parallel. Next, you will update <em>workflow_definition</em>.</p>
+<ol start="18">
+<li>In the <em>state_machine_manager.py</em> file, <strong>REPLACE</strong> the existing <strong>workflow_definition</strong> chain code with the following code:</li>
+</ol><pre class="highlight python"><code><span class="c"># Chain the steps together to generate a full AWS Step Functions</span>&#x000A;<span class="n">workflow_definition</span> <span class="o">=</span> <span class="n">steps</span><span class="o">.</span><span class="n">Chain</span><span class="p">([</span>&#x000A;    <span class="n">training_step</span><span class="p">,</span>&#x000A;    <span class="n">endpoint_create_step</span><span class="p">,</span>&#x000A;    <span class="n">endpoint_wait_step</span><span class="p">,</span>&#x000A;    <span class="n">model_test_step</span>&#x000A;<span class="p">])</span>&#x000A;</code></pre><ol start="19">
+<li>Update the <strong>state_machine_manager.py</strong> file to include the sections described previously.</li>
+</ol>
+<p>Once you have made the updates, save the file.</p>
+<ol start="20">
+<li>In the terminal window, enter the following commands to commit the changes to the repository and push them to CodeCommit. This will invoke CodePipeline to build and update the state machine.</li>
+</ol><pre class="highlight shell"><code><span class="nb">cd</span> <span class="s2">"</span><span class="k">$(</span>dirname <span class="s2">"</span><span class="k">$(</span>find . -not -path <span class="s1">'*/\.*'</span> -type f -name state_machine_manager.py | head -1<span class="k">)</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>&#x000A;git commit -a -m <span class="s2">"Updated the state_machine_manager.py file to include a ModelB definitions."</span>&#x000A;git push&#x000A;&#x000A;</code></pre>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> There will be several warnings from git about configuring the user. You do not need to do this configuration for the lab; however, if you want to do it for completeness, feel free to follow the on-screen instructions to do so.</p>
+<ol start="21">
+<li><p>Return to the browser tab with the AWS Management Console open.</p></li>
+<li><p>In the console, on the <strong>Services</strong> menu, choose <strong>CodePipeline</strong>.</p></li>
+<li><p>Choose the name of the pipeline that contains <strong>StepFunctionsPipeline</strong>.</p></li>
+</ol>
+<p>Depending on how fast you loaded the CodePipeline page, the pipeline will either be waiting to start, in process, or completed. Look at the time it last completed to determine if it has run or not. If it has not run yet, wait until you see the build stage succeed.</p>
+
+<p>Next, we will see how this changed the Step Functions workflow.</p>
+<ol start="24">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>Step Functions</strong>.</p></li>
+<li><p>Choose the name of the state machine that contains <strong>trainingStateMachine</strong>.</p></li>
+<li><p>Choose the <strong>Definition</strong> tab.</p></li>
+</ol>
+<p>The definition loads. Looking at the graph, you should see extra steps added to incorporate ModelB between start and end.</p>
+
+<p><img src="https://us-west-2-tcprod.s3.amazonaws.com/courses/ILT-DD-200-MLPOPS/v1.0.5/lab-4/instructions/en_us/images/stepfunctionFlow-Lab4.png" alt="Image of the updated state machine graph with 7 steps"></p>
+
+<p>Now that the state machine has been updated, the <em>buildspec.yml</em> file in the <em>modelCode</em> repo must be updated to include the ModelB code.</p>
+
+<h2 id="step6">Task 2: Update model code</h2>
+
+<p>AWS CodeBuild uses the <em>buildspec.yml</em> file in the <em>modelCode</em> repo to build the algorithm into a Docker image and push it to Amazon ECR. You have set up the state machine to train two different models, using two different images. In order to get everything to work, you must update the <em>buildspec.yml</em> file to create an ECR image for each algorithm. You will continue to use AWS Cloud9 to complete this task.</p>
+<ol start="27">
+<li>Copy and paste the following text to go to the <em>environment</em> folder.</li>
+</ol><pre class="highlight shell"><code><span class="nb">cd</span> ~/environment&#x000A;&#x000A;</code></pre><ol start="28">
+<li><p>Copy the <strong>modelCodeRepo</strong> value from the left side of the lab page.</p></li>
+<li><p>Paste the value into the terminal window and press ENTER.</p></li>
+</ol>
+<p>A new folder is displayed in the file browser.</p>
+<ol start="30">
+<li><p>Expand the <strong>modelCode</strong> folder in the file browser by choosing the <i class="fas fa-angle-right"></i> angle right icon.</p></li>
+<li><p>Open (double-click) the <strong>buildspec.yml</strong> file.</p></li>
+<li><p>Replace the <strong>build</strong> and <strong>post_build</strong> section with the following code.</p></li>
+</ol><pre class="highlight shell"><code>  build:&#x000A;    commands:&#x000A;      - <span class="nb">echo </span>Build started on <span class="sb">`</span>date<span class="sb">`</span>&#x000A;      - <span class="nb">echo </span>Building the Docker image <span class="k">for </span>modelCodeA...          &#x000A;      - <span class="nb">echo </span>Path <span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span> &#x000A;      - <span class="nb">echo </span>Permissions <span class="sb">`</span>ls -la<span class="sb">`</span> &#x000A;      - chmod -R 775 modelCodeA&#x000A;      - <span class="nb">echo </span>Decision Tree Permissions <span class="sb">`</span><span class="nb">cd </span>modelCodeA <span class="o">&amp;&amp;</span> ls -la<span class="sb">`</span>&#x000A;      <span class="c"># $IMAGE_NAMEA is defined as an environmental variable for the build project</span>&#x000A;      - <span class="nb">cd </span>modelCodeA <span class="o">&amp;&amp;</span> docker build -t <span class="nv">$IMAGE_NAMEA</span>:<span class="nv">$RunId</span> . &#x000A;      - <span class="nb">echo </span>Path <span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>&#x000A;      - docker tag <span class="nv">$IMAGE_NAMEA</span>:<span class="nv">$RunId</span> <span class="nv">$ECR_URIA</span>:<span class="nv">$RunId</span>&#x000A;      <span class="c"># Added Section:</span>&#x000A;      - <span class="nb">echo </span>Building the Docker image <span class="k">for </span>modelCodeB...          &#x000A;      <span class="c"># Change to modelCodeB directory</span>&#x000A;      - <span class="nb">echo </span>Path <span class="sb">`</span><span class="nb">cd</span> ../modelCodeB <span class="o">&amp;&amp;</span> <span class="nb">pwd</span><span class="sb">`</span> &#x000A;      - <span class="nb">echo </span>Permissions <span class="sb">`</span>ls -la ../modelCodeB<span class="sb">`</span> &#x000A;      - chmod -R 775 ../modelCodeB&#x000A;      - <span class="nb">echo </span>Random Forest Permissions <span class="sb">`</span><span class="nb">cd</span> ../modelCodeB <span class="o">&amp;&amp;</span> ls -la<span class="sb">`</span>&#x000A;      <span class="c"># $IMAGE_NAMEB is defined as an environmental variable for the build project</span>&#x000A;      - <span class="nb">cd</span> ../modelCodeB <span class="o">&amp;&amp;</span> docker build -t <span class="nv">$IMAGE_NAMEB</span>:<span class="nv">$RunId</span> . &#x000A;      <span class="c"># Create the modelCodeB Docker image</span>&#x000A;      - docker tag <span class="nv">$IMAGE_NAMEB</span>:<span class="nv">$RunId</span> <span class="nv">$ECR_URIB</span>:<span class="nv">$RunId</span>&#x000A;  post_build:&#x000A;    commands:&#x000A;      - <span class="nb">echo </span>Path <span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>&#x000A;      - <span class="nb">echo </span>Build completed on <span class="sb">`</span>date<span class="sb">`</span>&#x000A;      - <span class="nb">echo </span>Pushing the Docker image...&#x000A;      <span class="c"># Push the modelCodeA Docker image</span>&#x000A;      - <span class="nb">cd</span> ../modelCodeA <span class="o">&amp;&amp;</span> docker push <span class="nv">$ECR_URIA</span>:<span class="nv">$RunId</span>&#x000A;      <span class="c"># Added: push the modelCodeB Docker image</span>&#x000A;      - <span class="nb">cd</span> ../modelCodeB <span class="o">&amp;&amp;</span> docker push <span class="nv">$ECR_URIB</span>:<span class="nv">$RunId</span>&#x000A;&#x000A;</code></pre><ol start="33">
+<li>Once you have made the updates, save the file.</li>
+</ol>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> Be sure to check the tabbing in the file before you save it. <input readonly class="copyable-inline-input" size="5" type="text" value="build"> should have two spaces (one tab) in front of it, not four (two tabs).</p>
+<ol start="34">
+<li>In the terminal window, enter the following commands to commit the changes to the repository and push them to CodeCommit. This will invoke CodePipeline to build and update the state machine.</li>
+</ol><pre class="highlight shell"><code><span class="nb">cd</span> <span class="s2">"</span><span class="k">$(</span>dirname <span class="s2">"</span><span class="k">$(</span>find . -not -path <span class="s1">'*/\.*'</span> -type d -name modelCodeA | head -1<span class="k">)</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>&#x000A;git commit -a -m <span class="s2">"Updated the buildspec.yml file to include modelB ECR repo build"</span>&#x000A;git push&#x000A;&#x000A;</code></pre>
+<p>Now that repository has been updated, the training state machine will be automatically invoked. </p>
+<ol start="35">
+<li><p>Return to the browser tab with the AWS Management Console open.</p></li>
+<li><p>In the console, on the <strong>Services</strong> menu, choose <strong>CodePipeline</strong>.</p></li>
+<li><p>Choose the name of the pipeline that contains <strong>deployModelPipeline</strong>.</p></li>
+</ol>
+<p>Depending on how fast you loaded the CodePipeline page, the pipeline will either be waiting to start, in process, or completed. Look at the time it last completed to determine if it has run or not. If it has not run yet, wait until you see the build stage succeed and train stage changed to <em>In progress</em>.</p>
+
+<p>Next, you will see how AWS Step Functions runs the steps.</p>
+<ol start="38">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>Step Functions</strong>.</p></li>
+<li><p>Choose <strong>State machines</strong> on the left pane.</p></li>
+<li><p>Choose the name of the state machine that contains <strong>trainingStateMachine</strong>.</p></li>
+</ol>
+<p>The <strong>trainingStateMachine</strong> state machine should have one job listed as <em>Running</em>.</p>
+<ol start="41">
+<li>Choose the job listed as running from the list.</li>
+</ol>
+<p>You can see the progress of the state machine as each step runs. Wait for the process to complete before moving to the next step.</p>
+
+<h3>Validate the accuracy of each model in DynamoDB</h3>
+<ol start="42">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>DynamoDB</strong>.</p></li>
+<li><p>In the left navigation, choose <strong>Items</strong>.</p></li>
+<li><p>Choose the <i class="far fa-dot-circle"></i> DynamoDB table.</p></li>
+</ol>
+<p>You will notice Accuracy for each model is updated.</p>
+<ol start="45">
+<li>In the item results, find the endpoint name for both <strong>ModelA</strong> and <strong>ModelB</strong>, then copy and paste both of these values into a notepad to use later.</li>
+</ol>
+<h2 id="step7">Task 3: Evaluate models and traffic distribution</h2>
+
+<p>In this task, you will use an Amazon SageMaker notebook to evaluate each model. Notebooks help you visualize data to see how each model is performing. You can also use notebooks to change the percentage of traffic being sent to each model. </p>
+<ol start="46">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>Amazon SageMaker</strong>.</p></li>
+<li><p>In the left navigation pane, in the <strong>Notebook</strong> section, choose <strong>Notebook instances</strong>.</p></li>
+<li><p>Under <strong>Actions</strong>, choose <strong>Open Jupyter</strong> to open the notebook instance.</p></li>
+<li><p>In Jupyter, choose <strong>Lab-4</strong> and open the <strong>Lab4-AB_Testing.ipynb</strong> notebook file, which was automatically uploaded to the Jupyter console.</p></li>
+<li><p>To complete this exercise lab, carefully move through the notebook from top to bottom. Run each code cell and view the command output.</p></li>
+</ol>
+<p><i class="fas fa-info-circle fa-lg" style="color:blue;"></i> <strong>Note</strong> To run a cell, select the cell and press <strong>SHIFT + ENTER</strong> OR press <strong>Run</strong> at the top of the page.</p>
+
+<p>You may go <a href="#notebook-instructions" target="_self">here</a> to run a optional task for additional Jupyter notebook practice.</p>
+
+
+
+<h2 id="step8">End Lab</h2>
+
+<p>Follow these steps to close the console, end your lab, and evaluate the experience.</p>
+<ol start="51">
+<li><p>Return to the AWS Management Console.</p></li>
+<li><p>On the navigation bar, choose <strong>awsstudent@&lt;AccountNumber&gt;</strong>, and then choose <strong>Sign Out</strong>.</p></li>
+<li><p>Choose <span style="background-color:#D93025;font-family:Google Sans;font-weight:bold;font-size:90%;color:white;border-color:#D93025;border-radius:4px;border-width:2px;border-style:solid;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;">End Lab</span></p></li>
+<li><p>Choose <span style="background-color:#DEDEDE;font-family:Google Sans;font-weight:bold;font-size:90%;color:#444;border-width:1px;border-style:solid;border-color:#444;padding-top:3px;padding-bottom:3px;padding-left:10px;padding-right:10px;">OK</span></p></li>
+<li><p>(Optional):</p></li>
+</ol><ul>
+<li>Select the applicable number of stars <i class="far fa-star"></i>
+</li>
+<li>Type a comment</li>
+<li>
+<p>Choose <strong>Submit</strong></p>
+<ul>
+<li>1 star = Very dissatisfied</li>
+<li>2 stars = Dissatisfied</li>
+<li>3 stars = Neutral</li>
+<li>4 stars = Satisfied</li>
+<li>5 stars = Very satisfied</li>
+</ul>
+</li>
+</ul>
+<p>You may close the window if you don't want to provide feedback.</p>
+
+<h2 id="step9">Additional Resources</h2>
+<ul>
+<li>For more information about how to use AWS Lambda, see <a href="https://docs.aws.amazon.com/lambda/index.html" target="_blank">AWS Lambda Documentation</a>.</li>
+<li>To learn more about how to use Step Functions to keep polling a Lambda function until it returns positive, see <a href="https://aws.amazon.com/getting-started/hands-on/handle-serverless-application-errors-step-functions-lambda/" target="_blank">Handle Errors in Serverless Applications</a>
+</li>
+<li>To review CodePipeline variables, see <a href="https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-variables.html#w2aac47c29b9b7" target="_blank">CodePipeline Variables</a>
+</li>
+<li>For more information about calling a SageMaker endpoint with boto3, see <a href="https://boto3.amazonaws.com/v1/documentation/api/1.9.42/reference/services/sagemaker-runtime.html#SageMakerRuntime.Client.invoke_endpoint" target="_blank">SateMakerRuntime.Client.invoke_endpoint</a>
+</li>
+</ul>
+
+
+<p>For more information about AWS Training and Certification, see <a href="https://aws.amazon.com/training/" target="_blank"><em>https://aws.amazon.com/training/</em></a>.</p>
+
+<p><em>Your feedback is welcome and appreciated.</em></p>
+
+<p>If you would like to share any feedback, suggestions, or corrections, please provide the details in our <a href="https://support.aws.amazon.com/#/contacts/aws-training" target="_blank"><em>AWS Training and Certification Contact Form</em></a>.</p>
+
+<h2 id="step10">Appendices</h2>
+
+<h3>Finding a Lambda function</h3>
+
+<p><a id="lambda-instructions" target="_blank"></a></p>
+<ol start="56">
+<li><p>In the AWS Management Console, on the <strong>Services</strong> menu, choose <strong>Lambda</strong>.</p></li>
+<li><p>In the filter field, type <strong>createEndpointLambda</strong> and press ENTER.</p></li>
+<li><p>Select the Lambda with name <strong>createEndpointLambda</strong>. Once the Lambda function page opens, select index.py in the Code source section.</p></li>
+</ol>
+<p>Return to instructions <a href="#back-instructions" target="_self">here</a>.</p>
+
+<h3>Model code review</h3>
+
+<p><a id="model-code-review" target="_blank"></a></p>
+
+<p>The <input readonly class="copyable-inline-input" size="10" type="text" value="modelCodeA"> and <input readonly class="copyable-inline-input" size="10" type="text" value="modelCodeB"> directories contain all the components you need to package the sample algorithm for Amazon SageMager:</p>
+<pre class="highlight plaintext"><code>.&#x000A;|-- Dockerfile&#x000A;|-- build_and_push.sh&#x000A;`-- decision_trees&#x000A;    |-- nginx.conf&#x000A;    |-- predictor.py&#x000A;    |-- serve&#x000A;    |-- train&#x000A;    `-- wsgi.py&#x000A;</code></pre>
+<p>Let's discuss each of these in turn:</p>
+<ul>
+<li>
+<strong><input readonly class="copyable-inline-input" size="10" type="text" value="Dockerfile"></strong> describes how to build your Docker container image. More details follow.</li>
+<li>
+<strong><input readonly class="copyable-inline-input" size="17" type="text" value="build_and_push.sh"></strong> is a script that uses the Dockerfile to build your container images, and then pushes it to ECR. We'll invoke the commands directly later in this notebook, but you can simply copy and run the script for your own algorithms.</li>
+<li>
+<strong><input readonly class="copyable-inline-input" size="14" type="text" value="decision_trees"></strong>  or <strong><input readonly class="copyable-inline-input" size="13" type="text" value="random_forest"></strong> is the directory that contains the files that will be installed in the container.</li>
+<li>
+<strong><input readonly class="copyable-inline-input" size="10" type="text" value="local_test"></strong> is a directory that shows how to test your new container on any computer that can run Docker, including an Amazon SageMaker notebook instance. With this method, you can quickly iterate using small datasets to eliminate any structural bugs before you use the container with SageMaker.</li>
+</ul>
+<p>In this simple lab application, only five files are installed in the container. You may only need that many. Or, if you have many supporting routines, you may wish to install more. These five files show the standard structure of our Python containers. You are free to choose a different toolset, in which case you could have a different layout. If you are writing in a different programming language, you will certainly have a different layout, depending on the frameworks and tools you choose.</p>
+
+<p>We put the following files in the container:</p>
+<ul>
+<li>
+<strong><input readonly class="copyable-inline-input" size="10" type="text" value="nginx.conf"></strong> is the configuration file for the nginx front-end. Generally, you should be able to take this file as-is.</li>
+<li>
+<strong><input readonly class="copyable-inline-input" size="12" type="text" value="predictor.py"></strong> is the program that actually implements the Flask web server and the decision tree predictions for this app. You will want to customize the actual prediction parts to your application. Since this algorithm is simple, we do all the processing here in this file, but you may choose to have separate files for implementing your custom logic.</li>
+<li>
+<strong><input readonly class="copyable-inline-input" size="5" type="text" value="serve"></strong> is the program started when the container is started for hosting. It simply launches the gunicorn server which runs multiple instances of the Flask app defined in <input readonly class="copyable-inline-input" size="12" type="text" value="predictor.py">. You should be able to take this file as-is.</li>
+<li>
+<strong><input readonly class="copyable-inline-input" size="5" type="text" value="train"></strong> is the program that is invoked when the container is run for training. You will modify this program to implement your training algorithm.</li>
+<li>
+<strong><input readonly class="copyable-inline-input" size="7" type="text" value="wsgi.py"></strong> is a small wrapper used to invoke the Flask app. You should be able to take this file as-is.</li>
+</ul>
+<p>In summary, the two files you will probably want to change for your application are <input readonly class="copyable-inline-input" size="5" type="text" value="train"> and <input readonly class="copyable-inline-input" size="12" type="text" value="predictor.py">.</p>
+
+<h3>Datasets</h3>
+
+<p><a id="datasets" target="_blank"></a></p>
+
+<p>A scikit-learn-available iris dataset is used in this lab. You can learn more about the dataset <a href="https://scikit-learn.org/stable/auto_examples/datasets/plot_iris_dataset.html" target="_blank">here</a>. The preprocessed data is added in the S3 bucket as part of the infrastructure build.</p>
+
+<p><a id="notebook-instructions" target="_blank"></a></p>
+
+<h2 id="step11">Optional: Jupyter notebook introduction</h2>
+
+<p>In this task, you will explore a Jupyter notebook GUI on Amazon SageMaker, working through a sample notebook. With Jupyter notebooks, you can create and share documents that contain both code and rich text elements, such as equations.</p>
+<ol start="59">
+<li><p>In the Jupyter notebook GUI, choose <strong>Lab-4</strong> and open the <strong>PythonCheatSheeet.ipynb</strong> notebook file that was automatically uploaded to the Jupyter console. The notebook will open in a new tab.</p></li>
+<li><p>In the Notebook tab, the notebook will look like the following image. At the top of the notebook, you will find the Jupyter notebook dashboard. Let's look at its components in detail.</p></li>
+</ol>
+<p><img src="https://us-west-2-tcprod.s3.amazonaws.com/courses/ILT-DD-200-MLPOPS/v1.0.5/lab-4/instructions/en_us/images/notebook.png" alt="'Jupyter Notebook Menubar'"></p>
+<ol start="61">
+<li><p>At the top, you have the Jupyter icon, which can be used to navigate back to the Juptyer console. To the right is the name of the notebook (1). The name displayed at the top of the page, next to the Jupyter logo, reflects the name of the .ipynb file. If you select the notebook name, it will bring up a dialog box in which you can rename it. Try changing the name to <input readonly class="copyable-inline-input" size="18" type="text" value="PythonCheatSheeet1"></p></li>
+<li><p>Below the name of your notebook is the notebook menu bar (2), which gives you options to control how the notebook works. It includes:</p></li>
+</ol><ul>
+<li>
+<strong>File:</strong> Used to save/revert/checkpoint your notebook</li>
+<li>
+<p><strong>Edit:</strong> Edit your notebook structure including</p>
+<ul>
+<li>Cut (Shortcut: x)</li>
+<li>Copy (Shortcut: c)</li>
+<li>Paste (Shortcut: Paste below: V)</li>
+<li>Delete (Shortcut: dd)</li>
+<li>Undo delete (Shortcut: z)</li>
+</ul>
+</li>
+<li><p><strong>View:</strong> Toggles different options for your notebook</p></li>
+<li><p><strong>Insert:</strong> Inserts cells above (shortcut: a) and below (shortcut: b) in a notebook. A cell is a multiline text input field. You can run this cell by using Shift-Enter, or by selecting either the “Play” button in the toolbar or "Cell" and "Run Cells" in the menu bar.</p></li>
+<li><p><strong>Cell:</strong> To run the cells in the notebook or change the cell type</p></li>
+<li><p><strong>Kernel:</strong> Change the state of the kernel (or programming language) used by the notebooks. Amazon SageMaker includes various kernels based on Python, depending on frameworks you want to use, such as TensorFlow, Pytorch, and MXNet.</p></li>
+<li><p><strong>Widgets:</strong> Use interactive tools</p></li>
+<li><p><strong>Help:</strong> Important shortcuts and links</p></li>
+</ul><ol start="63">
+<li><p>On the right of the notebook menu bar is the notebook kernel (3), which gives you the ability to change the kernel that the notebook is running.</p></li>
+<li><p>Below the menu bar are some helpful buttons that you will find handy when working in a Jupyter notebook. They include save, cut, copy, paste, insert, and move one cell above and below buttons (4).</p></li>
+<li><p>In addition to those, you will also find buttons to run a cell, interrupt a cell, and restart the kernel button (5).</p></li>
+<li><p>To the right of these buttons is a drop-down menu for changing the cell type. The processing behavior of a cell is determined by the cell's type. The types of cells includes:</p></li>
+</ol><ul>
+<li>
+<strong>Code cells:</strong> The cells that take input in the form of code.</li>
+<li>
+<strong>Markdown cells:</strong> Cells that contain additional information in the form of text in a language called markdown. The output of this cell is the text neatly displayed similar to a HTML page. Additional explanation of this cell follows later.</li>
+<li>
+<strong>Raw NBconvert cells:</strong> Raw cells that don't give you an output.</li>
+</ul><ol start="67">
+<li><p>You can run the code block in the cell by using <strong>Shift+Enter</strong>, or by choosing either the <i class="fas fa-play">| Run</i> button in the toolbar, or choose "Cell" and "Run Cells" in the menu bar.</p></li>
+<li><p>The first cell you see in the notebook is a markdown cell. A Markdown cell uses markdown, which is a markup language with plain-text-formatting syntax. It is often used to format readme files to create rich text and additional documentation in the Jupyter notebook for all the steps that you will take. Let's look at the markdown cell first.</p></li>
+<li><p>To look at how to structure a markdown cell, open (double-click) the cell to inspect. For more information on how to structure markdown, see <a href="https://Jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html" target="_blank">Jupyter notebook markdown docs</a></p></li>
+<li><p>Lastly, you have a code block cell that you use to run code. A notebook can run code in a number of different programming languages, but it can only use one language at a time. You can use a code cell to write code with full syntax highlighting. Each cell is run individually, and the order the cell was run in is found by inspecting the number to the left of the cell: <input readonly class="copyable-inline-input" size="12" type="text" value="In[&lt;number&gt;]">. Similarly, the output of that cell is given by <input readonly class="copyable-inline-input" size="13" type="text" value="Out[&lt;number&gt;]">.</p></li>
+<li><p>Run through this notebook once and then proceed to the next task.</p></li>
+</ol>
+<p><i class="fas fa-chalkboard-teacher" style="color:black;"></i> <strong>Learn more</strong> For more information about Jupyter notebooks, see <a href="https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/what_is_jupyter.html" target="_blank">Jupyter notebook docs</a>.</p>
+
+</div>
+</div>
+
+
+<div class='lab-content__end-lab-button js-end-lab-button-container hidden'>
+<ql-lab-control-button class='js-end-lab-button' running></ql-lab-control-button>
+</div>
+<!-- / TODO: Move recommendations into the end lab modal -->
+</ql-drawer-content>
+<ql-drawer end id='outline-drawer' open slot='drawer' width='320'>
+<div aria-label='Lab Table of Contents' role='navigation'>
+<ul class='lab-content__outline js-lab-content-outline'>
+<li><a href='#step1'>Lab overview</a></li><li><a href='#step2'>Objectives</a></li><li><a href='#step3'>Start Lab</a></li><li><a href='#step4'>Lab Environment</a></li><li><a href='#step5'>Task 1: Update Step Functions for A/B testing</a></li><li><a href='#step6'>Task 2: Update model code</a></li><li><a href='#step7'>Task 3: Evaluate models and traffic distribution</a></li><li><a href='#step8'>End Lab</a></li><li><a href='#step9'>Additional Resources</a></li><li><a href='#step10'>Appendices</a></li><li><a href='#step11'>Optional: Jupyter notebook introduction</a></li>
+</ul>
+</div>
+</ql-drawer>
+</ql-drawer-container>
+</ql-drawer-content>
+</ql-drawer-container>
+
+
+
+</div>
+</main>
+
+<span class='hidden' id='flash-sibling-before'></span>
+<ql-snackbar></ql-snackbar>
+
+
+<div class='modal fade' id='lab-details-modal'>
+<div class='modal-container'>
+<div class='modal-content mdl-shadow--24dp'>
+<div class='modal-body'>
+<p class='l-mbm'>
+This lab provides general practice to perform AB Testing using different production variants
+</p>
+<p class='small-label l-mbs'>
+<strong>
+Duration:
+</strong>
+5m setup
+&middot;
+180m access
+&middot;
+180m completion
+</p>
+<p class='small-label l-mbs'>
+<strong>AWS Region:</strong>
+[us-west-2] <strong>US West (Oregon)</strong>
+</p>
+<p class='small-label l-mbs'>
+
+</p>
+<p class='small-label'>
+<strong>
+Permalink:
+</strong>
+<a href="https://aws.qwiklabs.com/catalog_lab/11888">https://aws.qwiklabs.com/catalog_lab/11888</a>
+</p>
+</div>
+<div class='modal-actions'>
+<a class='button button--text' data-dismiss='modal'>
+Got It
+</a>
+</div>
+
+
+</div>
+</div>
+<iframe class='l-ie-iframe-fix'></iframe>
+</div>
+<ql-dialog headline='How satisfied are you with this lab?&lt;span aria-hidden=&quot;true&quot;&gt;*&lt;/span&gt;' id='lab-review-dialog'>
+<form class="simple_form js-lab-review-form" id="new_lab_review" action="/lab_reviews" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><div aria-labelledby='lab-review-dialog' aria-required='true' aria-valuemax='5' aria-valuemin='0' aria-valuenow='0' class='rateit js-rateit' data-rateit-max='5' data-rateit-min='0' data-rateit-resetable='false' data-rateit-step='1' data-rateit-value='0' id='lab-review-rateit' role='slider' tabindex='0'></div>
+<div class='l-mtm'>
+
+<div class="control-group hidden lab_review_user_id"><div class="controls"><input class="hidden" type="hidden" value="526414" name="lab_review[user_id]" id="lab_review_user_id" /></div></div>
+<div class="control-group hidden lab_review_classroom_id"><div class="controls"><input class="hidden" type="hidden" value="59034" name="lab_review[classroom_id]" id="lab_review_classroom_id" /></div></div>
+<div class="control-group hidden lab_review_lab_id"><div class="controls"><input class="hidden" type="hidden" value="11888" name="lab_review[lab_id]" id="lab_review_lab_id" /></div></div>
+<div class="control-group hidden lab_review_focus_id"><div class="controls"><input class="hidden" type="hidden" value="335515" name="lab_review[focus_id]" id="lab_review_focus_id" /></div></div>
+<div class="control-group hidden lab_review_rating"><div class="controls"><input class="hidden js-rating-input" type="hidden" name="lab_review[rating]" id="lab_review_rating" /></div></div>
+<div class="control-group text optional lab_review_comment"><label class="text optional control-label" for="lab_review_comment">Additional Comments</label><div class="controls"><textarea class="text optional" name="lab_review[comment]" id="lab_review_comment">
+</textarea></div></div>
+</div>
+</form><ql-button disabled id='submit' label='Submit' slot='action' text></ql-button>
+</ql-dialog>
+
+<ql-dialog headline='All done? If you end this lab, you will lose all your work. You may not be able to restart the lab if there is a quota limit. Are you sure you want to end this lab?' icon='error_outline' id='js-lab-are-you-sure-dialog'>
+<ql-button id='js-are-you-sure-button' label='Submit' slot='action' text></ql-button>
+</ql-dialog>
+
+
+<script>
+  $( function() {
+    ql.initMaterialInputs();
+    initChosen();
+    initSearch();
+    initTabs();
+    ql.list.init();
+    ql.favoriting.init();
+    ql.header.myAccount.init();
+    initTooltips();
+    ql.autocomplete.init();
+    ql.modals.init();
+    ql.toggleButtons.init();
+    ql.analytics.init();
+    ql.chat.init();
+  initLabContent();
+  ql.labOutline.links.init();
+  initLabReviewModal();
+  initLabReviewTranslations( {"star_amount_1":"1 of 5 stars","star_amount_2":"2 of 5 stars","star_amount_3":"3 of 5 stars","star_amount_4":"4 of 5 stars","star_amount_5":"5 of 5 stars"} )
+  ql.labAssessment.init();
+  ql.labData.init();
+  initLabTranslations( {"are_you_sure":"All done? If you end this lab, you will lose all your work. You may not be able to restart the lab if there is a quota limit. Are you sure you want to end this lab?","in_progress":"*In Progress*","ending":"*Ending*","starting":"*Starting, please wait*","end_concurrent_labs":"Sorry, you can only run one lab at a time. To start this lab, please confirm that you want all of your existing labs to end.","copied":"Copied","no_resource":"Error retrieving resource.","no_support":"No Support","mac_press":"Press ⌘-C to copy","thanks_review":"Thanks for reviewing this lab.","windows_press":"Press Ctrl-C to copy","days":"days"} );
+  ql.labRun.init();
+  ql.initHeader();
+  ql.navPanel.init();
+  ql.navigation.init();
+  
+  });
+</script>
+
+</body>
+</html>
+
